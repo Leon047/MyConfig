@@ -20,3 +20,7 @@
     mv ~/Vimrc/.vimrc ~/ \ 
     mv ~/Vimrc/colors ~/.vim/bundle \
     rm -rf ~/Vimrc 
+    
+3) Directory for backup and swap files
+
+    mkdir ~/.vim/session
