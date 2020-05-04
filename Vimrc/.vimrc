@@ -79,11 +79,21 @@ filetype plugin indent on
 "==============================================================================|
 set backspace=indent,eol,start
 
+" Auto save 
+autocmd CursorHold,CursorHoldI * update
+
+" Increase story size
+set history=200
+
 " This must happen before the syntax system is enabled
 aunmenu Help.
 aunmenu Window.
 let no_buffers_menu=1
+
+" Mouse support
+" set mouse=a
 set mousemodel=popup
+set mousehide            " Hide mouse cursor when typing 
 
 " Activate a permanent ruler and add line highlightng as well as numbers.
 " Also disable the sucking pydoc preview window for the omni completion
@@ -134,13 +144,13 @@ set foldlevel=99
 let g:SimpylFold_docstring_preview=1  " Preview docstring in fold text  
 let g:SimpylFold_fold_import = 1      " Fold imports
 
-" Swaps and backups
+" Swaps and backups                   "vim -r file_name
 if has("win32") || has("win64")
     set dir=$TMP
     set backupdir=$TMP
 else
-    set dir=/tmp
-    set backupdir=/tmp
+    set dir=~/.vim/sessions
+    set backupdir=~/.vim/sessions
 endif
 
 " Hide some panels
@@ -332,9 +342,10 @@ nmap  <F8> : TagbarToggle <CR>
 " --- C/C++/C# ---
 autocmd FileType c setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 autocmd FileType cpp setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType objc setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 autocmd FileType cs setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 autocmd FileType c setlocal commentstring=/*\ %s\ */
-autocmd FileType cpp,cs setlocal commentstring=//\ %s
+autocmd FileType cpp,cs,objc setlocal commentstring=//\ %s
 let c_no_curly_error=1
 let g:syntastic_cpp_include_dirs = ['include', '../include']
 let g:syntastic_cpp_compiler = 'clang++'
@@ -362,9 +373,21 @@ let javascript_enable_domhtmlcss=1
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_javascript_jshint_args='--config ~/.vim/extern-cfg/jshint.json'
 
+" ---- Typescript ----
+let g:syntastic_typescript_checkers = []
+
+" ---- JSON ----
+autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+
 " --- HTML ---
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType html setlocal commentstring=<!--\ %s\ -->
+let html_no_rendering=1
+let g:syntastic_html_checkers = []
+
+" ---- YAML support ----
+autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
+autocmd BufNewFile,BufRead *.sls setlocal ft=yaml
 
 " --- Python ---
 let python_highlight_all=1
@@ -392,6 +415,9 @@ autocmd FileType rust setlocal commentstring=//\ %s
 let g:syntastic_terraform_tffilter_plan = 1
 let g:terraform_completion_keys = 0
 let g:terraform_registry_module_completion = 0
+
+" ---- cmake support ----
+autocmd BufNewFile,BufRead CMakeLists.txt setlocal ft=cmake
 
 " --- Vim ---
 autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
