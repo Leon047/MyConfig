@@ -1,0 +1,11 @@
+# Create requirements.txt file
+pip freeze
+pip freeze > requirements.txt
+pip freeze --local
+
+# Upgrade txt file
+pip install pip-tools
+pip-dump
+
+# Install file
+pip3 install -r requirements.txt

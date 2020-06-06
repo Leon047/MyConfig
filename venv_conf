@@ -1,0 +1,50 @@
+# Использование virtualenv, virtualenvwrapper для Python 3.5
+mkdir .virtualenv
+
+# Установка virtualenv и virtualenvwrapper
+
+# For Python3+
+sudo apt install python3-pip
+sudo pip3 install virtualenv
+
+# venv on Python2.5
+sudo pip install virtualenv
+sudo pip install virtualenvwrapper
+
+# Смотрим, где находится virtualenvwrapper.sh
+which virtualenvwrapper.sh
+
+# Теперь нужно добавить некоторую информацию в конце нашего файла ~ / .bashrc
+sudo vim ~/.bashrc
+
+# Virtualenvwrapper settings:
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_VIRTUALENV=/home/leon/.local/bin/virtualenv
+source ~/.local/bin/virtualenvwrapper.sh
+
+# рестарт файла 
+source ~/.bashrc
+
+# virtenv list
+workon 
+
+# Создать виртуальное окружение для python2, можно командой
+mkvirtualenv venv_name
+
+# Если нужно создать сразу с рабочей папкой.
+mkproject project_name
+
+# Для переключения просто набираем
+workon virtenv_name
+(test_env01)$
+
+# Для выхода
+deactiavate
+
+# Для удаления виртуального окружения
+rmvirtualenv
+
+# Виртуальное окружения для python3
+mkvirtualenv virtenv_name  -p /usr/bin/python3
