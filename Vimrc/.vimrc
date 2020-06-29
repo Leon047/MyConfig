@@ -69,6 +69,10 @@ Plugin 'racer-rust/vim-racer'                   " Rust code completion in vim vi
 Plugin 'hashivim/vim-terraform'                 " Terraform syntax highlight
 Plugin 'juliosueiras/vim-terraform-completion'  " Terraform auto-completion
 
+" --- Docker ---
+Plugin 'ekalinin/Dockerfile.vim'                " Syntax for Dockerfile
+" Plugin 'kkvh/vim-docker-tools'                  " Docker-tools
+
 call vundle#end() " required
 filetype on
 filetype plugin on
@@ -161,7 +165,9 @@ set guioptions-=L   "remove left-hand scroll bar
 
 " Highlight characters past column 80
 set colorcolumn=80
-highlight ColorColumn ctermbg=red
+highlight ColorColumn ctermbg=238
+
+hi Comment ctermfg=585 
 
 augroup vimrc_autocmds
     autocmd!
