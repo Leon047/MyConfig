@@ -48,6 +48,7 @@ Plugin 'groenewege/vim-less'                    " Vim syntax for LESS (dynamic C
 
 " --- JavaScript ---
 Plugin 'pangloss/vim-javascript'                " Vastly improved Javascript indentation and syntax support in Vim
+Plugin 'maksimr/vim-jsbeautify'                 " Formated javascript files by js-beautify
 
 " --- HTML ---
 Plugin 'othree/html5.vim'                       " HTML5 omnicomplete and sytnax
@@ -60,6 +61,7 @@ Plugin 'mitsuhiko/vim-jinja'                    " Jinja support for vim
 Plugin 'mitsuhiko/vim-python-combined'          " *Combined Python 2/3 for Vim
 Plugin 'hynek/vim-python-pep8-indent'           " *PEP8 indent
 Plugin 'jmcantrell/vim-virtualenv'              " Virtualenv support in VIM
+Plugin 'tshirtman/vim-cython'                   " Cython support   
 
 " --- Rust ---
 Plugin 'rust-lang/rust.vim'                     " Vim support for Rust file detection and syntax highlighting
@@ -110,14 +112,9 @@ if has("gui_running")
 endif
 set ttyfast
 
-" colorscheme spacecamp
-" set guifont=Consolas:h13
-" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
-
 " Enable Syntax Colors
 " in GUI mode we go with fruity and Monaco 13
 " in CLI mode myterm looks better (fruity is GUI only)
-
 tab sball
 set switchbuf=useopen
 
@@ -162,12 +159,6 @@ set guioptions-=m   " remove menu bar
 set guioptions-=T   " remove toolbar
 set guioptions-=r   " remove right-hand scroll bar
 set guioptions-=L   "remove left-hand scroll bar
-
-" Highlight characters past column 80
-set colorcolumn=80
-highlight ColorColumn ctermbg=238
-
-hi Comment ctermfg=585 
 
 augroup vimrc_autocmds
     autocmd!
@@ -221,6 +212,31 @@ let g:airline_theme='powerlineish'
 let g:indentLine_char = '¦'   "['|', '¦', '┆', '┊'] 
 let g:indentLine_color_term = 239
 let g:indentLine_color_tty_dark = 1
+
+" colorscheme spacecamp
+" set guifont=Consolas:h13
+" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
+
+" Highlight characters past column 80
+set colorcolumn=80
+highlight ColorColumn ctermbg=238
+
+" ----=== Color Settings ===----
+
+" Comments
+hi Comment ctermfg=585 
+
+" Autocomplete
+hi Pmenu ctermbg=000 ctermfg=238
+hi PmenuSel ctermbg=238 ctermfg=000
+
+" Brackets
+hi MatchParen cterm=none ctermbg=238 ctermfg=none
+
+" CursorLine
+set cursorline
+hi CursorLine term=bold cterm=bold guibg=Grey40
+hi Visual  ctermbg=238 guibg=Grey40 gui=none
 
 "==============================================================================|
 "-------------------------  Python-mode settings ------------------------------|
@@ -281,6 +297,95 @@ else
 endif
 
 "==============================================================================|
+"------------------------- Languages support ----------------------------------|
+"==============================================================================|
+" --- C/C++/C# ---
+autocmd FileType c setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType cpp setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType objc setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType cs setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType c setlocal commentstring=/*\ %s\ */
+autocmd FileType cpp,cs,objc setlocal commentstring=//\ %s
+let c_no_curly_error=1
+let g:syntastic_cpp_include_dirs = ['include', '../include']
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_c_include_dirs = ['include', '../include']
+let g:syntastic_c_compiler = 'clang'
+
+" --- Erlang ---
+autocmd Filetype erlang setlocal omnifunc=erlang_complete#Complete
+
+" --- Elixir ---
+autocmd Filetype erlang setlocal omnifunc=erlang_complete#Complete
+
+" --- JavaScript ---
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd BufNewFile,BufRead *.json setlocal ft=javascript
+autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType javascript setlocal commentstring=//\ %s
+autocmd FileType javascript let b:javascript_fold = 0
+let javascript_enable_domhtmlcss=1
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_jshint_args='--config ~/.vim/extern-cfg/jshint.json'
+
+" ---- Typescript ----
+let g:syntastic_typescript_checkers = []
+
+" ---- JSON ----
+autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+
+" --- HTML ---
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType html setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType html setlocal commentstring=<!--\ %s\ -->
+let html_no_rendering=1
+let g:syntastic_html_checkers = []
+
+" --- CSS ---
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType css setlocal commentstring=/*\ %s\ */
+
+" ---- YAML support ----
+autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
+autocmd BufNewFile,BufRead *.sls setlocal ft=yaml
+
+" --- Python ---
+let python_highlight_all=1
+let python_highlight_exceptions=0
+let python_highlight_builtins=0
+let python_slow_sync=1
+autocmd FileType python setlocal completeopt-=preview
+autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8
+\ formatoptions+=croq softtabstop=4 smartindent
+\ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 
+\ smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+let g:syntastic_python_checkers = ['flake8', 'python']
+let g:syntastic_python_flake8_args='--ignore=E121,E128,E711,E301,E261,E241,E124,E126,E721
+\ --max-line-length=80'
+
+" --- Rust ---
+set hidden
+let g:racer_cmd = "~/.cargo/bin/racer"
+autocmd BufRead,BufNewFile *.rs set filetype=rust
+autocmd FileType rust setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
+autocmd FileType rust setlocal commentstring=//\ %s
+
+" --- Terraform ---
+let g:syntastic_terraform_tffilter_plan = 1
+let g:terraform_completion_keys = 0
+let g:terraform_registry_module_completion = 0
+
+" ---- cmake support ----
+autocmd BufNewFile,BufRead CMakeLists.txt setlocal ft=cmake
+
+" --- Vim ---
+autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
+
+"==============================================================================|
 "------------------------------- User hotkeys ---------------------------------|
 "==============================================================================|
 " Easier moving of code blocks
@@ -332,9 +437,6 @@ map <silent> <A-i> <C-W>+  " Increase size of the horizontal split, ALT-i
 map <silent> <A-k> <C-W>-  " Decrease size of the horizontal split, ALT-k
 map <silent> <A-l> <C-w><  " Decrease size of the vertical split, ALT-l
 
-" Activate autocomplete at <Ctrl+Space>
-inoremap <C-space> <C-x><C-o>
-
 " Python code check on PEP8
 autocmd FileType python map <buffer> <leader>8 :PymodeLint<CR>
 
@@ -342,91 +444,8 @@ autocmd FileType python map <buffer> <leader>8 :PymodeLint<CR>
 nmap  <F8> : TagbarToggle <CR>
 " let g:tagbar_autofocus = 0
 
-"==============================================================================|
-"------------------------- Languages support ----------------------------------|
-"==============================================================================|
-" --- C/C++/C# ---
-autocmd FileType c setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-autocmd FileType cpp setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-autocmd FileType objc setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-autocmd FileType cs setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-autocmd FileType c setlocal commentstring=/*\ %s\ */
-autocmd FileType cpp,cs,objc setlocal commentstring=//\ %s
-let c_no_curly_error=1
-let g:syntastic_cpp_include_dirs = ['include', '../include']
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_c_include_dirs = ['include', '../include']
-let g:syntastic_c_compiler = 'clang'
-
-" --- CSS ---
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-autocmd FileType css setlocal commentstring=/*\ %s\ */
-
-" --- Erlang ---
-autocmd Filetype erlang setlocal omnifunc=erlang_complete#Complete
-
-" --- Elixir ---
-autocmd Filetype erlang setlocal omnifunc=erlang_complete#Complete
-
-" --- JavaScript ---
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd BufNewFile,BufRead *.json setlocal ft=javascript
-autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType javascript setlocal commentstring=//\ %s
-autocmd FileType javascript let b:javascript_fold = 0
-let javascript_enable_domhtmlcss=1
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_javascript_jshint_args='--config ~/.vim/extern-cfg/jshint.json'
-
-" ---- Typescript ----
-let g:syntastic_typescript_checkers = []
-
-" ---- JSON ----
-autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
-
-" --- HTML ---
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType html setlocal commentstring=<!--\ %s\ -->
-let html_no_rendering=1
-let g:syntastic_html_checkers = []
-
-" ---- YAML support ----
-autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
-autocmd BufNewFile,BufRead *.sls setlocal ft=yaml
-
-" --- Python ---
-let python_highlight_all=1
-let python_highlight_exceptions=0
-let python_highlight_builtins=0
-let python_slow_sync=1
-autocmd FileType python setlocal completeopt-=preview
-autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8
-\ formatoptions+=croq softtabstop=4 smartindent
-\ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 
-\ smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-let g:syntastic_python_checkers = ['flake8', 'python']
-let g:syntastic_python_flake8_args='--ignore=E121,E128,E711,E301,E261,E241,E124,E126,E721
-\ --max-line-length=80'
-
-" --- Rust ---
-set hidden
-let g:racer_cmd = "~/.cargo/bin/racer"
-autocmd BufRead,BufNewFile *.rs set filetype=rust
-autocmd FileType rust setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
-autocmd FileType rust setlocal commentstring=//\ %s
-
-" --- Terraform ---
-let g:syntastic_terraform_tffilter_plan = 1
-let g:terraform_completion_keys = 0
-let g:terraform_registry_module_completion = 0
-
-" ---- cmake support ----
-autocmd BufNewFile,BufRead CMakeLists.txt setlocal ft=cmake
-
-" --- Vim ---
-autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
+" Activate autocomplete at <Ctrl+Space>
+inoremap <C-space> <C-x><C-o>
 
 "==============================================================================|
 "==============================================================================|
