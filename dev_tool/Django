@@ -1,0 +1,67 @@
+                      -----=====     Django      =====-----
+
+-- Django Shell --
+
+# Применить изменения models.py 
+./manage.py makemigrations
+./manage.py migrate
+
+$ ./manage.py shell
+
+# Подключим созданный класс в модуле models.py
+
+>>> from project_name.models import ClassName 
+
+reqvest = ClassName.objects.create(city='Tbilisy', weather='some response')
+
+reqvest.object_name
+
+
+# Вывод всех элементов в базе
+Weather_Data.objects.all()
+
+
+rq = ClassName.objects.creat()
+
+# Вывод элемента по параметру
+rq = ClassName.objects.get(параметр)
+
+rq = ClassName.objects.get(параметр__iexact='элемент')
+
+rq = ClassName.objects.filter(параметр__contains='элемент')
+
+
+--- Template (html) ---
+# settings.py
+
+TEMPLATES = [
+	'DIRS': [ 
+		os.path.join(BASE_DIR, 'templates') 
+	]
+]
+
+# Add in html file
+{% extends 'index.html' %} 
+
+
+--- Static (css, js, img) ---
+# settings.py
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+	os.path.join(BASE_DIR, 'static')
+]       
+
+# Add in html fili  
+{% load static %}
+
+<link rel="stylesheet" href={% static '/css/home_page.css' %}>  
+
+
+--- Fixtures (json, xml) ---
+
+# Создание файла
+$ manage.py dumpdata --format=json myapp > myapp/fixtures/initial_data.json
+
+# Загрузка данных в базу 
+$ manage.py loaddata <fixturename>

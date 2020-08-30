@@ -24,6 +24,7 @@ Plugin 'vim-airline/vim-airline-themes'         " Themes for vim-airline
 Plugin 'rosenfeld/conque-term'                  " Consoles as buffers
 Plugin 'tpope/vim-surround'                     " Parentheses, brackets, quotes, XML tags, and more
 Plugin 'Yggdroot/indentLine'
+Plugin 'turbio/bracey.vim'                      " LivePreview for html, css, js (install - nodejs, npm)
 
 "--------------=== Snippets support ===---------------
 Plugin 'garbas/vim-snipmate'                    " Snippets manager
@@ -181,6 +182,7 @@ nnoremap <F2> :Unite buffer<CR> " browse a list of the currently opened buffers
 " ConqueTerm
 " run python3 scripts at <F3>
 nnoremap <F3> :ConqueTermSplit python3 <CR>  
+
 " debug-mode for <F5>
 nnoremap <F5> :exe "ConqueTermSplit python3 " . expand("%") <CR>
 let g:ConqueTerm_StartMessages = 0
@@ -213,6 +215,16 @@ let g:indentLine_char = '¦'   "['|', '¦', '┆', '┊']
 let g:indentLine_color_term = 239
 let g:indentLine_color_tty_dark = 1
 
+" Turbio/Bracey
+let g:bracey_browser_command = 1
+let g:bracey_server_path = 1
+let g:bracey_auto_start_browser =1 
+let g:bracey_refresh_on_save = 1 
+let g:bracey_eval_on_save = 1
+let g:bracey_auto_start_server = 0
+let g:bracey_server_allow_remote_connections = 0
+noremap <f6> :Bracey<CR>
+
 " colorscheme spacecamp
 " set guifont=Consolas:h13
 " set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
@@ -227,8 +239,8 @@ highlight ColorColumn ctermbg=238
 hi Comment ctermfg=585 
 
 " Autocomplete
-hi Pmenu ctermbg=000 ctermfg=238
-hi PmenuSel ctermbg=238 ctermfg=000
+hi Pmenu ctermbg=000 ctermfg=255
+hi PmenuSel ctermbg=585 ctermfg=000
 
 " Brackets
 hi MatchParen cterm=none ctermbg=238 ctermfg=none
@@ -336,10 +348,15 @@ autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 " --- HTML ---
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType html setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType html setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2
 autocmd FileType html setlocal commentstring=<!--\ %s\ -->
 let html_no_rendering=1
 let g:syntastic_html_checkers = []
+
+" --- Jinja ---
+autocmd Filetype htmljinja setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd Filetype htmldjango setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd Filetype jinja setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 " --- CSS ---
 filetype plugin on
