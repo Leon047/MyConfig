@@ -1,5 +1,5 @@
 # ------------------<==========  ALIAS ===========>-----------------------
-#
+
 # ping
 alias ping='ping -c 5'
 alias fastping='ping -c 100 -s.2'

@@ -1,0 +1,15 @@
+-------====== Docker =======-------
+
+# --- Build ---
+$ docker build -t app_name .
+$ docker run -i -t app_name "eny command and soket"
+
+# -- Ran and -- 
+$ docker run -t -i app /bin/sh
+
+# -- Delete -- 
+# conteiner (add: -f )
+$ docker rm $(docker ps -a -q)
+
+# images
+$ docker rmi $(docker images -q)

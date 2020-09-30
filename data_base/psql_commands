@@ -1,6 +1,9 @@
 """Cодержит справочную информацию по командам SQL, поддерживаемым PostgreSQL."""
 
-#  Войти в PostgreSQL.
+# Перезагрузить 
+$ /etc/init.d/postgresql restart
+
+# Войти в PostgreSQL.
 $ sudo -u postgres psql postgres
 
 # Вывести все базы в PostgreSQL
