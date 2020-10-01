@@ -1,0 +1,224 @@
+           ----------======== Linux ========----------
+
+# --- Django ---
+
+# Installing Django
+
+$ pip install django
+
+
+# Starting a project
+Django дает скелетную структуру проекта, чтобы начать с создания приложения. 
+Перейдите в каталог, где вы хотите запустить проект и выполните
+
+$ django-admin.py startproject project_name
+
+Cозданный каталог будет иметь следующую структуру:
+
+my_django_app_name/
+    manage.py
+    mmy_django_app_name//
+        __init__.py
+       	settings.py
+       	urls.py
+       	wsgi.py
+
+Проверкак установленного пакета django: 
+
+$ python manage.py runserver
+
+Должны увидеть следующий вывод:
+
+Validating models...
+
+0 errors found
+January 05, 2014 - 15:50:53
+Django version 1.6, using settings 'mysite.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+Введите в браузер: http://127.0.0.1:8000 
+... Django! ...
+------------------------------------------------|
+
+# --- PostgreSQL ---
+
+# --- 1 Вариант ---
+
+Заметка: SQLite встроен в Django. 
+
+# Установка postgreSQL
+Используйте менеджер пакетов вашей системы
+
+$ sudo apt-get install postgresql postgresql-client
+
+Это не только установит postgreSQL, но также создаст базу данных и ее 
+пользователя с именем postgres по умолчанию.
+
+Для подробных инструкций по установке, пожалуйста, посетите их вики.
+
+# Создание базы данных
+Хотя этого вполне достаточно, давайте создадим базу данных для нашего вошедшего 
+в систему пользователя, чтобы мы знали, что происходит.
+
+$ createdb awesome_db
+
+Опять же, нет новостей, это хорошие новости. Это создаст базу данных с 
+именем awesome_db для текущего пользователя. Если вы не укажете awesome_db 
+в приведенной выше команде, она создаст базу данных с именем, совпадающим 
+с именем текущего пользователя, вошедшего в систему.
+
+Управление базой данных
+Чтобы манипулировать базой данных, пользователями и таблицами postgreSQL, 
+вы должны использовать команду psql . Вы можете найти рекомендации, предлагающие 
+использовать pgadmin3 . Однако чем меньше волшебства, тем лучше. 
+Мы будем придерживаться PSQL.
+
+$ psql
+
+Это изменит ваше приглашение на что-то вроде
+
+haris=#
+ 
+Теперь давайте создадим нового пользователя для нашего нового проекта Django.
+
+haris=# CREATE USER awesome_user WITH PASSWORD 'awesome_password';
+Теперь, чтобы дать этому awesome_user разрешение играть с awesome_db, 
+который мы создали ранее.
+
+haris=# GRANT ALL ON DATABASE awesome_db TO awesome_user;
+
+Отлично, мой друг! Давайте продолжим и подключим Django к awesome_db, 
+который мы только что создали для awesome_user, которым вы являетесь.
+
+Django & PostgreSQL
+
+Установка адаптера
+
+Точно так же, как мы используем адаптер, чтобы индийские штепсельные вилки работали 
+на американской розетке, нам нужен адаптер, чтобы Python работал с PostgreSQL. 
+То, что мы собираемся использовать здесь, это psycopg2 . Да, ты читаешь это правильно. 
+Давайте сначала установим это.
+
+$ pip install psycopg2
+
+Перейдём в дирректорию проекта_Django/ettings.py 
+Раздел: DATABASES
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'django_db',
+        'USER': 'user_name',
+        'PASSWORD': 'password',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+
+Поля говорят сами за себя. Хотя в документации сказано, что мы можем оставить 
+поля HOST и PORT незаполненными, если мы запускаем базу данных postgreSQL на localhost, 
+я столкнулся с некоторыми трудностями при этом. Вы можете прочитать об этом здесь. 
+Итак, пока упомяните «localhost» для HOST .
+
+Хорошая работа, товарищ! Конфигурация завершена. Давайте перейдем к созданию необходимых таблиц.
+
+Создание таблиц
+Как мы упомянем во время урока, есть несколько предустановленных приложений, 
+которые поставляются с Django. Это потребует определенных таблиц базы данных для себя. 
+Давайте посмотрим, работали ли создание и настройка нашей базы данных путем создания 
+необходимых таблиц для этих приложений. Как бы страшно это ни звучало, это легко сделать. Бегать
+
+$ python manage.py syncdb
+
+Если все хорошо, это должно дать вам что-то похожее на следующий результат:
+
+Creating tables ...
+Creating table django_admin_log
+Creating table auth_permission
+Creating table auth_group_permissions
+Creating table auth_group
+Creating table auth_user_groups
+Creating table auth_user_user_permissions
+Creating table auth_user
+Creating table django_content_type
+Creating table django_session
+
+You just installed Django's auth system, which means you don't have any superusers defined.
+Would you like to create one now? (yes/no): yes
+Username (leave blank to use 'haris'): anyone_awesome     
+Email address: anyone@awesome.com
+Password: awesome_pass
+Password (again): awesome_pass
+Superuser created successfully.
+Installing custom SQL ...
+Installing indexes ...
+Installed 0 object(s) from 0 fixture(s)
+--------------------------------------------|
+
+# --- 2 Вариант --- 
+
+Ставим сам сервер PostgreSQL и библиотеку разработчика 
+(она пригодится нам при установке бэкэнда)
+
+$ sudo apt-get install postgresql postgresql-server-dev-9.3
+
+Если вы решите использовать более свежую Ubuntu 16.04 LTS, то
+PostgreSQL там будет уже версии 9.5.
+
+$ sudo apt-get install postgresql postgresql-server-dev-9.5
+
+# Открываем консоль PostgreSQL
+
+$ sudo -u postgres psql postgres
+
+Задаем пароль администратора БД
+
+\password postgres
+
+Создаем и настраиваем пользователя при помощи которого будем соединяться с 
+базой данных из Django (ну очень плохая практика все делать через ... суперпользователя). 
+Заодно указываем значения по умолчанию для кодировки, уровня изоляции транзакций и временного пояса.
+
+    create user user_name with password 'password';
+    alter role user_name set client_encoding to 'utf8';
+    alter role user_name set default_transaction_isolation to 'read committed';
+    alter role user_name set timezone to 'UTC';
+
+Временной пояс можно указать свой, согласно тому, который вы прописываете в settings.py проекта. 
+А про страшное определение уровень изоляции транзакций, если оно вам не знакомо, 
+лучше все таки прочитать из учебника по SQL - пригодится.
+
+# Создаем базу для нашего проекта
+
+create database django_db owner user_name;
+
+# Выходим из консоли
+
+\q
+
+# В окружении проекта устанавливаем бэкэнд для PostgreSQL
+
+$ pip install psycopg2
+
+# Настроить раздел DATABASES конфигурационного файла проекта settings.py
+
+'ENGINE': 'django.db.backends.postgresql_psycopg2',
+'NAME': 'django_db',
+'USER' : 'user_name',
+'PASSWORD' : 'password',
+'HOST' : '127.0.0.1',
+'PORT' : '5432',
+
+Дальше все как обычно:
+
+	делаем миграцию -		./manage.py migrate
+	создаем суперпользователя -	./manage.py createsuperuser
+	и запускаем сервер - 		./manage runserver
+
+Если у вас настроен SSH на сервере, то можно еще научить pgAdmin с локальной 
+машины управлять удаленным сервером PostgreSQL. Для этого мы можем создать 
+ssh-тунель командой:  ssh -fNq -L 5555:localhost:5432 user@domain.com
+
+Теперь можно из локального pgAdmin соединяться с удаленной БД. 
+По адресу: localhost:5555.
