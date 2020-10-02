@@ -1,61 +1,9 @@
-           ----------======== Linux ========----------
+# ----------========== PostgreSQL ==========----------
 
-# --- Django ---
+# --- Instal ---
 
-# Installing Django
-
-$ pip install django
-
-
-# Starting a project
-Django дает скелетную структуру проекта, чтобы начать с создания приложения. 
-Перейдите в каталог, где вы хотите запустить проект и выполните
-
-$ django-admin.py startproject project_name
-
-Cозданный каталог будет иметь следующую структуру:
-
-my_django_app_name/
-    manage.py
-    mmy_django_app_name//
-        __init__.py
-       	settings.py
-       	urls.py
-       	wsgi.py
-
-Проверкак установленного пакета django: 
-
-$ python manage.py runserver
-
-Должны увидеть следующий вывод:
-
-Validating models...
-
-0 errors found
-January 05, 2014 - 15:50:53
-Django version 1.6, using settings 'mysite.settings'
-Starting development server at http://127.0.0.1:8000/
-Quit the server with CONTROL-C.
-
-Введите в браузер: http://127.0.0.1:8000 
-... Django! ...
-------------------------------------------------|
-
-# --- PostgreSQL ---
-
-# --- 1 Вариант ---
-
-Заметка: SQLite встроен в Django. 
-
-# Установка postgreSQL
-Используйте менеджер пакетов вашей системы
-
-$ sudo apt-get install postgresql postgresql-client
-
-Это не только установит postgreSQL, но также создаст базу данных и ее 
-пользователя с именем postgres по умолчанию.
-
-Для подробных инструкций по установке, пожалуйста, посетите их вики.
+# Install postgreSQL
+$ sudo apt-get install postgresql 
 
 # Создание базы данных
 Хотя этого вполне достаточно, давайте создадим базу данных для нашего вошедшего 

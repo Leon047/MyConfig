@@ -1,50 +1,57 @@
-# Использование virtualenv, virtualenvwrapper для Python 3.5
-mkdir .virtualenv
+# ----------========== Virtualenv/Virtualenvwrapper ==========----------
 
-# Установка virtualenv и virtualenvwrapper
+# Установка
 
-# For Python3+
-sudo apt install python3-pip
-sudo pip3 install virtualenv
+# -- 1 --
+$ mkdir .virtualenv
 
-# venv on Python2.5
-sudo pip install virtualenv
-sudo pip install virtualenvwrapper
+# -- 2 --
+# For Python 3.X
+$ sudo apt install python3-pip
+$ sudo pip3 install virtualenv
 
-# Смотрим, где находится virtualenvwrapper.sh
-which virtualenvwrapper.sh
+# or
 
-# Теперь нужно добавить некоторую информацию в конце нашего файла ~ / .bashrc
-sudo vim ~/.bashrc
+# For Python 2.X
+$ sudo pip install virtualenv
+$ sudo pip install virtualenvwrapper
 
+# --- 3 ---
+# We look where it is: virtualenvwrapper.sh
+$ which virtualenvwrapper.sh
+
+# Now we need to add some information at the end of our file: .bashrc
+$ sudo vim ~/.bashrc
+
+# ----------- Add in .bashrc ------------
 # Virtualenvwrapper settings:
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-
 export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_VIRTUALENV=/home/leon/.local/bin/virtualenv
-source ~/.local/bin/virtualenvwrapper.sh
-
+# export VIRTUALENVWRAPPER_VIRTUALENV=path_for/virtualenv
+source path_for/virtualenvwrapper.sh
+# ---------------------------------------
 # рестарт файла 
-source ~/.bashrc
+$ source ~/.bashrc
 
+# ---------- Using -----------
 # virtenv list
-workon 
+$ workon 
 
-# Создать виртуальное окружение для python2, можно командой
-mkvirtualenv venv_name
+# Создать виртуальное окружение для Python 2.X 
+$ mkvirtualenv venv_name
 
 # Если нужно создать сразу с рабочей папкой.
 mkproject project_name
 
 # Для переключения просто набираем
-workon virtenv_name
+$ workon virtenv_name
 (test_env01)$
 
 # Для выхода
-deactiavate
+$ deactiavate
 
 # Для удаления виртуального окружения
-rmvirtualenv
+$ rmvirtualenv
 
 # Виртуальное окружения для python3
-mkvirtualenv virtenv_name  -p /usr/bin/python3
+$ mkvirtualenv virtenv_name  -p /usr/bin/python3

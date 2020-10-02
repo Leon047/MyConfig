@@ -8,28 +8,35 @@ $ sudo apt install tlp tlp-rdw
 # Редактирования настроек
 /etc/default/tlp
 
-$ sudo systemctl status tlp
-
 # Start
 $ sudo tlp start
 
-# Статус
+# Check for running tlp : 
+$ sudo systemctl status tlp
+
+# System info : 
 $ sudo tlp-stat -s
 
-# Проверка конфигурация 
-sudo tlp-stat -c
+# PCI info : 
+$ sudo tlp-pcilist
 
-# Вывод параметры питания
-$ sudo tlp-stat
+# USB info :  
+$ sudo tlp-usblist
 
-# Oтобразить информацию о батарее Linux
-$ sudo tlp-stat -b
+# Show config : 
+$ sudo tlp-stat -c
 
-# Oтобразить температуру и скорость вентилятора системы
+# Show everything : 
+$ sudo tlp-stat 
+
+# Show thermal info : 
 $ sudo tlp-stat -t
 
-# Oтобразить данные процессора
+# Show processor info : 
 $ sudo tlp-stat -p
 
-# Oтобразить предупреждения
-$ sudo tlp-stat -w
+# Show battery info : 
+$ sudo tlp-stat -b
+
+# Show refreshing battery info : 
+$ watch sudo tlp-stat -b
