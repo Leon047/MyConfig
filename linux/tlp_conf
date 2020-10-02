@@ -1,0 +1,35 @@
+       -----===== TlP энергосбережение батареи ноутбуков =====-----
+
+# Установка
+$ sudo apt install tlp
+or
+$ sudo apt install tlp tlp-rdw
+
+# Редактирования настроек
+/etc/default/tlp
+
+$ sudo systemctl status tlp
+
+# Start
+$ sudo tlp start
+
+# Статус
+$ sudo tlp-stat -s
+
+# Проверка конфигурация 
+sudo tlp-stat -c
+
+# Вывод параметры питания
+$ sudo tlp-stat
+
+# Oтобразить информацию о батарее Linux
+$ sudo tlp-stat -b
+
+# Oтобразить температуру и скорость вентилятора системы
+$ sudo tlp-stat -t
+
+# Oтобразить данные процессора
+$ sudo tlp-stat -p
+
+# Oтобразить предупреждения
+$ sudo tlp-stat -w

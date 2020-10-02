@@ -189,7 +189,7 @@ tmux_conf_theme_status_left_attr='bold,none,none'
 
 # status right style
 tmux_conf_theme_status_right_fg='#8a8a8a,#000000,#000000' # light gray, black, black
-tmux_conf_theme_status_right_bg='#080808,#00afff,#ffff00' # dark gray, red, yellow 
+tmux_conf_theme_status_right_bg='#080808,#00afff,#ffff00' # dark gray, pure blue, pure yellow. 
 tmux_conf_theme_status_right_attr='none,none,bold'
 
 # pairing indicator
@@ -251,7 +251,7 @@ tmux_conf_battery_vbar_palette='gradient'
 # symbols used to indicate whether battery is charging or discharging
 tmux_conf_battery_status_charging='↑'       # U+2191
 tmux_conf_battery_status_discharging='↓'    # U+2193
-#tmux_conf_battery_status_charging='⚡ '    # U+26A1
+tmux_conf_battery_status_charging='⚡ '    # U+26A1
 #tmux_conf_battery_status_charging='🔌 '    # U+1F50C
 #tmux_conf_battery_status_discharging='🔋 ' # U+1F50B
 

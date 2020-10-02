@@ -1,0 +1,77 @@
+#--------------========== My Linux configuration ===========----------------
+
+# --- Install first ---
+
+-- standart --
+sudo apt install python3-pip
+sudo apt install git
+sudo apt install ssh
+sudo apt install htop
+sudo apt install libreoffice
+
+sudo apt install gnome-tweaks
+sudo apt install ubuntu-restricted-extras
+sudo apt install p7zip-rar rar unrar unace arj cabextract
+
+-- vim/tmux --
+# tmux
+sudo apt install tmux
+https://github.com/gpakosz/.tmux
+
+# Vim
+sudo apt install vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+-- env --
+# venv_conf
+# docker/compose
+Install Docker: https://docs.docker.com/install/linux/docker-ce/ubuntu/
+Install Docker Compose: https://docs.docker.com/compose/install/
+
+-- else --
+
+$ sudo apt install translate-shell
+$ sudo apt-get install cmus
+$ sudo snap install telegram-desktop
+
+#Cкриншотер Shutter
+$ sudo add-apt-repository ppa:linuxuprising/shutter
+$ sudo apt update
+$ sudo apt install shutter
+
+$ sudo apt install flameshot
+$ sudo apt install peek
+
+|------------------------------------------------------------------------------|
+
+# --- Gnome Interfase ---
+# Включить сворачивание при клике
+$ gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
+
+# --- Cayboard --- 
+# Изменения раскладки CapsLock for Ctrl
+$ setxkbmap -layout us -option ctrl:nocaps
+
+# or
+
+$ sudo vim /etc/default/keyboard
+
+XKBOPTIONS="ctrl:swapcaps"
+
+$ sudo dpkg-reconfigure keyboard-configuration
+
+# or 
+
+Чтобы постоянно изменять поведение: выполнить 
+
+$ dconf-editor
+
+выберите 
+
+org.gnome.desktop.input-sources
+
+Измените xkb-options на ['ctrl:nocaps'] (или добавьте его в любые существующие параметры)
+
+или в командной строке ( Предупреждение - это перезаписывает существующие настройки! ):
+
+gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
