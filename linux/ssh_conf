@@ -1,77 +1,61 @@
-	-----------============ SSH =============-----------
+#        -------------============ SSH =============--------------
 
-# --- SSH key ---
+# --- 1 ---
 
 $ cd ~/.ssh
 $ ls
-
-authorized_keys2  id_dsa       known_hosts
-config            id_dsa.pub
+	authorized_keys2  id_dsa       known_hosts
+	config            id_dsa.pub
 
 # Ищим файл с именем id_dsa или id_rsa.
 # И соответствующий ему файл с расширением .pub
 # .pub — это открытый ключ, а второй файл — приватный ключ.
 
-# Если указанные файлы у вас отсутствуют (или даже нет каталога .ssh)
-
-# Генерация открытого SSH ключа
-
+# Если указанные файлы отсутствуют (или даже нет каталога .ssh)
 $ ssh-keygen
 
 # or
 
 $ ssh-keygen -t rsa -b 4096 -C " your_email@example.com "
 
-Generating public/private rsa key pair.
-Enter file in which to save the key (/home/schacon/.ssh/id_rsa):
-Created directory '/home/schacon/.ssh'.
-Enter passphrase (empty for no passphrase):
-Enter same passphrase again:
-Your identification has been saved in /home/schacon/.ssh/id_rsa.
-Your public key has been saved in /home/schacon/.ssh/id_rsa.pub.
-The key fingerprint is:
-d0:82:24:8e:d7:f1:bb:9b:33:53:96:93:49:da:9b:e3 schacon@mylaptop.local
-
 # Сначала программа попросит указать расположение файла для сохранения ключа 
 (.ssh/id_rsa)
 
-"""
-Если не хотите вводить пароль каждый раз при использовании ключа, 
-то можно оставить его пустым или использовать программу ssh-agent.
+# Если не хотите вводить пароль каждый раз при использовании ключа, 
+# то можно оставить его пустым или использовать программу ssh-agent.
 
-Если решили использовать пароль для приватного ключа, то настоятельно 
-рекомендуется использовать опцию -o, 
+# Если решили использовать пароль для приватного ключа, то настоятельно 
+# рекомендуется использовать опцию -o, 
 
-Теперь каждый пользователь должен отправить свой открытый ключ вам или тому, 
-кто администрирует сервер (подразумевается, что ваш SSH-сервер уже настроен
-на работу с открытыми ключами). Для этого достаточно скопировать содержимое 
-файла с расширением .pub и отправить его по электронной почте. 
+# Теперь каждый пользователь должен отправить свой открытый ключ вам или тому, 
+# кто администрирует сервер (подразумевается, что ваш SSH-сервер уже настроен
+# на работу с открытыми ключами). Для этого достаточно скопировать содержимое 
+# файла с расширением .pub и отправить его по электронной почте. 
 
-"""
+# --- 2 ---
 
-# Открытый ключ выглядит примерно так:
-
-$ cat ~/.ssh/id_rsa.pub
-ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAklOUpkDHrfHY17SbrmTIpNLTGK9Tjom/BWDSU
-GPl+nafzlHDTYW7hdI4yZ5ew18JH4JW9jbhUFrviQzM7xlELEVf4h9lFX5QVkbPppSwg0cda3
-Pbv7kOdJ/MTyBlWXFCR+HAo3FXRitBqxiX1nKhXpHAZsMciLq8V6RjsNAQwdsdMFvSlVK/7XA
-t3FaoJoAsncM1Q9x5+3V0Ww68/eIFmb1zuUFljQJKprrX88XypNDvjYNby6vw/Pb0rwert/En
-mZ+AW4OZPnTPI89ZPmVMLuayrD2cE86Z/il8b+gw3r3+1nKatmIkjn2so1d01QraTlMqVSsbx
-NrRFi9wrf+M7Q== schacon@mylaptop.local
-
-# включить агент ssh 
-
+# Включить агент ssh 
 $ eval $(ssh-agent -s)
 
-# авторизовать ssh ключь.
-
+# Авторизовать ssh ключь.
 $ ssh-add ~/.ssh/id_rsa
 
-# проверка садержимого 
-
+# Проверка садержимого 
 $ ssh-add -l
 
-# удалить все ключи.
-
+# Удалить все ключи.
 $ ssh-add -D 
 
+# --- server ---
+
+# add ssh key ofr server
+$ ssh-copy-id SERVER_NAME
+
+	login
+	pasword
+
+# Совет (Убрать доступ на сервер по паролю)
+$ sudo vim /etc/ssh/sshd_config
+
+# restart ssh
+$ sudo service ssh restart
