@@ -74,3 +74,11 @@ Host alias
 Hostname alias.host_name
 User user_name
 Port 22  
+
+# --- GIT ---
+
+# Проверка 
+$ git remote -v
+
+# изменить с html на ssh
+$ git remote set-url origin git_ssh
