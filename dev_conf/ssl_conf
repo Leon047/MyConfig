@@ -1,0 +1,8 @@
+#   -----------============   LetsEncrypt SSL  ==============--------------
+
+--- Obtaining a certificate ---
+
+//letsencrypt.org/getting-started/
+
+# Certbot 
+https://certbot.eff.org/

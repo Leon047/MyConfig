@@ -18,8 +18,8 @@ $ ssh-keygen
 
 $ ssh-keygen -t rsa -b 4096 -C " your_email@example.com "
 
-# Сначала программа попросит указать расположение файла для сохранения ключа 
-(.ssh/id_rsa)
+# Сначала программа попросит указать расположение файла 
+# для сохранения ключа (.ssh/id_rsa)
 
 # Если не хотите вводить пароль каждый раз при использовании ключа, 
 # то можно оставить его пустым или использовать программу ssh-agent.
@@ -59,3 +59,18 @@ $ sudo vim /etc/ssh/sshd_config
 
 # restart ssh
 $ sudo service ssh restart
+
+# --- SSH alias ---
+
+# login for ssh
+$ ssh soket
+
+# home dir
+$ vim ~/ssh/config
+
+# add in file
+
+Host alias
+Hostname alias.host_name
+User user_name
+Port 22  
