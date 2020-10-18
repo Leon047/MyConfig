@@ -2,10 +2,10 @@
 
 # --- 1 ---
 
-$ cd ~/.ssh
-$ ls
-	authorized_keys2  id_dsa       known_hosts
-	config            id_dsa.pub
+/.ssh:
+
+id_dsa / id_dsa.pub
+id_rsa / id_rsa.pub
 
 # Ищим файл с именем id_dsa или id_rsa.
 # И соответствующий ему файл с расширением .pub
@@ -17,6 +17,9 @@ $ ssh-keygen
 # or
 
 $ ssh-keygen -t rsa -b 4096 -C " your_email@example.com "
+
+# Сменить пароль на ключ можно с помощью команды
+$ ssh-keygen -p
 
 # Сначала программа попросит указать расположение файла 
 # для сохранения ключа (.ssh/id_rsa)
@@ -48,7 +51,12 @@ $ ssh-add -D
 
 # --- server ---
 
-# add ssh key ofr server
+# add ssh key.pub for server
+.ssh/authorized_keys
+
+# ssh на нестандартном порту
+$ ssh-copy-id '-p 443 user@server'
+
 $ ssh-copy-id SERVER_NAME
 
 	login
@@ -71,9 +79,13 @@ $ vim ~/ssh/config
 # add in file
 
 Host alias
-Hostname alias.host_name
-User user_name
-Port 22  
+     Hostname alias.host_name
+     User user_name
+     Port 22  
+
+
+# root
+ssh -o "User=root" alias
 
 # --- GIT ---
 

@@ -1,0 +1,78 @@
+            ---=== Debian Server Set Up for Django Instruction ===---
+
+# Create user, setup SSH
+Connect through SSH to remote Debian server and update repositories and 
+install some initial needed packages:
+
+sudo apt-get update
+sudo apt-get install -y vim mosh tmux htop git curl wget unzip zip gcc build-essential make
+
+-- Configure SSH --
+sudo vim /etc/ssh/sshd_config
+    AllowUsers user
+    PermitRootLogin no	# Лучше оставлять!
+    PasswordAuthentication no
+
+# Restart SSH server, change www user password:
+sudo service ssh restart
+sudo passwd user
+
+-- Configure UFW --
+
+sudo vim /etc/default/ufw
+
+# Setting up default policies
+# Denying incoming connections and allowing outgoing.
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+# Allow connections
+sudo ufw allow ssh	# 22
+sudo ufw allow http	# 80
+sudo ufw allow https	# 443
+
+# Access by specific IP
+sudo ufw allow from 203.0.113.4	/ + to any port 22
+
+sudo ufw allow 6000:6007/tcp
+sudo ufw allow 6000:6007/udp
+
+# activation
+sudo ufw enable
+
+# Deny connection
+sudo ufw deny name
+
+sudo ufw delete allow http
+
+# Reset rules
+sudo ufw status numbered
+
+# Content output 
+sudo ufw status verbose
+
+-- Root User -- 
+
+# Create
+adduser new_user
+
+passwd user_name
+
+# Enter the new value, or press ENTER for the default
+        Full Name []:
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+
+# Add user to sudo group:
+usermod -aG sudo new_user
+
+# Switch to sudo user
+su - new_user
+
+# sudo ls -la /root
+# app password
+
+-- Diploy Django on Debian --
+//github.com/alexey-goloburdin/debian-set-up-for-django

@@ -1,57 +1,43 @@
 # ----------========== PostgreSQL ==========----------
 
-# --- Instal ---
+# --- install ---
 
 # Install postgreSQL
 $ sudo apt-get install postgresql 
 
-# Создание базы данных
-Хотя этого вполне достаточно, давайте создадим базу данных для нашего вошедшего 
-в систему пользователя, чтобы мы знали, что происходит.
+# or
 
-$ createdb awesome_db
+$ sudo apt-get install postgresql postgresql-server-dev-9.5
 
-Опять же, нет новостей, это хорошие новости. Это создаст базу данных с 
-именем awesome_db для текущего пользователя. Если вы не укажете awesome_db 
-в приведенной выше команде, она создаст базу данных с именем, совпадающим 
-с именем текущего пользователя, вошедшего в систему.
+# --- create ---
 
-Управление базой данных
-Чтобы манипулировать базой данных, пользователями и таблицами postgreSQL, 
-вы должны использовать команду psql . Вы можете найти рекомендации, предлагающие 
-использовать pgadmin3 . Однако чем меньше волшебства, тем лучше. 
-Мы будем придерживаться PSQL.
+# Открываем консоль PostgreSQL
+$ sudo -u postgres psql postgres
+
+# or
 
 $ psql
 
-Это изменит ваше приглашение на что-то вроде
+# Create user
+    create user user_name with password 'password';
+    alter role user_name set client_encoding to 'utf8';
+    alter role user_name set default_transaction_isolation to 'read committed';
+    alter role user_name set timezone to 'UTC';
 
-haris=#
- 
-Теперь давайте создадим нового пользователя для нашего нового проекта Django.
+# Create db 
+$ createdb db_name
 
-haris=# CREATE USER awesome_user WITH PASSWORD 'awesome_password';
-Теперь, чтобы дать этому awesome_user разрешение играть с awesome_db, 
-который мы создали ранее.
+# Создаем базу для нашего проекта
+create database django_db owner user_name;
 
+# Увеличиваем возможности пользователя
 haris=# GRANT ALL ON DATABASE awesome_db TO awesome_user;
 
-Отлично, мой друг! Давайте продолжим и подключим Django к awesome_db, 
-который мы только что создали для awesome_user, которым вы являетесь.
-
-Django & PostgreSQL
-
-Установка адаптера
-
-Точно так же, как мы используем адаптер, чтобы индийские штепсельные вилки работали 
-на американской розетке, нам нужен адаптер, чтобы Python работал с PostgreSQL. 
-То, что мы собираемся использовать здесь, это psycopg2 . Да, ты читаешь это правильно. 
-Давайте сначала установим это.
-
+# Установка адаптера
 $ pip install psycopg2
 
-Перейдём в дирректорию проекта_Django/ettings.py 
-Раздел: DATABASES
+# Перейдём в дирректорию проекта_Django/ettings.py 
+# Раздел: DATABASES
 
 DATABASES = {
     'default': {
@@ -64,102 +50,8 @@ DATABASES = {
     }
 }
 
-Поля говорят сами за себя. Хотя в документации сказано, что мы можем оставить 
-поля HOST и PORT незаполненными, если мы запускаем базу данных postgreSQL на localhost, 
-я столкнулся с некоторыми трудностями при этом. Вы можете прочитать об этом здесь. 
-Итак, пока упомяните «localhost» для HOST .
-
-Хорошая работа, товарищ! Конфигурация завершена. Давайте перейдем к созданию необходимых таблиц.
-
-Создание таблиц
-Как мы упомянем во время урока, есть несколько предустановленных приложений, 
-которые поставляются с Django. Это потребует определенных таблиц базы данных для себя. 
-Давайте посмотрим, работали ли создание и настройка нашей базы данных путем создания 
-необходимых таблиц для этих приложений. Как бы страшно это ни звучало, это легко сделать. Бегать
-
-$ python manage.py syncdb
-
-Если все хорошо, это должно дать вам что-то похожее на следующий результат:
-
-Creating tables ...
-Creating table django_admin_log
-Creating table auth_permission
-Creating table auth_group_permissions
-Creating table auth_group
-Creating table auth_user_groups
-Creating table auth_user_user_permissions
-Creating table auth_user
-Creating table django_content_type
-Creating table django_session
-
-You just installed Django's auth system, which means you don't have any superusers defined.
-Would you like to create one now? (yes/no): yes
-Username (leave blank to use 'haris'): anyone_awesome     
-Email address: anyone@awesome.com
-Password: awesome_pass
-Password (again): awesome_pass
-Superuser created successfully.
-Installing custom SQL ...
-Installing indexes ...
-Installed 0 object(s) from 0 fixture(s)
---------------------------------------------|
-
-# --- 2 Вариант --- 
-
-Ставим сам сервер PostgreSQL и библиотеку разработчика 
-(она пригодится нам при установке бэкэнда)
-
-$ sudo apt-get install postgresql postgresql-server-dev-9.3
-
-Если вы решите использовать более свежую Ubuntu 16.04 LTS, то
-PostgreSQL там будет уже версии 9.5.
-
-$ sudo apt-get install postgresql postgresql-server-dev-9.5
-
-# Открываем консоль PostgreSQL
-
-$ sudo -u postgres psql postgres
-
-Задаем пароль администратора БД
-
-\password postgres
-
-Создаем и настраиваем пользователя при помощи которого будем соединяться с 
-базой данных из Django (ну очень плохая практика все делать через ... суперпользователя). 
-Заодно указываем значения по умолчанию для кодировки, уровня изоляции транзакций и временного пояса.
-
-    create user user_name with password 'password';
-    alter role user_name set client_encoding to 'utf8';
-    alter role user_name set default_transaction_isolation to 'read committed';
-    alter role user_name set timezone to 'UTC';
-
-Временной пояс можно указать свой, согласно тому, который вы прописываете в settings.py проекта. 
-А про страшное определение уровень изоляции транзакций, если оно вам не знакомо, 
-лучше все таки прочитать из учебника по SQL - пригодится.
-
-# Создаем базу для нашего проекта
-
-create database django_db owner user_name;
-
-# Выходим из консоли
-
-\q
-
 # В окружении проекта устанавливаем бэкэнд для PostgreSQL
-
-$ pip install psycopg2
-
-# Настроить раздел DATABASES конфигурационного файла проекта settings.py
-
-'ENGINE': 'django.db.backends.postgresql_psycopg2',
-'NAME': 'django_db',
-'USER' : 'user_name',
-'PASSWORD' : 'password',
-'HOST' : '127.0.0.1',
-'PORT' : '5432',
-
 Дальше все как обычно:
-
 	делаем миграцию -		./manage.py migrate
 	создаем суперпользователя -	./manage.py createsuperuser
 	и запускаем сервер - 		./manage runserver

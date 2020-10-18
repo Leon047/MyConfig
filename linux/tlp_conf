@@ -1,42 +1,47 @@
        -----===== TlP энергосбережение батареи ноутбуков =====-----
 
 # Установка
-$ sudo apt install tlp
-or
-$ sudo apt install tlp tlp-rdw
+sudo add-apt-repository ppa:linrunner/tlp
+sudo apt-get update
+sudo apt-get install tlp tlp-rdw
 
 # Редактирования настроек
 /etc/default/tlp
 
+/etc/tlp.conf
+
 # Start
-$ sudo tlp start
+sudo tlp start
 
 # Check for running tlp : 
-$ sudo systemctl status tlp
+sudo systemctl status tlp
 
 # System info : 
-$ sudo tlp-stat -s
+sudo tlp-stat -s
 
 # PCI info : 
-$ sudo tlp-pcilist
+sudo tlp-pcilist
 
 # USB info :  
-$ sudo tlp-usblist
+sudo tlp-usblist
 
 # Show config : 
-$ sudo tlp-stat -c
+sudo tlp-stat -c
 
 # Show everything : 
-$ sudo tlp-stat 
+sudo tlp-stat 
 
 # Show thermal info : 
-$ sudo tlp-stat -t
+sudo tlp-stat -t
 
 # Show processor info : 
-$ sudo tlp-stat -p
+sudo tlp-stat -p
 
 # Show battery info : 
-$ sudo tlp-stat -b
+sudo tlp-stat -b
 
 # Show refreshing battery info : 
-$ watch sudo tlp-stat -b
+watch sudo tlp-stat -b
+
+# delete
+sudo apt-get autoremove ltp
