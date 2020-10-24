@@ -1,0 +1,169 @@
+   ----------========== Bind9 ==========----------
+
+# -- install --
+sudo apt install bind9 dnsutils
+sudo apt update
+
+# --config --
+
+# main dir 
+cd /etc/bind/
+
+# file zone examples
+db.*
+# config files
+named.conf.* 
+
+# -- 1 --
+# -- Creating a DNS zone file --
+
+# Path /etc/bind/zones/master 
+# create dir
+mkdir zones/master
+cd zones/master/
+
+# copy  files in zones/master
+# srraight zone  conf exempl 
+cp db.local zones/master/db.domen.name
+
+# revers zone conf exempl 
+cp db.127 zones/master/db.revers_ip
+
+# Straight Zone Setting 
+# /etc/bind/zones/master/db.itproffi.ru
+
+$TTL 	3h
+@ 	IN 	SOA 	ns1.domen.name.ru. admin.domen.name.ru. (
+			1  	; серийный номер
+			3h 	; обновление каждые 3 часа
+			1h 	; повторная попытка через час
+			1w 	; срок годности – 1 неделя
+			1h ) 	; хранение кэша отказов 1 час;
+
+@ 	IN 	NS 	ns1.itproffi.ru.
+@ 	IN 	NS 	ns2.itproffi.ru.
+
+itproffi.ru. IN 	MX 10 mail.itproffi.ru.
+itproffi.ru. IN A 	172.31.1.10
+ns1 	IN 	A 	172.31.1.10
+ns2 	IN 	A 	172.31.1.11
+www 	IN 	CNAME 	itproffi.ru.
+mail 	IN 	A 	172.31.1.10
+ftp 	IN 	CNAME 	itproffi.ru.
+
+# SOA: авторитативный сервер имен для itproffi.ru – это ns1.itproffi.ru, 
+# адрес ответственного за зону DNS администратора – admin@itproffi.ru
+# NS: два сервера имен для зоны itproffi.ru – ns[1,2].itproffi.ru
+# MX: почтовый сервер для domen.name.ru. Число 10 означает уровень приоритета
+# A: A означает «адрес» (address). Другими словами, ns1 в зоне domen.name.ru 
+# будет иметь адрес 172.31.1.10
+# CNAME (Canonical Name – каноническое имя): привязывает одно доменное имя 
+# к другому (каноническому), например, устанавливает соответствие mail.domen.ru 
+# и domen.ru.
+
+# Reverse Zone Setting 
+# /etc/bind/zones/master/db.172.31.1
+
+$TTL 	604800
+1.31.172.in-addr.arpa. IN SOA ns1.itproffi.ru. admin.itproffi.ru. (
+		1 ; серийный номер
+		3h ; обновление каждые 3 часа
+		1h ; повторная попытка через час
+		1w ; срок годности – 1 неделя
+		1h ) ; хранение кэша отказов 1 час;
+
+1.31.172.in-addr.arpa. 	  IN 	NS	ns1.itproffi.ru.
+1.31.172.in-addr.arpa.    IN 	NS 	ns2.itproffi.ru.
+10.1.31.172.in-addr.arpa. IN 	PTR 	itproffi.ru.
+
+# PTR: DNS-запись, используемая для определения соответствия IP-адреса имени узла
+
+# -- 2 --
+# -- Setting up the bind zon configuration file -- 
+# named.conf.default-zones
+sudo vim named.conf.default-zones
+
+	# Straight zone
+	zone "db.domen.name" {			# <- domane name field(DNS) 
+		type master;				# <- zone type
+		file "zones/master/db.domen.name";	# <- path for my_zone_conf
+		allow-update {any;};			# <- Dynamically updating a zone
+	};
+	# Reverse zone
+	zone "179.23.98-in-addr.arpa"{
+		type master;
+		file "zones/master/db.179.23.98"; # <- path for my_zone_conf
+	};
+
+
+# -- 3 -- 
+# In file named.conf add
+include "/etc/bind/rndc.key";
+
+controls {
+        inet 127.0.0.1 allow { localhost; } keys { "rndc-key"; };
+};
+
+
+# -- 4 --
+# Edit file: inamed.conf.options
+sudo vim named.conf.options
+
+# Google DNS 
+
+forwarders {
+	8.8.8.8;
+	8.8.4.4;
+};
+
+# options add
+
+listen-on port 53 { any; };
+allow-query { any; };
+or
+listen-on port 53 { 192.168.0.0/24; };
+allow-query { 192.168.0.0/24; };
+
+# -- test config --
+
+# checking the changes made
+named-checkconf
+
+named-checkzone domen.name /etc/bind/zones/master/db.domen.name
+zone itproffi.ru/IN: loaded serial 1
+OK
+
+named-checkzone 1.31.172.in-addr.arpa /etc/bind/zones/master/db.172.31.1
+zone 1.31.172.in-addr.arpa/IN: loaded serial 1
+OK
+
+
+# restart for add changes
+service apparmore restart
+service bind9 restart
+service bind9 start
+rndc reload
+
+# Bug tracking 
+journalctl -xe
+
+# add host  domene and ip
+vim /etc/resolv.conf
+
+	domain host_domane name
+	nameserver host_ip
+
+# Настройка сервера через rndc
+# Сгенерировать ключь
+rndc-confgen
+
+# if failed: Connection refused.
+# 
+ss -tnlp | grep :PORT
+or 
+ss -tnlp | grep :*
+
+# 
+nslookup
+set query=ns
+domen_name
