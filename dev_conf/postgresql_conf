@@ -36,6 +36,10 @@ haris=# GRANT ALL ON DATABASE awesome_db TO awesome_user;
 # Установка адаптера
 $ pip install psycopg2
 
+or 
+
+$ pip install psycopg2-binary
+
 # Перейдём в дирректорию проекта_Django/ettings.py 
 # Раздел: DATABASES
 

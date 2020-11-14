@@ -10,27 +10,44 @@ sudo apt-get install -y vim mosh tmux htop git curl wget unzip zip gcc build-ess
 
 ## Configure SSH:
 sudo vim /etc/ssh/sshd_config
-    AllowUsers www
+    AllowUsers user_name
     PermitRootLogin no
     PasswordAuthentication no
 
 # Restart SSH server, change www user password:
 sudo service ssh restart
-sudo passwd www
+sudo passwd user_name
 
 ## Configure UFW --
+#install
+sudo apt install ufw
+
+#base dir
 sudo vim /etc/default/ufw
 
 # Allow connections
-sudo ufw allow ssh# 22
-sudo ufw allow http# 80
-sudo ufw allow https# 443
+sudo ufw allow ssh  	# 22
+sudo ufw allow http   	# 80
+sudo ufw allow https  	# 443
 
 sudo ufw allow 6000:6007/tcp
 sudo ufw allow 6000:6007/udp
 
 # activation
 sudo ufw enable
+
+# New user --
+adduser user_name
+
+# Add in sudo grope
+usermod -aG sudo user_name
+
+# get the user
+su - user_name
+
+# test
+sudo upt update
+
 
 -- 2 -- 
 ## Init — must-have packages & ZSH

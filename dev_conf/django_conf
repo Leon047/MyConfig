@@ -12,6 +12,9 @@ python manage.py startapp app_name
 # RUN
 $ ./manage.py runserver 
 
+# django_admin
+python3 manage.py createsuperuser
+
 http://127.0.0.1:8000
 
 # -- Django Shell --
