@@ -1,0 +1,2 @@
+# If (E: Unable to locate package) 
+sudo add-apt-repository universe

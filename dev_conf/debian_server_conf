@@ -9,6 +9,7 @@ sudo apt-get update
 sudo apt-get install -y vim mosh tmux htop git curl wget unzip zip gcc build-essential make
 
 ## Configure SSH:
+# Base dir
 sudo vim /etc/ssh/sshd_config
     AllowUsers user_name
     PermitRootLogin no
@@ -48,6 +49,13 @@ su - user_name
 # test
 sudo upt update
 
+# add user ssh key
+# get 
+mkdir -p /home/user_name/.ssh && touch /home/user_name/.ssh/authorized_keys
+
+# Add youre ssh pab.key in authorized_keys
+vim .ssh/authorized_keys
+
 
 -- 2 -- 
 ## Init — must-have packages & ZSH
@@ -57,47 +65,53 @@ sudo apt-get install -y zsh tree redis-server nginx zlib1g-dev libbz2-dev librea
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 Configure some needed aliases:
 
-vim ~/.zshrc
-	alias cls="clear"
+# Change your default shell
+chsh -s $(which zsh)
+
+# Add in .zshrc
+export PATH=$PATH:/home/mrleon/.python/bin
 
 -- 3 --
-## Install python 3.7
-mkdir ~/code
-
-## Build from source python 3.7, install with prefix to ~/.python folder:
-wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz ; \
-tar xvf Python-3.7.* ; \
-cd Python-3.7.3 ; \
-mkdir ~/.python ; \
-./configure --enable-optimizations --prefix=/home/www/.python ; \
-make -j8 ; \
+## Install python 3
+#
+# Check Python version!
+#
+## Build from source python 3.9,0, install with prefix to ~/.python folder:
+wget https://www.python.org/ftp/python/3.9.0/Python-3.9.0.tgz 
+tar xvf Python-3.* 
+cd Python-3.*  
+mkdir ~/.python 
+./configure --enable-optimizations --prefix=/home/mrleon/.python
+make -j8
 sudo make altinstall
 
-## Now python3.7 in /home/www/.python/bin/python3.7. Update pip:
-sudo /home/www/.python/bin/python3.7 -m pip install -U pip
+# Add path in .bashrc
+export PATH=$PATH:/home/mrleon/.python/bin
+
+## Now python3.9 in /home/www/.python/bin/python3.9. Update pip:
+sudo /home/mrleon/.python/bin/python3.9 -m pip install -U pip
 
 Ok, now we can pull our project from Git repository (or create own), create and activate Python virtual environment:
 
-cd code
-git pull project_git
-cd project_dir
-python3.7 -m venv env
+# git clone project_git
+# cd project_dir
+python3.9 -m venv venv
 . ./env/bin/activate
 
 -- 4 --
 ## Install and configure PostgreSQL
-# Install PostgreSQL 11 and configure locales.
+# Install PostgreSQL 12 and configure locales.
 
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - ; \
-RELEASE=$(lsb_release -cs) ; \
-echo "deb http://apt.postgresql.org/pub/repos/apt/ ${RELEASE}"-pgdg main | sudo tee  /etc/apt/sources.list.d/pgdg.list ; \
-sudo apt update ; \
-sudo apt -y install postgresql-11 ; \
-sudo localedef ru_RU.UTF-8 -i ru_RU -fUTF-8 ; \
-export LANGUAGE=ru_RU.UTF-8 ; \
-export LANG=ru_RU.UTF-8 ; \
-export LC_ALL=ru_RU.UTF-8 ; \
-sudo locale-gen ru_RU.UTF-8 ; \
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - 
+RELEASE=$(lsb_release -cs) 
+echo "deb http://apt.postgresql.org/pub/repos/apt/ ${RELEASE}"-pgdg main | sudo tee  /etc/apt/sources.list.d/pgdg.list 
+sudo apt update 
+sudo apt -y install postgresql-12 
+sudo localedef ru_RU.UTF-8 -i ru_RU -fUTF-8 
+export LANGUAGE=ru_RU.UTF-8 
+export LANG=ru_RU.UTF-8 
+export LC_ALL=ru_RU.UTF-8 
+sudo locale-gen ru_RU.UTF-8 
 sudo dpkg-reconfigure locales
 
 # Add locales to /etc/profile:
@@ -116,7 +130,7 @@ exit
 # Create dbms db user and grand privileges to him:
 sudo -u postgres psql
 postgres=# ...
-create user dbms with password 'some_password';
+create user user_name with password 'some_password';
 ALTER USER dbms CREATEDB;
 grant all privileges on database dbms_db to dbms;
 \c dbms_db
@@ -175,4 +189,3 @@ user = 'www'
 limit_request_fields = 32000
 limit_request_field_size = 0
 raw_env = 'DJANGO_SETTINGS_MODULE=project.settings'
-

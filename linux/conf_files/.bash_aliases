@@ -1,5 +1,8 @@
 # ------------------<==========  ALIAS ===========>-----------------------
 
+# leptop
+alias leptop='sudo dmidecode | grep -A 9 "System Information"'
+
 # ping
 alias ping='ping -c 5'
 alias fastping='ping -c 100 -s.2'
@@ -90,12 +93,4 @@ alias backup='sudo /home/scripts/admin/scripts/backup/wrapper.backup.sh --type l
 # alias firewall=iptlist
 
 # -----===== Python3 =====----- 
-#
 alias py3='python3'
-
-# els
-alias py3_els='source ~/Documents/devOps/Py3/bin/activate'
-
-# -----===== Projects =====-----
-#
-alias jull_app='Documents/projects/web_app/Jull_app/'
