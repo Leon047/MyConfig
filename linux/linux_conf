@@ -24,7 +24,9 @@ Install Docker: https://docs.docker.com/install/linux/docker-ce/ubuntu/
 Install Docker Compose: https://docs.docker.com/compose/install/
 
 # Else
+# snap
 sudo snap install telegram-desktop
+sudo snap install zoom-client
 
 #Cкриншотер Shutter
 sudo add-apt-repository ppa:linuxuprising/shutter
