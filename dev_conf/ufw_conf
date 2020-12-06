@@ -1,0 +1,34 @@
+		-----===== Configure UFW =====-----
+
+# dir
+sudo vim /etc/default/ufw
+
+# Setting up default policies
+# Denying incoming connections and allowing outgoing.
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+# Allow connections
+sudo ufw allow ssh	# 22
+sudo ufw allow http	# 80
+sudo ufw allow https	# 443
+
+# Access by specific IP
+sudo ufw allow from 203.0.113.4	/ + to any port 22
+
+sudo ufw allow 6000:6007/tcp
+sudo ufw allow 6000:6007/udp
+
+# activation
+sudo ufw enable
+
+# Deny connection
+sudo ufw deny name
+
+sudo ufw delete allow http
+
+# Reset rules
+sudo ufw status numbered
+
+# Content output 
+sudo ufw status verbose

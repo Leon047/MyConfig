@@ -1,0 +1,26 @@
+          ----------========== Host conf ==========----------
+
+-- host_conf --
+# Откройте терминал и выполните команду ниже:
+sudo vim /etc/hosts
+
+# Как правило, содержимое файла выглядит следующим образом:
+127.0.0.1    localhost
+127.0.1.1    ваш_компьютер
+  
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+# Введите необходимый IP и домен после второй строки, например:
+127.0.0.1    localhost
+127.0.1.1    ваш_компьютер
+
+92.53.96.120  mydomain.com   # <--
+
+# Сохранить
+# Тест конфигурации 
+ping -с 10 mydomain.com

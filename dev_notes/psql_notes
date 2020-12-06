@@ -191,3 +191,10 @@ UNLISTEN — прекратить ожидание уведомления
 UPDATE — изменить строки таблицы
 VACUUM — провести сборку мусора и, возможно, проанализировать базу данных
 VALUES — вычислить набор строк
+
+# sql backup
+# pg_dump
+pg_dump -h host -p port -U db_user db_name > file_name.sql
+
+
+

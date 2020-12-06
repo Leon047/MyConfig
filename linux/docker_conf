@@ -3,32 +3,25 @@
 --- Docker ---
 
 # Oбновите существующий список пакетов:
-
 $ sudo apt update
 
 # Установите несколько необходимых пакетов, которые позволяют 
 # apt использовать пакеты через HTTPS:
-
 $ sudo apt install apt-transport-https ca-certificates curl software-properties-common
 
 # Добавьте ключ GPG для официального репозитория Docker в вашу систему:
-
 $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 # Добавьте репозиторий Docker в источники APT:
-
 $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 
 # Oбновите базу данных пакетов
-
 $ sudo apt update
 
 # Убедитесь, что установка будет выполняться из репозитория Docker
-
 $ apt-cache policy docker-ce
 
 # Вы должны получить следующий вывод:
-
 docker-ce:
   Installed: (none)
   Candidate: 5:19.03.9~3-0~ubuntu-focal
@@ -37,16 +30,12 @@ docker-ce:
         500 https://download.docker.com/linux/ubuntu focal/stable amd64 Packages
 
 # Установите Docker:
-
 $ sudo apt install docker-ce
 
-
 # Проверьте, что он запущен:
-
 $ sudo systemctl status docker
 
 # Вывод должен выглядеть примерно следующим:
-
 ● docker.service - Docker Application Container Engine
      Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
      Active: active (running) since Tue 2020-05-19 17:00:41 UTC; 17s ago
@@ -57,3 +46,15 @@ TriggeredBy: ● docker.socket
      Memory: 46.4M
      CGroup: /system.slice/docker.service
              └─24321 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+
+-- Compose --
+
+# Run this command to download the current stable release of Docker Compose:
+sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+# apply executable permissions to the binary:
+sudo chmod +x /usr/local/bin/docker-compose
+
+# Test the installation.
+$ docker-compose --version
+	docker-compose version 1.27.4, build 1110ad01

@@ -1,0 +1,62 @@
+    ----------========== Django ==========----------
+
+# Install django
+$ pip install django
+
+# Starting a project
+$ django-admin.py startproject project_name
+
+# cteate django modul_app
+python manage.py startapp app_name 
+
+# RUN
+$ ./manage.py runserver 
+
+# django_admin
+python3 manage.py createsuperuser
+
+http://127.0.0.1:8000
+
+# -- Django Shell --
+
+# Применить изменения models.py 
+./manage.py makemigrations
+./manage.py migrate
+
+$ ./manage.py shell
+
+# Подключим созданный класс в модуле models.py
+
+# --- Template (html) ---
+# settings.py
+
+TEMPLATES = [
+	'DIRS': [ 
+		os.path.join(BASE_DIR, 'templates') 
+	]
+]
+
+# Add in html file
+{% extends 'index.html' %} 
+
+
+# --- Static (css, js, img) ---
+# settings.py
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+	os.path.join(BASE_DIR, 'static')
+]       
+
+# Add in html fili  
+{% load static %}
+
+<link rel="stylesheet" href={% static '/css/home_page.css' %}>  
+
+# --- Fixtures (json, xml) ---
+
+# Создание файла
+$ manage.py dumpdata --format=json myapp > myapp/fixtures/initial_data.json
+
+# Загрузка данных в базу 
+$ manage.py loaddata <fixturename>
