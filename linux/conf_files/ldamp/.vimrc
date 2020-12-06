@@ -8,7 +8,6 @@ filetype off     " required
 " ---------------------------- Vundle settings --------------------------------|
 "==============================================================================|
 " set the runtime path to include Vundle and initialize
-" : PluginInstall
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -240,8 +239,8 @@ highlight ColorColumn ctermbg=238
 hi Comment ctermfg=585 
 
 " Autocomplete
-hi Pmenu ctermbg=585 ctermfg=255
-hi PmenuSel ctermbg=238 ctermfg=255
+hi Pmenu ctermbg=000 ctermfg=255
+hi PmenuSel ctermbg=585 ctermfg=000
 
 " Brackets
 hi MatchParen cterm=none ctermbg=238 ctermfg=none
@@ -254,6 +253,19 @@ hi Visual  ctermbg=238 guibg=Grey40 gui=none
 "==============================================================================|
 "-------------------------  Python-mode settings ------------------------------|
 "==============================================================================|
+" Python-mode
+" Activate rope
+" Keys:
+" K Show python docs
+" <Ctrl-Space> Rope autocomplete
+" <Ctrl-c>g Rope goto definition
+" <Ctrl-c>d Rope show documentation
+" <Ctrl-c>f Rope find occurrences
+" <Leader>b Set, unset breakpoint (g:pymode_breakpoint enabled)
+" [[ Jump on previous class or function (normal, visual, operator modes)
+" ]] Jump on next class or function (normal, visual, operator modes)
+" [M Jump on previous class or method (normal, visual, operator modes)
+" ]M Jump on next class or method (normal, visual, operator modes)
 let g:pymode_rope = 0
 
 " Documentation
@@ -269,8 +281,8 @@ let g:pymode_lint_write = 0
 
 " Support virtualenv
 let g:pymode_virtualenv = 1
-let g:virtualenv_directory = '/home/leon/.virtualenvs'
-let g:virtualenv_stl_format = '[Py3]'
+let g:virtualenv_directory = '/home/leon/Documents/devOps/Py3'
+" let g:virtualenv_stl_format = '[Py3]'
 
 " Enable breakpoints plugin
 let g:pymode_breakpoint = 1
