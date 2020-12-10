@@ -66,3 +66,15 @@ org.gnome.desktop.input-sources
 или в командной строке ( Предупреждение - это перезаписывает существующие настройки! ):
 
 gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
+
+# --------------------
+# Пароль звездочками: ********
+# In bash
+sudo visudo
+
+# Add under Defaults env_reset
+Defaults pwfeedback
+
+# save
+«Ctr+X»
+«Y»

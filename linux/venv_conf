@@ -9,6 +9,7 @@ $ mkdir .virtualenv
 # For Python 3.X
 $ sudo apt install python3-pip
 $ sudo pip3 install virtualenv
+$ sudo pip3 install virtualenvwrapper
 
 # or
 

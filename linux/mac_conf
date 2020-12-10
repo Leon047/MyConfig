@@ -1,0 +1,29 @@
+ -----===== Change of a mac address =====-----
+
+# Install for bash
+sudo apt install macchanger
+
+# Chack
+ip link show
+# or
+ip addr
+# or
+sudo ifconfig
+
+# Change mac adress ====----
+
+# Turn off the network interface. We do this with the command:
+sudo ifconfig <name> down
+
+# Change the random address
+# macchanger -r enp37s0
+macchanger -r <name>
+
+# Change a specific mac address
+macchanger --mac=XX:XX:XX:XX:XX:XX <name>
+
+# Restore oreginal mac address
+macchanger -p <name>
+
+# Turn on the network interface and reboot the network parameters:
+sudo ifconfig <name> up
