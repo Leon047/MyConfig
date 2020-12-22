@@ -1,21 +1,15 @@
 # ----------========== PostgreSQL ==========----------
-
+#
 # --- install ---
-
 # Install postgreSQL
-$ sudo apt-get install postgresql 
-
+$ sudo apt install postgresql 
 # or
-
-$ sudo apt-get install postgresql postgresql-server-dev-9.5
+$ sudo apt install postgresql postgresql-server-dev-9.5
 
 # --- create ---
-
 # Открываем консоль PostgreSQL
 $ sudo -u postgres psql postgres
-
 # or
-
 $ psql
 
 # Create user
@@ -35,9 +29,7 @@ haris=# GRANT ALL ON DATABASE awesome_db TO awesome_user;
 
 # Установка адаптера
 $ pip install psycopg2
-
 or 
-
 $ pip install psycopg2-binary
 
 # Перейдём в дирректорию проекта_Django/ettings.py 
@@ -55,14 +47,21 @@ DATABASES = {
 }
 
 # В окружении проекта устанавливаем бэкэнд для PostgreSQL
-Дальше все как обычно:
+# Дальше все как обычно:
 	делаем миграцию -		./manage.py migrate
 	создаем суперпользователя -	./manage.py createsuperuser
 	и запускаем сервер - 		./manage runserver
 
-Если у вас настроен SSH на сервере, то можно еще научить pgAdmin с локальной 
-машины управлять удаленным сервером PostgreSQL. Для этого мы можем создать 
-ssh-тунель командой:  ssh -fNq -L 5555:localhost:5432 user@domain.com
 
-Теперь можно из локального pgAdmin соединяться с удаленной БД. 
-По адресу: localhost:5555.
+# Если у вас настроен SSH на сервере, то можно еще научить pgAdmin с локальной 
+# машины управлять удаленным сервером PostgreSQL. Для этого мы можем создать 
+# ssh-тунель командой:  ssh -fNq -L 5555:localhost:5432 user@domain.com
+# Теперь можно из локального pgAdmin соединяться с удаленной БД 
+# По адресу: localhost:5555
+
+# --- PSQl backup ---
+# Create sql damp (pg_dump)
+pg_dump -h host -p port -U db_user db_name > file_name.sql
+
+# Loading damp data 
+psql -h hostname -d databasename -U username -f file.sql

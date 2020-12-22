@@ -3,6 +3,13 @@
 # dir
 sudo vim /etc/default/ufw
 
+# Check status
+sudo ufw status
+sudo ufw status verbose
+
+# activation
+sudo ufw enable
+
 # Setting up default policies
 # Denying incoming connections and allowing outgoing.
 sudo ufw default deny incoming
@@ -18,9 +25,6 @@ sudo ufw allow from 203.0.113.4	/ + to any port 22
 
 sudo ufw allow 6000:6007/tcp
 sudo ufw allow 6000:6007/udp
-
-# activation
-sudo ufw enable
 
 # Deny connection
 sudo ufw deny name
