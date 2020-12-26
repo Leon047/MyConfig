@@ -23,12 +23,16 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 Install Docker: https://docs.docker.com/install/linux/docker-ce/ubuntu/
 Install Docker Compose: https://docs.docker.com/compose/install/
 
-# Else
+# -- else --
 # snap
 sudo snap install telegram-desktop
 sudo snap install zoom-client
-
 sudo snap install postman
+
+# Trello
+sudo add-apt-repository ppa:atareao/trello-desktop
+sudo apt-get update
+sudo apt install trello-desktop
 
 #Cкриншотер Shutter
 sudo add-apt-repository ppa:linuxuprising/shutter

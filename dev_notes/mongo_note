@@ -6,4 +6,9 @@ mongo
 # add dump
 mongorestore dumpname 
 
+mongorestore --db db_name damp_name 
+
 # 
+use db_name
+#
+db.user.save({username: "user_name"})
