@@ -29,15 +29,8 @@ sudo snap install telegram-desktop
 sudo snap install zoom-client
 sudo snap install postman
 
-# Trello
-sudo add-apt-repository ppa:atareao/trello-desktop
-sudo apt-get update
-sudo apt install trello-desktop
-
-#Cкриншотер Shutter
-sudo add-apt-repository ppa:linuxuprising/shutter
-sudo apt update
-sudo apt install shutter
+# remove  os auto_upgrade
+sudo apt autoremove unattended-upgrades
 
 |------------------------------------------------------------------------------|
 

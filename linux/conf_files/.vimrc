@@ -240,7 +240,7 @@ highlight ColorColumn ctermbg=238
 hi Comment ctermfg=585 
 
 " Autocomplete
-hi Pmenu ctermbg=585 ctermfg=255
+hi Pmenu ctermbg=none ctermfg=255
 hi PmenuSel ctermbg=238 ctermfg=255
 
 " Brackets
