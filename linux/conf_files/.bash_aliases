@@ -35,11 +35,7 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 
 # View video card memory
 # lscpu
-# alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
-
-# Router management
-alias rebootlinksys="curl -u 'admin:my-super-password' 'http://192.168.1.2/setup.cgi?todo=reboot'"
-# alias reboottomato="ssh admin@192.168.1.1 /sbin/reboot"
+alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 
 # browsers
 alias ff='/opt/firefox4/firefox'
@@ -79,18 +75,24 @@ alias backup='sudo /home/scripts/admin/scripts/backup/wrapper.backup.sh --type l
 # alias iwconfig='iwconfig wlan0'
 
 # -----===== Servers =====-----
-#
 # alias wakeupnas01='/usr/bin/wakeonlan 00:11:32:11:15:FC'
 # alias wakeupnas02='/usr/bin/wakeonlan 00:11:32:11:15:FD'
 # alias wakeupnas03='/usr/bin/wakeonlan 00:11:32:11:15:FE'
 
 # -----===== IPTABLES =====-----
-#
-# alias iptlist='sudo /sbin/iptables -L -n -v --line-numbers'
-# alias iptlistin='sudo /sbin/iptables -L INPUT -n -v --line-numbers'
-# alias iptlistout='sudo /sbin/iptables -L OUTPUT -n -v --line-numbers'
-# alias iptlistfw='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
-# alias firewall=iptlist
+alias iptlist='sudo /sbin/iptables -L -n -v --line-numbers'
+alias iptlistin='sudo /sbin/iptables -L INPUT -n -v --line-numbers'
+alias iptlistout='sudo /sbin/iptables -L OUTPUT -n -v --line-numbers'
+alias iptlistfw='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
+alias firewall=iptlist
 
 # -----===== Python3 =====----- 
 alias py3='python3'
+
+# 
+alias myserver='ssh mrleon@45.94.158.112'
+# alias galaqsy='ssh @192.168.0.100'
+
+# -----===== KN =====-----
+alias orca_back="sudo docker-compose -f docker-compose_local.yml up backend"
+alias orca_front="sudo docker-compose -f docker-compose_local.yml up frontend"
