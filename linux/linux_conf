@@ -25,9 +25,11 @@ Install Docker Compose: https://docs.docker.com/compose/install/
 
 # -- else --
 # snap
+sudo snap install gimp
 sudo snap install telegram-desktop
 sudo snap install zoom-client
 sudo snap install postman
+sudo snap install discord --classic
 
 # remove  os auto_upgrade
 sudo apt autoremove unattended-upgrades
