@@ -30,6 +30,7 @@ sudo vim /etc/default/ufw
 sudo ufw allow ssh  	# 22
 sudo ufw allow http   	# 80
 sudo ufw allow https  	# 443
+sudo ufw allow 60001	# mosh 
 
 sudo ufw allow 6000:6007/tcp
 sudo ufw allow 6000:6007/udp
@@ -71,6 +72,9 @@ chsh -s $(which zsh)
 # Add in .zshrc
 export PATH=$PATH:/home/mrleon/.python/bin
 
+# fixed with - mosh  
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+
 -- 3 --
 ## Install python 3
 #
@@ -108,6 +112,7 @@ echo "deb http://apt.postgresql.org/pub/repos/apt/ ${RELEASE}"-pgdg main | sudo 
 sudo apt update 
 sudo apt -y install postgresql-12 
 
+# locale RU
 sudo localedef ru_RU.UTF-8 -i ru_RU -fUTF-8 
 export LANGUAGE=ru_RU.UTF-8 
 export LANG=ru_RU.UTF-8 
