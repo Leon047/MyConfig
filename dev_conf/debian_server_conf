@@ -113,17 +113,17 @@ sudo apt update
 sudo apt -y install postgresql-12 
 
 # locale RU
-sudo localedef ru_RU.UTF-8 -i ru_RU -fUTF-8 
-export LANGUAGE=ru_RU.UTF-8 
-export LANG=ru_RU.UTF-8 
-export LC_ALL=ru_RU.UTF-8 
-sudo locale-gen ru_RU.UTF-8 
+sudo localedef ru_RU.UTF-8 -i ru_RU -fUTF-8 ; \
+export LANGUAGE=ru_RU.UTF-8 ; \
+export LANG=ru_RU.UTF-8 ; \
+export LC_ALL=ru_RU.UTF-8 ; \
+sudo locale-gen ru_RU.UTF-8 ; \
 sudo dpkg-reconfigure locales
 
 # Add locales to /etc/profile:
-sudo vim /etc/profile
-    export LANGUAGE=ru_RU.UTF-8
-    export LANG=ru_RU.UTF-8
+sudo vim /etc/profile ; \
+    export LANGUAGE=ru_RU.UTF-8 ; \
+    export LANG=ru_RU.UTF-8 ; \
     export LC_ALL=ru_RU.UTF-8
 
 # Change postges password, create clear database named dbms_db:
@@ -168,16 +168,16 @@ sudo apt install supervisor
 
 vim /home/www/code/project/bin/start_gunicorn.sh
 	#!/bin/bash
-	source /home/www/code/project/env/bin/activate
-	source /home/www/code/project/env/bin/postactivate
-	exec gunicorn  -c "/home/www/code/project/gunicorn_config.py" project.wsgi
+	source /home/name/code/project/env/bin/activate
+	source /home/name/code/project/env/bin/postactivate
+	exec gunicorn  -c "/home/name/code/project/gunicorn_config.py" project.wsgi
 
 chmod +x /home/www/code/project/bin/start_gunicorn.sh
 
 vim project/supervisor.salesbeat.conf
-	[program:www_gunicorn]
-	command=/home/www/code/project/bin/start_gunicorn.sh
-	user=www
+	[program:name_gunicorn]
+	command=/home/name/code/project/bin/start_gunicorn.sh
+	user=name
 	process_name=%(program_name)s
 	numprocs=1
 	autostart=true
@@ -185,13 +185,12 @@ vim project/supervisor.salesbeat.conf
 	redirect_stderr=true
 
 -- 6 --
-## If you need some Gunicorn example config — welcome:
-
-command = '/home/www/code/project/env/bin/gunicorn'
-pythonpath = '/home/www/code/project/project'
+## Gunicorn example config:
+command = '/home/name/code/project/env/bin/gunicorn'
+pythonpath = '/home/name/code/project/project'
 bind = '127.0.0.1:8001'
 workers = 3
-user = 'www'
+user = 'name'
 limit_request_fields = 32000
 limit_request_field_size = 0
 raw_env = 'DJANGO_SETTINGS_MODULE=project.settings'
