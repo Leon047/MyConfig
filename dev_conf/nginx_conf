@@ -1,0 +1,53 @@
+	     ----------========== Nginx ==========----------
+
+# http://nginx.org/ru/docs/beginners_guide.html
+
+# -- Install --
+
+# Установите пакеты, необходимые для подключения apt-репозитория:
+sudo apt install curl gnupg2 ca-certificates lsb-release
+
+# Для подключения apt-репозитория для стабильной версии nginx:
+echo "deb http://nginx.org/packages/debian `lsb_release -cs` nginx" \
+    | sudo tee /etc/apt/sources.list.d/nginx.list
+
+# Импортировать официальный ключ, используемый apt для проверки подлинности пакетов:
+curl -o /tmp/nginx_signing.key https://nginx.org/keys/nginx_signing.key
+
+# Проверьте, верный ли ключ был загружен:
+gpg --dry-run --quiet --import --import-options import-show /tmp/nginx_signing.key
+
+# Переместите ключ в каталог доверенных ключей apt:
+sudo mv /tmp/nginx_signing.key /etc/apt/trusted.gpg.d/nginx_signing.asc
+
+# Чтобы установить nginx, выполните следующие команды:
+sudo apt update
+sudo apt install nginx
+
+# -- Work --
+
+# Kонфигурационный файл называется nginx.conf и расположен в каталоге: 
+/usr/local/nginx/conf 
+or 
+/etc/nginx или /usr/local/etc/nginx
+
+# Запуск, остановка, перезагрузка конфигурации:
+nginx -s сигнал
+
+# Где сигнал может быть одним из нижеследующих:
+stop — быстрое завершение
+quit — плавное завершение
+reload — перезагрузка конфигурационного файла
+reopen — переоткрытие лог-файлов
+
+# Завершить процес с помощью Id 
+kill -s QUIT 1628
+
+# Для просмотра списка всех запущенных процессов nginx:
+ps -ax | grep nginx
+
+
+
+
+
+
