@@ -15,9 +15,30 @@ sudo vim /etc/ssh/sshd_config
     PermitRootLogin no
     PasswordAuthentication no
 
-# Restart SSH server, change www user password:
+## New user --
+adduser user_name
+
+# Add in sudo grope
+usermod -aG sudo user_name
+
+# get the user
+su - user_name
+
+# test
+sudo upt update
+
+# Add ssh key --
+mkdir -p /home/user_name/.ssh && touch /home/user_name/.ssh/authorized_keys
+
+# Add youre ssh pab.key in authorized_keys
+vim .ssh/authorized_keys
+
+# Restart SSH server, change user password:
 sudo service ssh restart
 sudo passwd user_name
+
+## Install Nginx --
+nginx_conf
 
 ## Configure UFW --
 #install
@@ -31,36 +52,42 @@ sudo ufw allow ssh  	# 22
 sudo ufw allow http   	# 80
 sudo ufw allow https  	# 443
 sudo ufw allow 60001	# mosh 
+sudo ufw allow 'Nginx Full'	# nginx
 
+# redirect port
 sudo ufw allow 6000:6007/tcp
 sudo ufw allow 6000:6007/udp
 
 # activation
 sudo ufw enable
 
-# New user --
-adduser user_name
+## SSL --
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:certbot/certbot-build
+sudo apt update
+sudo apt install python-certbot-nginx
+# ssl key_gen
+sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 
-# Add in sudo grope
-usermod -aG sudo user_name
+# create snippet for ssl 
+sudo vim /etc/nginx/snippets/ssl-params.conf
 
-# get the user
-su - user_name
-
-# test
-sudo upt update
-
-# add user ssh key
-# get 
-mkdir -p /home/user_name/.ssh && touch /home/user_name/.ssh/authorized_keys
-
-# Add youre ssh pab.key in authorized_keys
-vim .ssh/authorized_keys
+	ssl_session_timeout 1d;
+	ssl_session_cache shared:SSL:10m;
+	ssl_session_tickets off;
+	
+	ssl_dhparam /etc/ssl/certs/dhparam.pem;
+	
+	ssl_protocols TLSv1.2 TLSv1.3;
+	ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+	ssl_prefer_server_ciphers off;
+	
+	add_header Strict-Transport-Security "max-age=63072000" always;
 
 
 -- 2 -- 
 ## Init — must-have packages & ZSH
-sudo apt-get install -y zsh tree redis-server nginx zlib1g-dev libbz2-dev libreadline-dev llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev liblzma-dev python3-dev python-imaging python3-lxml libxslt-dev python-libxml2 python-libxslt1 libffi-dev libssl-dev python-dev gnumeric libsqlite3-dev libpq-dev libxml2-dev libxslt1-dev libjpeg-dev libfreetype6-dev libcurl4-openssl-dev supervisor
+sudo apt-get install -y zsh tree redis-server zlib1g-dev libbz2-dev libreadline-dev llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev liblzma-dev python3-dev python-imaging python3-lxml libxslt-dev python-libxml2 python-libxslt1 libffi-dev libssl-dev python-dev gnumeric libsqlite3-dev libpq-dev libxml2-dev libxslt1-dev libjpeg-dev libfreetype6-dev libcurl4-openssl-dev supervisor
 
 # Install oh-my-zsh:
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"

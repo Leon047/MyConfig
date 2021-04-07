@@ -7,6 +7,9 @@ sudo vim /etc/default/ufw
 sudo ufw status
 sudo ufw status verbose
 
+# Check app
+sudo ufw app list
+
 # activation
 sudo ufw enable
 

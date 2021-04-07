@@ -350,7 +350,7 @@ autocmd Filetype jinja setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType css setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2
 autocmd FileType css setlocal commentstring=/*\ %s\ */
 
 " ---- YAML support ----
@@ -384,8 +384,20 @@ let g:syntastic_terraform_tffilter_plan = 1
 let g:terraform_completion_keys = 0
 let g:terraform_registry_module_completion = 0
 
-" ---- cmake support ----
+" --- cmake support ---
 autocmd BufNewFile,BufRead CMakeLists.txt setlocal ft=cmake
+
+" --- txt ---
+autocmd BufRead,BufNewFile *.txt set filetype=txt
+autocmd FileType txt setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
+
+" --- md --- 
+autocmd BufRead,BufNewFile *.md set filetype=md
+autocmd FileType md setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
+
+" --- unix.conf ---
+autocmd BufRead,BufNewFile *.conf set filetype=conf
+autocmd FileType conf setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
 
 " --- Vim ---
 autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
