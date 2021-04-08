@@ -5,6 +5,7 @@
 ## repositories and install some initial needed packages:
 
 -- 1 --
+
 sudo apt-get update 
 sudo apt-get install -y vim mosh tmux htop git curl wget unzip zip gcc build-essential make
 
@@ -86,6 +87,7 @@ sudo vim /etc/nginx/snippets/ssl-params.conf
 
 
 -- 2 -- 
+
 ## Init — must-have packages & ZSH
 sudo apt-get install -y zsh tree redis-server zlib1g-dev libbz2-dev libreadline-dev llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev liblzma-dev python3-dev python-imaging python3-lxml libxslt-dev python-libxml2 python-libxslt1 libffi-dev libssl-dev python-dev gnumeric libsqlite3-dev libpq-dev libxml2-dev libxslt1-dev libjpeg-dev libfreetype6-dev libcurl4-openssl-dev supervisor
 
@@ -103,6 +105,7 @@ export PATH=$PATH:/home/mrleon/.python/bin
 sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
 -- 3 --
+
 ## Install python 3
 #
 # Check Python version!
@@ -130,6 +133,7 @@ python3.9 -m venv venv
 . ./env/bin/activate
 
 -- 4 --
+
 ## Install and configure PostgreSQL
 # Install PostgreSQL 12 and configure locales.
 
@@ -187,19 +191,35 @@ psql -h localhost -U dbms dbms_db
 psql -h localhost dbms_db dbms  < dump.sql
 
 -- 5 --
+
+# Gunicorn config:
+vim /home/user/project/project/gunicorn_conf.py
+
+    command = '/home/name/project/env/bin/gunicorn'
+    pythonpath = '/home/name/project/project'
+    bind = '127.0.0.1:8001'
+    workers = 5
+    user = 'user'
+    limit_request_fields = 32000
+    limit_request_field_size = 0
+    raw_env = 'DJANGO_SETTINGS_MODULE=project.settings'
+
+# gunicorn run file:
+vim ~/project/bin/start_gunicorn.sh
+
+    #!/bin/bash
+    source /home/user/project/env/bin/activate
+    source /home/user/project/setenv.sh
+    exec gunicorn  -c "/home/user/project/project/gunicorn_conf.py" project.wsgi
+
+# root
+chmod +x /home/user/project/bin/start_gunicorn.sh
+
+
 ## Install and configure supervisor
 # Now recommended way is using Systemd instead of supervisor. 
-# If you need supervisor — welcome:
 
 sudo apt install supervisor
-
-vim /home/www/code/project/bin/start_gunicorn.sh
-	#!/bin/bash
-	source /home/name/code/project/env/bin/activate
-	source /home/name/code/project/env/bin/postactivate
-	exec gunicorn  -c "/home/name/code/project/gunicorn_config.py" project.wsgi
-
-chmod +x /home/www/code/project/bin/start_gunicorn.sh
 
 vim project/supervisor.salesbeat.conf
 	[program:name_gunicorn]
@@ -211,13 +231,3 @@ vim project/supervisor.salesbeat.conf
 	autorestart=true
 	redirect_stderr=true
 
--- 6 --
-## Gunicorn example config:
-command = '/home/name/code/project/env/bin/gunicorn'
-pythonpath = '/home/name/code/project/project'
-bind = '127.0.0.1:8001'
-workers = 3
-user = 'name'
-limit_request_fields = 32000
-limit_request_field_size = 0
-raw_env = 'DJANGO_SETTINGS_MODULE=project.settings'

@@ -1,0 +1,7 @@
+	-----===== Gunicorn =====-----
+
+# install
+sudo pip install gunicorn
+
+# Тестирование способности Gunicorn обслуживать проект:
+gunicorn --bind 0.0.0.0:8000 myproject.wsgi

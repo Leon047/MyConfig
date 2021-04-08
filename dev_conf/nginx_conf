@@ -1,5 +1,11 @@
 	     ----------========== Nginx ==========----------
 
+Nginx - это веб-сервер, HTTP-сервер и IMAP/POP3 прокси-сервер,
+для UNIX-подобных платформ (FreeBSD и GNU/Linux). 
+Он оптимизирован для всех вещей, которые должен делать веб-сервер. 
+Для балансировки нагрузки, защита от DDoS-атак, работает как обратный прокси-сервер.
+
+
 # http://nginx.org/ru/docs/beginners_guide.html
 
 # -- Install --
@@ -64,6 +70,30 @@ sudo mkdir -p /etc/nginx/snippets/
 
 # add server conf in sites-available:
 sudo /etc/nginx/sites-available/serv_domen_name.conf
+
+# exemple
+# nginx and gunicorn 
+
+    server {
+        listen 80;
+        listen [::]:80;
+        
+        server_name server_domain_or_ip;
+
+        location = /favicon.ico { access_log off; log_not_found off; }
+        location /static/ {
+            root /home/sammy/myprojectdir;
+        }
+
+        location / {
+            include proxy_params;
+	    proxy_params http://127.0.0.1:8001;
+	    proxy_set_header X-Forwarded-Host $server_name;    
+	    proxy_set_header X-Real-IP $remote_addr;
+	    add_header P3P "policyref=\"/w3c/p3p.xml\", CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\"";
+	    add_header Access-Control-Allow-Origin *; 
+        }
+    }
 
 # active 
 sudo ln -s /etc/nginx/sites-available/serv_domen_name.conf /etc/nginx/sites-enabled/
