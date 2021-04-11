@@ -32,7 +32,7 @@ sudo ufw allow 6000:6007/udp
 # Deny connection
 sudo ufw deny name
 
-sudo ufw delete allow http
+sudo ufw delete allow name
 
 # Reset rules
 sudo ufw status numbered

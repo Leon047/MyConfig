@@ -5,9 +5,6 @@ Nginx - это веб-сервер, HTTP-сервер и IMAP/POP3 прокси-
 Он оптимизирован для всех вещей, которые должен делать веб-сервер. 
 Для балансировки нагрузки, защита от DDoS-атак, работает как обратный прокси-сервер.
 
-
-# http://nginx.org/ru/docs/beginners_guide.html
-
 # -- Install --
 
 # Установите пакеты, необходимые для подключения apt-репозитория:
@@ -31,7 +28,6 @@ sudo apt-add-repository -y ppa:hda-me/nginx-stable
 sudo apt-get update
 sudo apt-get install brotli nginx nginx-module-brotli
 
-# ???
 sudo systemctl unmask nginx.service
 
 # -- Work --
@@ -81,16 +77,17 @@ sudo /etc/nginx/sites-available/serv_domen_name.conf
         server_name server_domain_or_ip;
 
         location = /favicon.ico { access_log off; log_not_found off; }
+
         location /static/ {
             root /home/sammy/myprojectdir;
         }
 
         location / {
-            include proxy_params;
-	    proxy_params http://127.0.0.1:8001;
+	    proxy_pass http://127.0.0.1:8001;
 	    proxy_set_header X-Forwarded-Host $server_name;    
 	    proxy_set_header X-Real-IP $remote_addr;
-	    add_header P3P "policyref=\"/w3c/p3p.xml\", CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\"";
+	    # add_header P3P "policyref=\"/w3c/p3p.xml\", CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\"";
+	    add_header P3P  'CP="ALL IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"';
 	    add_header Access-Control-Allow-Origin *; 
         }
     }
@@ -98,7 +95,7 @@ sudo /etc/nginx/sites-available/serv_domen_name.conf
 # active 
 sudo ln -s /etc/nginx/sites-available/serv_domen_name.conf /etc/nginx/sites-enabled/
 
-# test config
+# debag config
 sudo nginx -t
 
 # restart
@@ -118,3 +115,9 @@ kill -s QUIT 1628
 
 # Для просмотра списка всех запущенных процессов nginx:
 ps -ax | grep nginx
+
+# nginx: [emerg] open() "/etc/nginx/nginx.conf" failed (2: No such file or directory)
+sudo systemctl status nginx
+sudo -H apt-get purge nginx-common nginx-full
+sudo -H apt-get install nginx-common nginx-full
+sudo systemctl restart nginx

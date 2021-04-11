@@ -38,9 +38,6 @@ vim .ssh/authorized_keys
 sudo service ssh restart
 sudo passwd user_name
 
-## Install Nginx --
-nginx_conf
-
 ## Configure UFW --
 #install
 sudo apt install ufw
@@ -53,11 +50,6 @@ sudo ufw allow ssh  	# 22
 sudo ufw allow http   	# 80
 sudo ufw allow https  	# 443
 sudo ufw allow 60001	# mosh 
-sudo ufw allow 'Nginx Full'	# nginx
-
-# redirect port
-sudo ufw allow 6000:6007/tcp
-sudo ufw allow 6000:6007/udp
 
 # activation
 sudo ufw enable
@@ -196,7 +188,7 @@ psql -h localhost dbms_db dbms  < dump.sql
 vim /home/user/project/project/gunicorn_conf.py
 
     command = '/home/name/project/env/bin/gunicorn'
-    pythonpath = '/home/name/project/project'
+    pythonpath = '/home/name/project'
     bind = '127.0.0.1:8001'
     workers = 5
     user = 'user'
@@ -215,19 +207,29 @@ vim ~/project/bin/start_gunicorn.sh
 # root
 chmod +x /home/user/project/bin/start_gunicorn.sh
 
+# Install Nginx --
+nginx_conf
 
-## Install and configure supervisor
+# Install and configure supervisor
 # Now recommended way is using Systemd instead of supervisor. 
-
 sudo apt install supervisor
 
-vim project/supervisor.salesbeat.conf
-	[program:name_gunicorn]
-	command=/home/name/code/project/bin/start_gunicorn.sh
-	user=name
+vim /etc/supervisor/conf.d/myproject.conf
+
+	[program:gunicorn]
+	command=/home/name/project/bin/start_gunicorn.sh
+	user=username
 	process_name=%(program_name)s
 	numprocs=1
 	autostart=true
 	autorestart=true
 	redirect_stderr=true
 
+# commands
+sudo service supervisor stop
+sudo service supervisor start
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl restart all
+
+#               -----===== END =====-----
