@@ -1,6 +1,5 @@
  		-----===== Server =====-----
 
-
 # --- netstat ---
 # Показать все активные сетевые соединения.
 netstat –na
@@ -35,4 +34,42 @@ netstat -plan|grep :80|awk {'print $5'}|cut -d: -f 1|sort|uniq -c|sort -nk 1
 netstat -h
 или
 man netstat
+
+# --- Архивация данных ---
+
+# архивация без сжатия
+tar -cf filename.tar file1 file2 fileN
+
+# Пример сжатия Gzip:
+tar -cvzf filename.tar.gz dir_name
+
+# Пример сжатия Bzip2:
+tar -cvjf filename.tar.bz2 dir_name
+
+# Просмотл содержимого архива
+tar -tf filename.tar.gz
+
+# Распаковать архив:
+tar -xvf filename.tar.bz2
+
+# Архивация Zip
+zip archive.zip filename
+
+# Распаковка Zip
+unzip archivename.zip
+
+
+# --- SCP на Linux системах ---
+
+# Скачать файл с удаленного сервера на локальный:
+# 
+scp user@11.22.33.44:/path/file.tar.gz /path
+# ..
+scp -P 22 root@11.22.33.44:/path/file.tar.gz /path
+
+# Загрузить файл на удаленный сервер:
+# ..
+scp file.tar.gz user@11.22.33.44:/path
+# ..
+scp -P 22 file.tar.gz user@11.22.33.44:/path
 
