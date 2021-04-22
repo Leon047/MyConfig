@@ -1,39 +1,39 @@
 "==============================================================================|
 "         --------------------   Vim   ------------------------
 "==============================================================================|
-set nocompatible " be improved, required
+set nocompatible " be iMproved, required
 filetype off     " required
 
-" -------------=============== Vundle settings ===============-----------------|
-
+"==============================================================================|
+" ---------------------------- Vundle settings --------------------------------|
+"==============================================================================|
 " set the runtime path to include Vundle and initialize
-" PluginInstall / PluginUpdate / PluginClean
+" : PluginInstall
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'                      " let Vundle manage Vundle, required
-"-----===== Code/project navigation =====-----
+"---------=== Code/project navigation ===-------------
 Plugin 'scrooloose/nerdtree'                    " A tree explorer plugin for vim
 Plugin 'Shougo/unite.vim'                       " Navigation between buffers and files
 Plugin 'majutsushi/tagbar'                      " Class/module browser
 Plugin 'tmhedberg/SimpylFold'                   " Code Folding
 
-"-----===== Other =====-----
+"------------------=== Other ===----------------------
 Plugin 'vim-airline/vim-airline'                " Lean & mean status/tabline for vim that's light as air
 Plugin 'vim-airline/vim-airline-themes'         " Themes for vim-airline
 Plugin 'rosenfeld/conque-term'                  " Consoles as buffers
 Plugin 'tpope/vim-surround'                     " Parentheses, brackets, quotes, XML tags, and more
 Plugin 'Yggdroot/indentLine'
 Plugin 'turbio/bracey.vim'                      " LivePreview for html, css, js (install - nodejs, npm)
-Plugin 'matze/vim-move'                         " Moving text
 
-"-----===== Snippets support =====-----
+"--------------=== Snippets support ===---------------
 Plugin 'garbas/vim-snipmate'                    " Snippets manager
 Plugin 'MarcWeber/vim-addon-mw-utils'           " Dependencies #1
 Plugin 'tomtom/tlib_vim'                        " Dependencies #2
 Plugin 'honza/vim-snippets'                     " Snippets repo
 
-"-----===== Languages support =====-----
+"---------------=== Languages support ===-------------
 Plugin 'scrooloose/syntastic'                   " Syntax checking plugin for Vim
 Plugin 'tpope/vim-commentary'                   " Comment stuff out
 Plugin 'mitsuhiko/vim-sparkup'                  " Sparkup (XML/jinja/htlm-django/etc.) support
@@ -65,9 +65,13 @@ Plugin 'hynek/vim-python-pep8-indent'           " *PEP8 indent
 Plugin 'jmcantrell/vim-virtualenv'              " Virtualenv support in VIM
 Plugin 'tshirtman/vim-cython'                   " Cython support   
 
+" --- Rust ---
+Plugin 'rust-lang/rust.vim'                     " Vim support for Rust file detection and syntax highlighting
+Plugin 'racer-rust/vim-racer'                   " Rust code completion in vim via racer
+
 " --- Terraform ---
-" Plugin 'hashivim/vim-terraform'                 " Terraform syntax highlight
-" Plugin 'juliosueiras/vim-terraform-completion'  " Terraform auto-completion
+Plugin 'hashivim/vim-terraform'                 " Terraform syntax highlight
+Plugin 'juliosueiras/vim-terraform-completion'  " Terraform auto-completion
 
 " --- Docker ---
 Plugin 'ekalinin/Dockerfile.vim'                " Syntax for Dockerfile
@@ -78,82 +82,9 @@ filetype on
 filetype plugin on
 filetype plugin indent on
 
-" ----==== Plagin settings ====----
-
-" NERDTree
-nmap <F1> <nop>                 " unmap <F1> with help
-map <F1> :NERDTreeToggle<CR>    " browse the list of files in the current directory
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\. txt$','\.o$']
-
-" TagBar settings 
-nmap  <F2> : TagbarToggle <CR>
-let g:tagbar_autofocus = 0
-
-" Unite settings
-nnoremap <F3> :Unite buffer<CR>  " browse a list of the currently opened buffers
-
-" Aligning indents
-map <F4> gg=G <C-o><C-o>
-
-" debug-mode 
-nnoremap <F5> :exe "ConqueTermSplit python3 " . expand("%") <CR>
-let g:ConqueTerm_StartMessages = 0
-let g:ConqueTerm_CloseOnEnd = 0
-
-" Syntastic
-noremap <F6> :w<CR>:SyntasticCheck<CR>
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_enable_signs = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_aggregate_errors = 1
-
-" ConqueTerm
-" run python3 scripts 
-nnoremap <F7> :ConqueTermSplit python3 <CR>  
-
-" Turbio/Bracey
-noremap <F8> :Bracey<CR>
-let g:bracey_browser_command = 1
-let g:bracey_server_path = 1
-let g:bracey_auto_start_browser =1 
-let g:bracey_refresh_on_save = 1 
-let g:bracey_eval_on_save = 1
-let g:bracey_auto_start_server = 0
-let g:bracey_server_allow_remote_connections = 0
-
-" SnipMate settings
-let g:snippets_dir = "~/.vim/bundle/vim-snippets/snippets"
-let g:snipMate = { 'snippet_version' : 1 }
-
-" Jedi-vim
-let g:jedi#show_call_signatures = 1 " show call signatures
-let g:jedi#popup_on_dot = 1         " enable autocomplete on dot
-let g:jedi#popup_select_first = 0   " disable first select from auto-complete
-
-" Better :sign interface symbols
-let g:syntastic_error_symbol = 'X'
-let g:syntastic_style_error_symbol = 'X'
-let g:syntastic_warning_symbol = 'x'
-let g:syntastic_style_warning_symbol = 'x'
-
-" Vim-Airline
-let g:airline_theme='powerlineish'
-
-" Yggdroot/indentLine
-let g:indentLine_char = '¦'   "['|', '¦', '┆', '┊'] 
-let g:indentLine_color_term = 239
-let g:indentLine_color_tty_dark = 1
-
-" Vim-Move 
-let g:move_key_modifier = 'C'
-vmap <C-Down> <Plug>MoveBlockDown
-vmap <C-Up> <Plug>MoveBlockUp
-nmap <C-Down> <Plug>MoveLineDown
-nmap <C-Up> <Plug>MoveLineUp
-
-" -----------=============== General settings ================-----------------|
-
+"==============================================================================|
+" -------------------------- General settings ---------------------------------|
+"==============================================================================|
 set backspace=indent,eol,start
 
 " Auto save 
@@ -238,6 +169,63 @@ augroup vimrc_autocmds
     autocmd FileType ruby,python,javascript,c,cpp set nowrap
 augroup END
 
+" SnipMate settings
+let g:snippets_dir = "~/.vim/bundle/vim-snippets/snippets"
+
+" NERDTree
+nmap <F1> <nop>                 " unmap <F1> with help
+map <F1> :NERDTreeToggle<CR>    " browse the list of files in the current directory
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\. txt$','\.o$']
+
+" Unite settings
+nnoremap <F2> :Unite buffer<CR> " browse a list of the currently opened buffers
+
+" ConqueTerm
+" run python3 scripts at <F3>
+nnoremap <F3> :ConqueTermSplit python3 <CR>  
+
+" debug-mode for <F5>
+nnoremap <F5> :exe "ConqueTermSplit python3 " . expand("%") <CR>
+let g:ConqueTerm_StartMessages = 0
+let g:ConqueTerm_CloseOnEnd = 0
+
+" Jedi-vim
+let g:jedi#show_call_signatures = 1 " show call signatures
+let g:jedi#popup_on_dot = 1         " enable autocomplete on dot
+let g:jedi#popup_select_first = 0   " disable first select from auto-complete
+
+" Syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_enable_signs = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_aggregate_errors = 1
+noremap <f7> :w<CR>:SyntasticCheck<CR>
+
+" Better :sign interface symbols
+let g:syntastic_error_symbol = 'X'
+let g:syntastic_style_error_symbol = 'X'
+let g:syntastic_warning_symbol = 'x'
+let g:syntastic_style_warning_symbol = 'x'
+
+" Vim-Airline
+let g:airline_theme='powerlineish'
+
+" Yggdroot/indentLine
+let g:indentLine_char = '¦'   "['|', '¦', '┆', '┊'] 
+let g:indentLine_color_term = 239
+let g:indentLine_color_tty_dark = 1
+
+" Turbio/Bracey
+let g:bracey_browser_command = 1
+let g:bracey_server_path = 1
+let g:bracey_auto_start_browser =1 
+let g:bracey_refresh_on_save = 1 
+let g:bracey_eval_on_save = 1
+let g:bracey_auto_start_server = 0
+let g:bracey_server_allow_remote_connections = 0
+noremap <f6> :Bracey<CR>
+
 " colorscheme spacecamp
 " set guifont=Consolas:h13
 " set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
@@ -246,7 +234,7 @@ augroup END
 set colorcolumn=80
 highlight ColorColumn ctermbg=238
 
-" ----==== Color Settings ====----
+" ----=== Color Settings ===----
 
 " Comments
 hi Comment ctermfg=585 
@@ -263,8 +251,9 @@ set cursorline
 hi CursorLine term=bold cterm=bold guibg=Grey40
 hi Visual  ctermbg=238 guibg=Grey40 gui=none
 
-"------------=============  Python-mode settings ==============----------------|
-
+"==============================================================================|
+"-------------------------  Python-mode settings ------------------------------|
+"==============================================================================|
 let g:pymode_rope = 0
 
 " Documentation
@@ -307,7 +296,9 @@ else
     let g:airline_powerline_fonts = 0
 endif
 
-"-----------============== Languages support ===============-------------------|
+"==============================================================================|
+"------------------------- Languages support ----------------------------------|
+"==============================================================================|
 " --- C/C++/C# ---
 autocmd FileType c setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 autocmd FileType cpp setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
@@ -381,6 +372,13 @@ let g:syntastic_python_checkers = ['flake8', 'python']
 let g:syntastic_python_flake8_args='--ignore=E121,E128,E711,E301,E261,E241,E124,E126,E721
 \ --max-line-length=80'
 
+" --- Rust ---
+set hidden
+let g:racer_cmd = "~/.cargo/bin/racer"
+autocmd BufRead,BufNewFile *.rs set filetype=rust
+autocmd FileType rust setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
+autocmd FileType rust setlocal commentstring=//\ %s
+
 " --- Terraform ---
 let g:syntastic_terraform_tffilter_plan = 1
 let g:terraform_completion_keys = 0
@@ -404,8 +402,9 @@ autocmd FileType conf setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
 " --- Vim ---
 autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
 
-"-------------================== User hotkeys ===============------------------|
-
+"==============================================================================|
+"------------------------------- User hotkeys ---------------------------------|
+"==============================================================================|
 " Easier moving of code blocks
 vnoremap < <gv " Shift+> keys
 vnoremap > >gv " Shift+< keys
@@ -435,7 +434,7 @@ xnoremap <C-a> <C-C>ggVG
 " inoremap <C-S> <C-O>:update<CR>
 
 " Settings for buffers
-map <C-q> :bd!<CR>         " close current buffer, CTRL-q
+map <C-q> :bd!<CR>          " close current buffer, CTRL-q
 noremap <C-Right> :bn<CR>  " move to next buffer, CTRL-Right
 noremap <C-Left> :bp<CR>   " move to previous buffer, CTRL-Left
 
@@ -458,9 +457,12 @@ map <silent> <A-l> <C-w><  " Decrease size of the vertical split, ALT-l
 " Python code check on PEP8
 autocmd FileType python map <buffer> <leader>8 :PymodeLint<CR>
 
+" TagBar settings 
+nmap  <F8> : TagbarToggle <CR>
+" let g:tagbar_autofocus = 0
+
 " Activate autocomplete at <Ctrl+Space>
 inoremap <C-space> <C-x><C-o>
 
 "==============================================================================|
-"------------------------------  Mr.Leon  -------------------------------------|
 "==============================================================================|

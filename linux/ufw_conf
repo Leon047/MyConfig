@@ -1,17 +1,28 @@
 		-----===== Configure UFW =====-----
 
+# https://help.ubuntu.com/community/UFW
+
 # dir
 sudo vim /etc/default/ufw
 
 # Check status
 sudo ufw status
+
+# To check the status of UFW:
 sudo ufw status verbose
+
+# To turn UFW on with the default set of rules:
+sudo ufw enable
+
+# To disable ufw use:
+sudo ufw disable
 
 # Check app
 sudo ufw app list
 
-# activation
-sudo ufw enable
+# Note that by default, deny is being applied to incoming. 
+# There are exceptions, which can be found in the output of this command:
+sudo ufw show raw
 
 # Setting up default policies
 # Denying incoming connections and allowing outgoing.
@@ -32,10 +43,10 @@ sudo ufw allow 6000:6007/udp
 # Deny connection
 sudo ufw deny name
 
+# delete
 sudo ufw delete allow name
+sudo ufw delete dany name
 
 # Reset rules
 sudo ufw status numbered
 
-# Content output 
-sudo ufw status verbose
