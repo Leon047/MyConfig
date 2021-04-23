@@ -1,6 +1,7 @@
 "==============================================================================|
 "         --------------------   Vim   ------------------------
 "==============================================================================|
+
 set nocompatible " be improved, required
 filetype off     " required
 
@@ -12,13 +13,14 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'                      " let Vundle manage Vundle, required
-"-----===== Code/project navigation =====-----
+
+" --- Code/project navigation ---
 Plugin 'scrooloose/nerdtree'                    " A tree explorer plugin for vim
 Plugin 'Shougo/unite.vim'                       " Navigation between buffers and files
 Plugin 'majutsushi/tagbar'                      " Class/module browser
 Plugin 'tmhedberg/SimpylFold'                   " Code Folding
 
-"-----===== Other =====-----
+" --- Other ---
 Plugin 'vim-airline/vim-airline'                " Lean & mean status/tabline for vim that's light as air
 Plugin 'vim-airline/vim-airline-themes'         " Themes for vim-airline
 Plugin 'rosenfeld/conque-term'                  " Consoles as buffers
@@ -27,13 +29,13 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'turbio/bracey.vim'                      " LivePreview for html, css, js (install - nodejs, npm)
 Plugin 'matze/vim-move'                         " Moving text
 
-"-----===== Snippets support =====-----
+" --- Snippets support ---
 Plugin 'garbas/vim-snipmate'                    " Snippets manager
 Plugin 'MarcWeber/vim-addon-mw-utils'           " Dependencies #1
 Plugin 'tomtom/tlib_vim'                        " Dependencies #2
 Plugin 'honza/vim-snippets'                     " Snippets repo
 
-"-----===== Languages support =====-----
+" --- Languages support ---
 Plugin 'scrooloose/syntastic'                   " Syntax checking plugin for Vim
 Plugin 'tpope/vim-commentary'                   " Comment stuff out
 Plugin 'mitsuhiko/vim-sparkup'                  " Sparkup (XML/jinja/htlm-django/etc.) support
@@ -66,8 +68,8 @@ Plugin 'jmcantrell/vim-virtualenv'              " Virtualenv support in VIM
 Plugin 'tshirtman/vim-cython'                   " Cython support   
 
 " --- Terraform ---
-" Plugin 'hashivim/vim-terraform'                 " Terraform syntax highlight
-" Plugin 'juliosueiras/vim-terraform-completion'  " Terraform auto-completion
+Plugin 'hashivim/vim-terraform'                 " Terraform syntax highlight
+Plugin 'juliosueiras/vim-terraform-completion'  " Terraform auto-completion
 
 " --- Docker ---
 Plugin 'ekalinin/Dockerfile.vim'                " Syntax for Dockerfile
@@ -80,27 +82,27 @@ filetype plugin indent on
 
 " ----==== Plagin settings ====----
 
-" NERDTree
+" --- NERDTree ---
 nmap <F1> <nop>                 " unmap <F1> with help
 map <F1> :NERDTreeToggle<CR>    " browse the list of files in the current directory
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\. txt$','\.o$']
 
-" TagBar settings 
+" --- TagBar ---
 nmap  <F2> : TagbarToggle <CR>
 let g:tagbar_autofocus = 0
 
-" Unite settings
+" --- Unite ---
 nnoremap <F3> :Unite buffer<CR>  " browse a list of the currently opened buffers
 
-" Aligning indents
+" --- Aligning indents ---
 map <F4> gg=G <C-o><C-o>
 
-" debug-mode 
+" --- Debug-mode ---
 nnoremap <F5> :exe "ConqueTermSplit python3 " . expand("%") <CR>
 let g:ConqueTerm_StartMessages = 0
 let g:ConqueTerm_CloseOnEnd = 0
 
-" Syntastic
+" --- Syntastic ---
 noremap <F6> :w<CR>:SyntasticCheck<CR>
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -108,11 +110,11 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
 
-" ConqueTerm
+" --- ConqueTerm ---
 " run python3 scripts 
 nnoremap <F7> :ConqueTermSplit python3 <CR>  
 
-" Turbio/Bracey
+" --- Turbio/Bracey ---
 noremap <F8> :Bracey<CR>
 let g:bracey_browser_command = 1
 let g:bracey_server_path = 1
@@ -122,22 +124,22 @@ let g:bracey_eval_on_save = 1
 let g:bracey_auto_start_server = 0
 let g:bracey_server_allow_remote_connections = 0
 
-" SnipMate settings
+" --- SnipMate ---
 let g:snippets_dir = "~/.vim/bundle/vim-snippets/snippets"
 let g:snipMate = { 'snippet_version' : 1 }
 
-" Jedi-vim
+" --- Jedi-vim ---
 let g:jedi#show_call_signatures = 1 " show call signatures
 let g:jedi#popup_on_dot = 1         " enable autocomplete on dot
 let g:jedi#popup_select_first = 0   " disable first select from auto-complete
 
-" Better :sign interface symbols
+" --- Better :sign interface symbols ---
 let g:syntastic_error_symbol = 'X'
 let g:syntastic_style_error_symbol = 'X'
 let g:syntastic_warning_symbol = 'x'
 let g:syntastic_style_warning_symbol = 'x'
 
-" Vim-Airline
+" --- Vim-Airline ---
 let g:airline_theme='powerlineish'
 
 " Yggdroot/indentLine
@@ -145,7 +147,7 @@ let g:indentLine_char = '¦'   "['|', '¦', '┆', '┊']
 let g:indentLine_color_term = 239
 let g:indentLine_color_tty_dark = 1
 
-" Vim-Move 
+" --- Vim-Move ---
 let g:move_key_modifier = 'C'
 vmap <C-Down> <Plug>MoveBlockDown
 vmap <C-Up> <Plug>MoveBlockUp
@@ -216,7 +218,7 @@ set foldlevel=99
 let g:SimpylFold_docstring_preview=1  " Preview docstring in fold text  
 let g:SimpylFold_fold_import = 1      " Fold imports
 
-" Swaps and backups                   "vim -r file_name
+" Swaps and backups                   
 if has("win32") || has("win64")
     set dir=$TMP
     set backupdir=$TMP
@@ -308,6 +310,7 @@ else
 endif
 
 "-----------============== Languages support ===============-------------------|
+
 " --- C/C++/C# ---
 autocmd FileType c setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 autocmd FileType cpp setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
@@ -337,10 +340,10 @@ let javascript_enable_domhtmlcss=1
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_javascript_jshint_args='--config ~/.vim/extern-cfg/jshint.json'
 
-" ---- Typescript ----
+" --- Typescript ---
 let g:syntastic_typescript_checkers = []
 
-" ---- JSON ----
+" --- JSON ---
 autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 " --- HTML ---
@@ -362,7 +365,7 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType css setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2
 autocmd FileType css setlocal commentstring=/*\ %s\ */
 
-" ---- YAML support ----
+" --- YAML ---
 autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
 autocmd BufNewFile,BufRead *.sls setlocal ft=yaml
 
@@ -401,10 +404,10 @@ autocmd FileType md setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
 autocmd BufRead,BufNewFile *.conf set filetype=conf
 autocmd FileType conf setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
 
-" --- Vim ---
+" --- vim ---
 autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
 
-"-------------================== User hotkeys ===============------------------|
+"---------------================ User hotkeys ===============------------------|
 
 " Easier moving of code blocks
 vnoremap < <gv " Shift+> keys
