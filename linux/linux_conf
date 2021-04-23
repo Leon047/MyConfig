@@ -1,30 +1,47 @@
 #--------------========== My Linux configuration ===========----------------
 
-# Install first
-
-# Standart 
+# Base 
 sudo apt install python3-pip git ssh mosh htop libreoffice gnome-tweaks ubuntu-restricted-extras p7zip-rar rar unrar unace arj cabextract translate-shell flameshot obs-studio peek cmus neofetch
 
-# Install Multimedia Codecs
+# Multimedia Codecs
 sudo apt install ubuntu-restricted-extras
 
--- vim/tmux --
-# tmux
+#   --- Vim/Tmux ---
+
+# Tmux
 sudo apt install tmux
+
+# gpakosz
 https://github.com/gpakosz/.tmux
+
+# add tmux conf 
+cp ~/Documents/MyConfig/linux/conf_files/.tmux.conf.conf_files ~/
 
 # Vim
 sudo apt install vim
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-# :PluginInstall
 
--- env --
-# venv_conf
+# add vimrc
+cp ~/Documents/MyConfig/linux/conf_files/.vimrc ~/
+
+# swaps and backups
+mkdir ~/.vim/sessions
+
+# add Vumdle ":PluginInstall"
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+# majutsushi/tagbar
+sudo apt install exuberant-ctags
+
+#   --- aliases ---
+# add bash_aliases
+cp ~/Documents/MyConfig/linux/conf_files/.bash_aliases ~/
+
+#   --- env ---
 # docker/compose
 Install Docker: https://docs.docker.com/install/linux/docker-ce/ubuntu/
 Install Docker Compose: https://docs.docker.com/compose/install/
 
-# -- else --
+#   --- apps ---
 # snap
 sudo snap install gimp
 sudo snap install telegram-desktop
@@ -35,13 +52,23 @@ sudo snap install discord --classic
 # remove  os auto_upgrade
 sudo apt autoremove unattended-upgrades
 
-|------------------------------------------------------------------------------|
+#   --- Gnome Interfase ---
 
-# --- Gnome Interfase ---
+# Пароль звездочками: *******
+# In bash
+sudo visudo
+
+# Add under Defaults env_reset
+Defaults pwfeedback
+
+# save
+«Ctr+X»
+«Y»
+
 # Включить сворачивание при клике
 $ gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 
-# --- Cayboard --- 
+#   --- Cayboard --- 
 # Изменения раскладки CapsLock for Ctrl
 $ setxkbmap -layout us -option ctrl:nocaps
 
@@ -69,14 +96,4 @@ org.gnome.desktop.input-sources
 
 gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
 
-# --------------------
-# Пароль звездочками: ********
-# In bash
-sudo visudo
-
-# Add under Defaults env_reset
-Defaults pwfeedback
-
-# save
-«Ctr+X»
-«Y»
+# -----------------------------------------------------------------------------|
