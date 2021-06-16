@@ -65,8 +65,12 @@ Defaults pwfeedback
 «Ctr+X»
 «Y»
 
-# Включить сворачивание при клике
-$ gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
+# Install oh-my-zsh 
+sudo apt install zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# Change your default shell
+chsh -s $(which zsh)
 
 #   --- Cayboard --- 
 # Изменения раскладки CapsLock for Ctrl

@@ -3,6 +3,8 @@
 # Leptop System Information
 alias leptop='sudo dmidecode | grep -A 9 "System Information"'
 
+alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
+
 # ping
 alias ping='ping -c 5'
 alias fastping='ping -c 100 -s.2'
@@ -57,8 +59,8 @@ alias du='du -ch'
 # alias iwconfig='iwconfig wlan0'
 
 # --- Servers ---
-alias up_vps=''
-alias down_vps=''
+# alias up_vps=''
+# alias down_vps=''
 
 # ...
 alias devserver='ssh mrleon@45.94.158.112'
