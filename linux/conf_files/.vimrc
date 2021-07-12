@@ -54,6 +54,9 @@ Plugin 'groenewege/vim-less'                    " Vim syntax for LESS (dynamic C
 Plugin 'pangloss/vim-javascript'                " Vastly improved Javascript indentation and syntax support in Vim
 Plugin 'maksimr/vim-jsbeautify'                 " Formated javascript files by js-beautify
 
+" --- TypeScript ---
+Plugin 'leafgarland/typescript-vim'             " Typescript Syntax
+
 " --- HTML ---
 Plugin 'othree/html5.vim'                       " HTML5 omnicomplete and sytnax
 Plugin 'idanarye/breeze.vim'                    " Html navigation like vim-easymotion, tag matching, tag highlighting and DOM navigation
@@ -309,6 +312,20 @@ else
     let g:airline_powerline_fonts = 0
 endif
 
+let python_highlight_all=1
+let python_highlight_exceptions=0
+let python_highlight_builtins=0
+let python_slow_sync=1
+let g:syntastic_python_checkers = ['flake8', 'python']
+let g:syntastic_python_flake8_args='--ignore=E121,E128,E711,E301,E261,E241,E124,E126,E721
+\ --max-line-length=80'
+autocmd FileType python setlocal completeopt-=preview
+autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8
+\ formatoptions+=croq softtabstop=4 smartindent
+\ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 
+\ smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+
 "-----------============== Languages support ===============-------------------|
 
 " --- C/C++/C# ---
@@ -340,18 +357,20 @@ let javascript_enable_domhtmlcss=1
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_javascript_jshint_args='--config ~/.vim/extern-cfg/jshint.json'
 
-" --- Typescript ---
+" --- TypeScript ---
 let g:syntastic_typescript_checkers = []
+autocmd BufNewFile,BufRead *.ts setlocal ft=typescript
+autocmd FileType typescript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 " --- JSON ---
 autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 " --- HTML ---
+let html_no_rendering=1
+let g:syntastic_html_checkers = []
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType html setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2
 autocmd FileType html setlocal commentstring=<!--\ %s\ -->
-let html_no_rendering=1
-let g:syntastic_html_checkers = []
 
 " --- Jinja ---
 autocmd Filetype htmljinja setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
@@ -361,28 +380,16 @@ autocmd Filetype jinja setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 " --- CSS ---
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType css setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2
 autocmd FileType css setlocal commentstring=/*\ %s\ */
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+
+autocmd FileType sass setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+
 
 " --- YAML ---
-autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
 autocmd BufNewFile,BufRead *.sls setlocal ft=yaml
-
-" --- Python ---
-let python_highlight_all=1
-let python_highlight_exceptions=0
-let python_highlight_builtins=0
-let python_slow_sync=1
-autocmd FileType python setlocal completeopt-=preview
-autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8
-\ formatoptions+=croq softtabstop=4 smartindent
-\ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 
-\ smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-let g:syntastic_python_checkers = ['flake8', 'python']
-let g:syntastic_python_flake8_args='--ignore=E121,E128,E711,E301,E261,E241,E124,E126,E721
-\ --max-line-length=80'
+autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
 
 " --- Terraform ---
 let g:syntastic_terraform_tffilter_plan = 1

@@ -59,8 +59,8 @@ alias du='du -ch'
 # alias iwconfig='iwconfig wlan0'
 
 # --- Servers ---
-# alias up_vps=''
-# alias down_vps=''
+alias up_vps=''
+alias down_vps=''
 
 # ...
 alias devserver='ssh mrleon@45.94.158.112'
@@ -74,10 +74,15 @@ alias iptlistfw='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
 alias firewall=iptlist
 
 # --- Python --- 
-alias py='python3.9'
+alias py='python3'
+alias py9='python3.9'
 
 # --- KN ---
-alias orca_back="sudo docker-compose -f docker-compose_local.yml up backend"
-alias orca_front="sudo docker-compose -f docker-compose_local.yml up frontend"
+alias orca_back_start="sudo docker-compose -f docker-compose_local.yml up backend"
+alias orca_front_start="sudo docker-compose -f docker-compose_local.yml up frontend"
+
+alias orca="cd ~/Documents/Kuehne_Nagel/ORCA/orca2"
+alias orca_back="cd ~/Documents/Kuehne_Nagel/ORCA/orca2/back"
+alias  orca_front="cd ~/Documents/Kuehne_Nagel/ORCA/orca2/front/orca/src/app"
 
 # --------------------------------- Mr.Leon -----------------------------------|
