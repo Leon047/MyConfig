@@ -1,0 +1,20 @@
+			-----===== ..... =====-----
+
+# Eмкость батареи в полностью заряженном состоянии:
+cat /sys/class/power_supply/BAT0/charge_full
+
+# От полученного числа убираем последние три нуля 
+# N получим емкость батареи в mah. 
+
+# Емкость батареи определенная производителем:
+cat /sys/class/power_supply/BAT0/charge_full_design
+
+# Определяем оставшиеся параметры:
+cat /sys/class/power_supply/BAT0/charge_now
+
+cat /sys/class/power_supply/BAT0/voltage_min_design
+
+cat /sys/class/power_supply/BAT0/voltage_now
+
+# Список всех доступных параметров:
+ls -a /sys/class/power_supply/BAT0/

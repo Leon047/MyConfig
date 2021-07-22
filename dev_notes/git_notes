@@ -13,3 +13,16 @@ git push -u origin main
 git remote add origin git@github.com:Leon047/django_app.git
 git branch -M main
 git push -u origin main
+
+# Reset changes
+git reset --hard HEAD
+
+# Forcibly push
+git push <remote> <branch> --force
+git push <remote> <branch> -f
+
+# Push new branch
+git push -u origin dev
+
+# Removes from git repository, but not file
+git rm -r --cached file_name

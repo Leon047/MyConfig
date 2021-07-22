@@ -3,6 +3,8 @@
 # Leptop System Information
 alias leptop='sudo dmidecode | grep -A 9 "System Information"'
 
+alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
+
 # ping
 alias ping='ping -c 5'
 alias fastping='ping -c 100 -s.2'
@@ -72,10 +74,15 @@ alias iptlistfw='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
 alias firewall=iptlist
 
 # --- Python --- 
-alias py='python3.9'
+alias py='python3'
+alias py9='python3.9'
 
 # --- KN ---
-alias orca_back="sudo docker-compose -f docker-compose_local.yml up backend"
-alias orca_front="sudo docker-compose -f docker-compose_local.yml up frontend"
+alias orca_back_start="sudo docker-compose -f docker-compose_local.yml up backend"
+alias orca_front_start="sudo docker-compose -f docker-compose_local.yml up frontend"
+
+alias orca="cd ~/Documents/Kuehne_Nagel/ORCA/orca2"
+alias orca_back="cd ~/Documents/Kuehne_Nagel/ORCA/orca2/back"
+alias  orca_front="cd ~/Documents/Kuehne_Nagel/ORCA/orca2/front/orca/src/app"
 
 # --------------------------------- Mr.Leon -----------------------------------|

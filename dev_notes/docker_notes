@@ -1,4 +1,4 @@
--------====== Docker =======-------
+                -------====== Docker =======-------
 
 # --- Build ---
 $ docker build -t app_name .
@@ -8,11 +8,23 @@ $ docker run -i -t app_name "eny command and soket"
 $ docker run -t -i app /bin/sh
 
 # -- Delete -- 
-# conteiner (add: -f )
-$ docker rm $(docker ps -a -q)
+# Clean up all unused or unrelated images, containers, volumes and networks
+docker system prune
+docker system prune -a
 
-# images
-$ docker rmi $(docker images -q)
+# image list:
+docker images -a
+ 
+# del images:
+docker rmi $(docker images -a -q)
+ 
+
+# conteiner list:
+docker ps -a -f status=exited
+ 
+# del conteiners:
+docker rm $(docker ps -a -f status=exited -q)
+
 
 #  
 docker exec -ti conteiner_name /bin/sh
