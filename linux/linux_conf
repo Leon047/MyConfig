@@ -42,12 +42,29 @@ Install Docker: https://docs.docker.com/install/linux/docker-ce/ubuntu/
 Install Docker Compose: https://docs.docker.com/compose/install/
 
 #   --- apps ---
+
 # snap
 sudo snap install gimp
 sudo snap install telegram-desktop
 sudo snap install zoom-client
 sudo snap install postman
 sudo snap install discord --classic
+
+# apt
+sudo apt install kazam
+
+# Anydesk
+# 1
+wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
+# 2
+echo "deb http://deb.anydesk.com/ all main" | sudo tee /etc/apt/sources.list.d/anydesk-stable.list
+# inst
+sudo apt update
+sudo apt install anydesk
+
+# Skype
+wget https://go.skype.com/skypeforlinux-64.deb
+sudo apt install ./skypeforlinux-64.deb
 
 # remove  os auto_upgrade
 sudo apt autoremove unattended-upgrades
