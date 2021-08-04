@@ -386,7 +386,6 @@ autocmd FileType css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 autocmd FileType sass setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
-
 " --- YAML ---
 autocmd BufNewFile,BufRead *.sls setlocal ft=yaml
 autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2

@@ -48,16 +48,6 @@ alias opera='/opt/opera/opera'
 alias df='df -H'
 alias du='du -ch'
 
-# System administration
-# eth1
-# alias dnstop='dnstop -l 5 eth1'
-# alias vnstat='vnstat -i eth1'
-# alias iftop='iftop -i eth1'
-# alias tcpdump='tcpdump -i eth1'
-# alias ethtool='ethtool eth1'
-# wlan0
-# alias iwconfig='iwconfig wlan0'
-
 # --- Servers ---
 alias up_vps=''
 alias down_vps=''
