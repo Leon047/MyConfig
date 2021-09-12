@@ -1,14 +1,9 @@
 #--------------========== My Linux configuration ===========----------------
 
-# Base 
+# -- base --
 sudo apt install python3-pip git ssh mosh htop libreoffice gnome-tweaks ubuntu-restricted-extras p7zip-rar rar unrar unace arj cabextract translate-shell flameshot obs-studio peek cmus neofetch
 
-# Multimedia Codecs
-sudo apt install ubuntu-restricted-extras
-
-#   --- Vim/Tmux ---
-
-# Tmux
+# -- tmux --
 sudo apt install tmux
 
 # gpakosz
@@ -17,7 +12,7 @@ https://github.com/gpakosz/.tmux
 # add tmux conf 
 cp ~/Documents/MyConfig/linux/conf_files/.tmux.conf.conf_files ~/
 
-# Vim
+# -- vim --
 sudo apt install vim
 
 # add vimrc
@@ -26,34 +21,41 @@ cp ~/Documents/MyConfig/linux/conf_files/.vimrc ~/
 # swaps and backups
 mkdir ~/.vim/sessions
 
-# add Vumdle ":PluginInstall"
+# add vumdle ":PluginInstall"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # majutsushi/tagbar
 sudo apt install exuberant-ctags
 
-#   --- aliases ---
+
+# -- aliases --
 # add bash_aliases
 cp ~/Documents/MyConfig/linux/conf_files/.bash_aliases ~/
 
-#   --- env ---
+# -- env --
 # docker/compose
 Install Docker: https://docs.docker.com/install/linux/docker-ce/ubuntu/
-Install Docker Compose: https://docs.docker.com/compose/install/
+Install Docker-Compose: https://docs.docker.com/compose/install/
 
-#   --- apps ---
 
-# snap
+# -- aps --
 sudo snap install gimp
 sudo snap install telegram-desktop
 sudo snap install zoom-client
 sudo snap install postman
 sudo snap install discord --classic
 
-# apt
+sudo apt install ubuntu-restricted-extras
+sudo apt install gnome-tweaks
 sudo apt install kazam
 
-# Anydesk
+# -- gnome shell extensions --
+# dash to dock
+# https://extensions.gnome.org/extension/307/dash-to-dock/
+# hide top bar
+sudo apt install gnome-shell-extension-autohidetopbar
+
+# -- anydesk --
 # 1
 wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
 # 2
@@ -62,59 +64,31 @@ echo "deb http://deb.anydesk.com/ all main" | sudo tee /etc/apt/sources.list.d/a
 sudo apt update
 sudo apt install anydesk
 
-# Skype
+# -- skype --
 wget https://go.skype.com/skypeforlinux-64.deb
 sudo apt install ./skypeforlinux-64.deb
 
-# remove  os auto_upgrade
+# -- oh-my-zsh --
+sudo apt install zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# change your default shell
+chsh -s $(which zsh)
+
+# -----------------------------------------------------------------------------|
+                        --- Else ---
+# remove os auto_upgrade
 sudo apt autoremove unattended-upgrades
 
-#   --- Gnome Interfase ---
-
 # Пароль звездочками: *******
-# In bash
+# in bash
 sudo visudo
 
-# Add under Defaults env_reset
+# add under Defaults env_reset
 Defaults pwfeedback
 
 # save
 «Ctr+X»
 «Y»
-
-# Install oh-my-zsh 
-sudo apt install zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-# Change your default shell
-chsh -s $(which zsh)
-
-#   --- Cayboard --- 
-# Изменения раскладки CapsLock for Ctrl
-$ setxkbmap -layout us -option ctrl:nocaps
-
-# or
-
-$ sudo vim /etc/default/keyboard
-
-XKBOPTIONS="ctrl:swapcaps"
-
-$ sudo dpkg-reconfigure keyboard-configuration
-
-# or 
-
-Чтобы постоянно изменять поведение: выполнить 
-
-$ dconf-editor
-
-выберите 
-
-org.gnome.desktop.input-sources
-
-Измените xkb-options на ['ctrl:nocaps'] (или добавьте его в любые существующие параметры)
-
-или в командной строке ( Предупреждение - это перезаписывает существующие настройки! ):
-
-gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
 
 # -----------------------------------------------------------------------------|
