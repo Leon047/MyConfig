@@ -6,8 +6,19 @@
 
 -- 1 --
 
-sudo apt-get update 
-sudo apt-get install -y vim mosh tmux htop git curl wget unzip zip gcc build-essential make
+sudo apt update 
+sudo apt install -y vim mosh tmux htop git curl wget unzip zip gcc build-essential make
+
+## New user --
+# 1
+adduser user_name
+# 2
+usermod -aG sudo user_name
+# 3
+su - user_name
+
+# test
+sudo upt update
 
 ## Configure SSH:
 # Base dir
@@ -15,18 +26,6 @@ sudo vim /etc/ssh/sshd_config
     AllowUsers user_name
     PermitRootLogin no
     PasswordAuthentication no
-
-## New user --
-adduser user_name
-
-# Add in sudo grope
-usermod -aG sudo user_name
-
-# get the user
-su - user_name
-
-# test
-sudo upt update
 
 # Add ssh key --
 mkdir -p /home/user_name/.ssh && touch /home/user_name/.ssh/authorized_keys

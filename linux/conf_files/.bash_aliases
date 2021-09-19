@@ -2,7 +2,6 @@
 
 # Leptop System Information
 alias leptop='sudo dmidecode | grep -A 9 "System Information"'
-
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 
 # ping
@@ -52,9 +51,10 @@ alias du='du -ch'
 alias up_vps=''
 alias down_vps=''
 
-# ...
-alias devserver='ssh mrleon@45.94.158.112'
+# --- hosts --- 
+# alias devserver='ssh mrleon@45.94.158.112'
 alias fone='ssh @192.168.0.100'
+alias raspberry='ssh leon@192.168.1.6'
 
 # --- IPTABLES ---
 alias iptlist='sudo /sbin/iptables -L -n -v --line-numbers'
@@ -74,5 +74,7 @@ alias orca_front_start="sudo docker-compose -f docker-compose_local.yml up front
 alias orca="cd ~/Documents/Kuehne_Nagel/ORCA/orca2"
 alias orca_back="cd ~/Documents/Kuehne_Nagel/ORCA/orca2/back"
 alias  orca_front="cd ~/Documents/Kuehne_Nagel/ORCA/orca2/front/orca/src/app"
+
+alias knparser="cd ~/Documents/Kuehne_Nagel/knparser"
 
 # --------------------------------- Mr.Leon -----------------------------------|
