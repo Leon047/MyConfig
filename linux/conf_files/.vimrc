@@ -167,6 +167,19 @@ autocmd CursorHold,CursorHoldI * update
 " Increase story size
 set history=200
 
+" Swaps and backups                   
+set noswapfile
+
+" if has("win32") || has("win64")
+"     set dir=$TMP
+"     set backupdir=$TMP
+" else
+"     set dir=~/.vim/sessions
+"     set backupdir=~/.vim/sessions
+" endif
+
+
+
 " This must happen before the syntax system is enabled
 aunmenu Help.
 aunmenu Window.
@@ -220,15 +233,6 @@ set foldmethod=indent
 set foldlevel=99
 let g:SimpylFold_docstring_preview=1  " Preview docstring in fold text  
 let g:SimpylFold_fold_import = 1      " Fold imports
-
-" Swaps and backups                   
-if has("win32") || has("win64")
-    set dir=$TMP
-    set backupdir=$TMP
-else
-    set dir=~/.vim/sessions
-    set backupdir=~/.vim/sessions
-endif
 
 " Hide some panels
 set guioptions-=m   " remove menu bar
@@ -386,10 +390,9 @@ autocmd FileType css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 autocmd FileType sass setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
-
 " --- YAML ---
 autocmd BufNewFile,BufRead *.sls setlocal ft=yaml
-autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
+autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2
 
 " --- Terraform ---
 let g:syntastic_terraform_tffilter_plan = 1
@@ -401,18 +404,18 @@ autocmd BufNewFile,BufRead CMakeLists.txt setlocal ft=cmake
 
 " --- txt ---
 autocmd BufRead,BufNewFile *.txt set filetype=txt
-autocmd FileType txt setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
+autocmd FileType txt setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2
 
 " --- md --- 
 autocmd BufRead,BufNewFile *.md set filetype=md
-autocmd FileType md setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
+autocmd FileType md setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2
 
 " --- unix.conf ---
 autocmd BufRead,BufNewFile *.conf set filetype=conf
-autocmd FileType conf setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
+autocmd FileType conf setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2
 
 " --- vim ---
-autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
+autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2
 
 "---------------================ User hotkeys ===============------------------|
 
