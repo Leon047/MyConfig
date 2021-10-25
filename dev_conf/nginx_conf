@@ -121,3 +121,4 @@ sudo systemctl status nginx
 sudo -H apt-get purge nginx-common nginx-full
 sudo -H apt-get install nginx-common nginx-full
 sudo systemctl restart nginx
+
