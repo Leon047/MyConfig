@@ -1,4 +1,4 @@
-    ----------========== Django ==========----------
+              ----------========== Django ==========----------
 
 # Install django
 $ pip install django
@@ -39,7 +39,6 @@ TEMPLATES = [
 # Add in html file
 {% extends 'index.html' %} 
 
-
 # --- Static (css, js, img) ---
 # settings.py
 
@@ -60,3 +59,4 @@ $ manage.py dumpdata --format=json myapp > myapp/fixtures/initial_data.json
 
 # Загрузка данных в базу 
 $ manage.py loaddata <fixturename>
+

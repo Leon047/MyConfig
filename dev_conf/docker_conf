@@ -58,3 +58,4 @@ sudo chmod +x /usr/local/bin/docker-compose
 # Test the installation.
 $ docker-compose --version
 	docker-compose version 1.27.4, build 1110ad01
+

@@ -26,5 +26,9 @@ docker ps -a -f status=exited
 docker rm $(docker ps -a -f status=exited -q)
 
 
-#  
-docker exec -ti conteiner_name /bin/sh
+# Запуск командной строки в докере.  
+docker exec -ti conteiner_id /bin/sh
+
+# Запуск команды внутри контеинера
+docker exec -ti conteiner_id comand_name
+
