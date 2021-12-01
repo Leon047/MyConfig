@@ -17,14 +17,12 @@ docker images -a
  
 # del images:
 docker rmi $(docker images -a -q)
- 
 
 # conteiner list:
 docker ps -a -f status=exited
  
 # del conteiners:
 docker rm $(docker ps -a -f status=exited -q)
-
 
 # Запуск командной строки в докере.  
 docker exec -ti conteiner_id /bin/sh

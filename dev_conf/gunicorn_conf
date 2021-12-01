@@ -1,4 +1,4 @@
-	                    -----===== Gunicorn =====-----
+                   -----===== Gunicorn =====-----
 
 # install
 sudo pip install gunicorn

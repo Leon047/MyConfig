@@ -1,7 +1,8 @@
 # MongoDB
 
 #Step 1:  Import the MongoDB public key
-##In Ubuntu 18.*+, you may get invalid signatures. --recv value may need to be updated to EA312927. 
+##In Ubuntu 18.*+, you may get invalid signatures. 
+## --recv value may need to be updated to EA312927. 
 ##See here for more details on the invalid signature issue: i
 #[https://stackoverflow.com/questions/34733340/mongodb-gpg-invalid-signatures][1]
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
@@ -13,7 +14,7 @@ echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | 
 sudo apt-get update
 
 ##Step 4: Install the last stable MongoDB version and all the necessary packages on our system
-sudo apt-get install mongodb-org
+sudo apt install mongodb-org
 
 #Or
 
@@ -21,12 +22,12 @@ sudo apt-get install mongodb-org
 # MongoDB and conflict with MongoDB’s offically supported packages. 
 # Use the official MongoDB mongodb-org packages, which are kept up-to-date with 
 # the most recent major and minor MongoDB releases.
-sudo apt-get install -y mongodb 
+sudo apt install -y mongodb 
 
 
 # Install 
 1) Install gnupg and its required libraries using the following command:
-sudo apt-get install gnupg
+sudo apt install gnupg
 
 2) Once installed, retry importing the key:
 wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
@@ -72,3 +73,13 @@ wget https://downloads.mongodb.com/compass/mongodb-compass_1.24.1_amd64.deb
 
 # Install MongoDB Compass
 sudo dpkg -i mongodb-compass_1.24.1_amd64.deb
+
+
+# -- PIP --
+
+# Install PyMongo easily using the pip/pip3 command:
+pip install pymongo
+
+# Also, install dnspython for using mongodb+srv:// URIs with the command:
+pip install dnspython
+

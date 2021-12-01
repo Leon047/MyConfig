@@ -137,7 +137,6 @@ named-checkzone 1.31.172.in-addr.arpa /etc/bind/zones/master/db.172.31.1
 zone 1.31.172.in-addr.arpa/IN: loaded serial 1
 OK
 
-
 # restart for add changes
 service apparmore restart
 service bind9 restart

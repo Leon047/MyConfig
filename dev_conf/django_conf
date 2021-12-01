@@ -9,25 +9,36 @@ $ django-admin.py startproject project_name
 # cteate django modul_app
 python manage.py startapp app_name 
 
-# RUN
-$ ./manage.py runserver 
-
-# django_admin
-python3 manage.py createsuperuser
-
-http://127.0.0.1:8000
-
-# -- Django Shell --
-
-# Применить изменения models.py 
+# migrate db 
 ./manage.py makemigrations
 ./manage.py migrate
 
-$ ./manage.py shell
+# RUN
+./manage.py runserver 
 
-# Подключим созданный класс в модуле models.py
+# django_admin create super-user
+python3 manage.py createsuperuser
 
-# --- Template (html) ---
+# django shell 
+./manage.py shell
+
+
+# Перейдём в дирректорию проекта_Django/ettings.py 
+# Раздел: DATABASES
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'django_db',
+        'USER': 'user_name',
+        'PASSWORD': 'password',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+
+
+# Template (html) 
 # settings.py
 
 TEMPLATES = [
