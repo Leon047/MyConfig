@@ -1,4 +1,4 @@
-# -- MongoDB notes --
+                      ---=== MongoDB notes ===---
 
 # enter
 mongo
@@ -9,8 +9,18 @@ mongorestore dumpname
 # add damp in bash 
 mongorestore --db db_name damp_path
 
-# 
+# Создать новую коллекцию. 
 use db_name
 
-#
+# mk db user and psw
+db.createUser(
+  {
+    user: "myDbOwner",
+    pwd: "abc123",
+    roles: [ { role: "dbOwner", db: "db_name" } ]
+  }
+)
+
+# mk user
 db.user.save({username: "user_name"})
+

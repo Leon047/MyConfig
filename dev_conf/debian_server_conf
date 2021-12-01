@@ -3,11 +3,8 @@
 -- 1 --
 
 ## New user --
--1-
 adduser user_name
--2-
 usermod -aG sudo user_name
--3-
 su - user_name
 
 # test

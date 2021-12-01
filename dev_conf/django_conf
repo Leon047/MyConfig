@@ -1,4 +1,4 @@
-    ----------========== Django ==========----------
+              ----------========== Django ==========----------
 
 # Install django
 $ pip install django
@@ -9,25 +9,36 @@ $ django-admin.py startproject project_name
 # cteate django modul_app
 python manage.py startapp app_name 
 
-# RUN
-$ ./manage.py runserver 
-
-# django_admin
-python3 manage.py createsuperuser
-
-http://127.0.0.1:8000
-
-# -- Django Shell --
-
-# Применить изменения models.py 
+# migrate db 
 ./manage.py makemigrations
 ./manage.py migrate
 
-$ ./manage.py shell
+# RUN
+./manage.py runserver 
 
-# Подключим созданный класс в модуле models.py
+# django_admin create super-user
+python3 manage.py createsuperuser
 
-# --- Template (html) ---
+# django shell 
+./manage.py shell
+
+
+# Перейдём в дирректорию проекта_Django/ettings.py 
+# Раздел: DATABASES
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'django_db',
+        'USER': 'user_name',
+        'PASSWORD': 'password',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+
+
+# Template (html) 
 # settings.py
 
 TEMPLATES = [
@@ -38,7 +49,6 @@ TEMPLATES = [
 
 # Add in html file
 {% extends 'index.html' %} 
-
 
 # --- Static (css, js, img) ---
 # settings.py
@@ -53,10 +63,24 @@ STATICFILES_DIRS = [
 
 <link rel="stylesheet" href={% static '/css/home_page.css' %}>  
 
-# --- Fixtures (json, xml) ---
 
-# Создание файла
-$ manage.py dumpdata --format=json myapp > myapp/fixtures/initial_data.json
+# --- Dumpdata (json, xml) ---
 
-# Загрузка данных в базу 
-$ manage.py loaddata <fixturename>
+# сделает дамп всей базы данных (всех приложений):
+./manage.py dumpdata  --indent 2 > db.json
+
+# сделать дамп моделей определенного приложения:
+./manage.py dumpdata --indent 2 admin > admin.json
+
+# дамп определенной таблицы:
+./manage.py dumpdata --indent 2 admin.logentry > admin_logentry.json
+
+# исключить таблицу (--exclude auth.permission):
+./manage.py dumpdata --indent 2 --exclude auth.permission > db.json
+
+# Импорт (восстановление) с loaddata:
+./manage.py loaddata db.json
+
+# IntegrityError (исключить таблицы contenttypes и auth.permissions:)
+./manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json
+

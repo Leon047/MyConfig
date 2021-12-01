@@ -24,3 +24,4 @@ ff02::2 ip6-allrouters
 # Сохранить
 # Тест конфигурации 
 ping -с 10 mydomain.com
+

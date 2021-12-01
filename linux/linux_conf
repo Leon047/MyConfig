@@ -1,4 +1,4 @@
-#--------------========== My Linux configuration ===========----------------
+        --------======== My Linux configuration ========--------
 
 # -- base --
 sudo apt install python3-pip git ssh mosh htop libreoffice gnome-tweaks ubuntu-restricted-extras p7zip-rar rar unrar unace arj cabextract translate-shell flameshot obs-studio peek cmus neofetch
