@@ -1,0 +1,37 @@
+			---=== Debian/Ubuntu ===---
+
+
+ -- Микрафон --
+
+# При разговоре уменьгается громкасть микрофона.
+
+# Попробуйте:
+
+/etc/pulse/default.pa
+
+# Найти страку: 
+load-module module-udev-detect
+
+# добавить (ignore_dB=1 )
+load-module module-udev-detect ignore_dB=1
+
+№ Обновить файл конфигурации.
+ource /etc/pulse/default.pa
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

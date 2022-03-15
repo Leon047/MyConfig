@@ -1,0 +1,34 @@
+			----==== Angular ====----
+
+
+# Install the Angular CLI:
+npm install -g @angular/cli
+
+# Create a workspace and initial application:
+ng new my-app
+
+# Create cart component: 
+ng generate component component-name
+
+or 
+
+ng g c component-name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
