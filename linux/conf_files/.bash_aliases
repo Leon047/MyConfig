@@ -48,12 +48,12 @@ alias df='df -H'
 alias du='du -ch'
 
 # --- Servers ---
-alias up_vps=''
-alias down_vps=''
+# alias up_vps=''
+# alias down_vps=''
 
 # --- hosts --- 
 # alias devserver='ssh mrleon@45.94.158.112'
-alias fone='ssh @192.168.0.100'
+# alias S7='ssh @192.168.0.100'
 alias raspberry='ssh leon@192.168.1.6'
 
 # --- IPTABLES ---
@@ -66,15 +66,5 @@ alias firewall=iptlist
 # --- Python --- 
 alias py='python3'
 alias py9='python3.9'
-
-# --- KN ---
-alias orca_back_start="sudo docker-compose -f docker-compose_local.yml up backend"
-alias orca_front_start="sudo docker-compose -f docker-compose_local.yml up frontend"
-
-alias orca="cd ~/Documents/Kuehne_Nagel/ORCA/orca2"
-alias orca_back="cd ~/Documents/Kuehne_Nagel/ORCA/orca2/back"
-alias  orca_front="cd ~/Documents/Kuehne_Nagel/ORCA/orca2/front/orca/src/app"
-
-alias knparser="cd ~/Documents/Kuehne_Nagel/knparser"
 
 # --------------------------------- Mr.Leon -----------------------------------|
