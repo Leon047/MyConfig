@@ -435,12 +435,12 @@ noremap <C-y> <C-R>
 inoremap <C-y> <C-O><C-R>
 
 " CTRL-A is Select all
-noremap <C-a> gggH<C-O>G
-inoremap <C-a> <C-O>gg<C-O>gH<C-O>G
-cnoremap <C-a> <C-C>gggH<C-O>G
-onoremap <C-a> <C-C>gggH<C-O>G
-snoremap <C-a> <C-C>gggH<C-O>G
-xnoremap <C-a> <C-C>ggVG
+" noremap <C-a> gggH<C-O>G
+" inoremap <C-a> <C-O>gg<C-O>gH<C-O>G
+" cnoremap <C-a> <C-C>gggH<C-O>G
+" onoremap <C-a> <C-C>gggH<C-O>G
+" snoremap <C-a> <C-C>gggH<C-O>G
+" xnoremap <C-a> <C-C>ggVG
 
 " Use CTRL-S for saving, also in Insert mode
 " noremap <C-S> :update<CR>
