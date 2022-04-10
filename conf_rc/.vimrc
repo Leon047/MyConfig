@@ -178,8 +178,6 @@ set noswapfile
 "     set backupdir=~/.vim/sessions
 " endif
 
-
-
 " This must happen before the syntax system is enabled
 aunmenu Help.
 aunmenu Window.
