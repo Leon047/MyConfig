@@ -50,6 +50,7 @@ sudo apt install gnome-tweaks
 sudo apt install kazam
 
 sudo apt install steam
+snap install spotify
 
 # -- gnome shell extensions --
 # dash to dock

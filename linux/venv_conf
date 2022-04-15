@@ -40,7 +40,7 @@ source ~/.bashrc
 # virtenv list
 workon 
 
-# Создать виртуальное окружение для Python 2.X 
+# Создать виртуальное окружение по умолчанию. 
 mkvirtualenv venv_name
 
 # Если нужно создать сразу с рабочей папкой.
@@ -55,6 +55,6 @@ deactiavate
 # Для удаления виртуального окружения
 rmvirtualenv
 
-# Виртуальное окружения для python3
+# Виртуальное окружения для конкретной версии.
 mkvirtualenv virtenv_name  -p /usr/bin/python3
 
