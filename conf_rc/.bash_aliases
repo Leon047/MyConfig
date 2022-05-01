@@ -1,20 +1,22 @@
-# 	----------==========  ALIAS ==========----------
+# 	  		      ---  ALIASES  ---
+# ------------------------------------------------------------------------------
+
 
 # Leptop System Information
 alias leptop='sudo dmidecode | grep -A 9 "System Information"'
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 
-# ping
+# Ping
 alias ping='ping -c 5'
 alias fastping='ping -c 100 -s.2'
 
-# port list
+# Port list
 alias ports='netstat -tulanp'
 
-# maunt
+# Maunt
 alias mount='mount |column -t'
 
-# echo oll path list
+# Echo oll path list
 alias path='echo -e ${PATH//:/\\n}'
 
 # ... 
@@ -38,33 +40,36 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 # lscpu
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 
-# browsers
+# Browsers
 alias ff='/opt/firefox4/firefox'
 alias chrome='/opt/google/chrome/chrome'
 alias opera='/opt/opera/opera'
 
-# show display information
+# Show display information
 alias df='df -H'
 alias du='du -ch'
 
-# --- Servers ---
+# Servers 
 # alias up_vps=''
 # alias down_vps=''
 
-# --- hosts --- 
+# Hosts  
 # alias devserver='ssh mrleon@45.94.158.112'
 # alias S7='ssh @192.168.0.100'
-alias raspberry='ssh leon@192.168.1.6'
+# alias raspberry='ssh leon@192.168.1.6'
 
-# --- IPTABLES ---
+# IPTABLES 
 alias iptlist='sudo /sbin/iptables -L -n -v --line-numbers'
 alias iptlistin='sudo /sbin/iptables -L INPUT -n -v --line-numbers'
 alias iptlistout='sudo /sbin/iptables -L OUTPUT -n -v --line-numbers'
 alias iptlistfw='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
 alias firewall=iptlist
 
-# --- Python --- 
+# Python 
 alias py='python3'
-alias py9='python3.9'
 
-# --------------------------------- Mr.Leon -----------------------------------|
+# Else
+alias v='vim'
+
+# ------------------------------------------------------------------------------
+# 				--- Mr.Leon ---
