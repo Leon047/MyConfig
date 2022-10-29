@@ -1,0 +1,23 @@
+              			---=== Django ===---
+
+
+# --- Dumpdata (json, xml) ---
+
+# сделает дамп всей базы данных (всех приложений):
+./manage.py dumpdata  --indent 2 > db.json
+
+# сделать дамп моделей определенного приложения:
+./manage.py dumpdata --indent 2 admin > admin.json
+
+# дамп определенной таблицы:
+./manage.py dumpdata --indent 2 admin.logentry > admin_logentry.json
+
+# исключить таблицу (--exclude auth.permission):
+./manage.py dumpdata --indent 2 --exclude auth.permission > db.json
+
+# Импорт (восстановление) с loaddata:
+./manage.py loaddata db.json
+
+# IntegrityError (исключить таблицы contenttypes и auth.permissions:)
+./manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json
+

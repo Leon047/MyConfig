@@ -1,4 +1,5 @@
-                       -----===== GIT =====-----
+                       ---=== GIT ===---
+
 
 # …or create a new repository on the command line
 echo "# django_app" >> README.md

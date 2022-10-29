@@ -1,5 +1,6 @@
                       ---=== Install Qt5 ===---
 
+
 # PyQt5 for python3
 pip3 install --user pyqt5  
 sudo apt install python3-pyqt5  
