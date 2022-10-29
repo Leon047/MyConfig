@@ -1,4 +1,5 @@
--- Cодержит справочную информацию по командам SQL, поддерживаемым PostgreSQL.--
+                           ---=== PostgreSQL ===---
+
 
 # Перезагрузить 
 $ /etc/init.d/postgresql restart

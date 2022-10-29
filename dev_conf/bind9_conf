@@ -1,4 +1,5 @@
-              ----------========== Bind9 ==========----------
+                            ---=== Bind9 ===---
+
 
 # -- install --
 sudo apt install bind9 dnsutils

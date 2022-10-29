@@ -1,4 +1,4 @@
-			----==== Angular ====----
+			            ---=== Angular ===---
 
 
 # Install the Angular CLI:
@@ -13,22 +13,4 @@ ng generate component component-name
 or 
 
 ng g c component-name
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
