@@ -1,10 +1,9 @@
-"                           ---  Vim  ---
+"                           --- Vim ---
 " ------------------------------------------------------------------------------
 
 
-set nocompatible " be improved, required
-filetype off     " required
-
+" set nocompatible " be improved
+" filetype off 
 
 " --- Vundle settings ----------------------------------------------------------
 
@@ -91,6 +90,7 @@ filetype plugin indent on
 nmap <F1> <nop>                 " unmap <F1> with help
 map <F1> :NERDTreeToggle<CR>    " browse the list of files in the current directory
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\. txt$','\.o$']
+let NERDTreeShowHidden=1
 
 " TagBar 
 nmap  <F2> : TagbarToggle <CR>
@@ -475,4 +475,4 @@ autocmd FileType python map <buffer> <leader>8 :PymodeLint<CR>
 inoremap <C-space> <C-x><C-o>
 
 " ------------------------------------------------------------------------------
-"                           ---  Mr.Leon  ----
+"                           --- Mr.Leon ---
