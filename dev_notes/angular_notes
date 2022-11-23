@@ -7,10 +7,18 @@ npm install -g @angular/cli
 # Create a workspace and initial application:
 ng new my-app
 
-# Create cart component: 
+# Create  component: 
 ng generate component component-name
 
 or 
 
 ng g c component-name
+
+
+# Create service
+ng generate service service-name
+
+or
+
+ng g s service-name
 
