@@ -21,4 +21,3 @@ ng generate service service-name
 or
 
 ng g s service-name
-

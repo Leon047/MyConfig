@@ -2,7 +2,7 @@
 
 
 # enter
-mongo
+mongosh
 
 # add dump
 mongorestore dumpname 
@@ -25,3 +25,6 @@ db.createUser(
 # mk user
 db.user.save({username: "user_name"})
 
+# or
+
+db.createUser({user: "root", pwd: "abc123", roles: [{role: "dbOwner", db: "mychat"}]})

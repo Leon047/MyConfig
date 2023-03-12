@@ -1,4 +1,5 @@
-            -----===== Change of a mac address =====-----
+                  ---=== Change of a mac address ===---
+
 
 # Install for bash
 sudo apt install macchanger
@@ -27,4 +28,3 @@ macchanger -p <name>
 
 # Turn on the network interface and reboot the network parameters:
 sudo ifconfig <name> up
-
