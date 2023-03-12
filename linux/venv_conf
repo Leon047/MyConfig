@@ -1,4 +1,5 @@
-  ----------========== Virtualenv/Virtualenvwrapper ==========----------
+              ---=== Virtualenv/Virtualenvwrapper ===---
+
 
 # Установка
 
@@ -57,4 +58,3 @@ rmvirtualenv
 
 # Виртуальное окружения для конкретной версии.
 mkvirtualenv virtenv_name  -p /usr/bin/python3
-
