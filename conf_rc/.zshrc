@@ -163,6 +163,9 @@ alias du='du -ch'
 
 # --- db ---
 
+# mysql
+alias mysql='sudo mysql -u root -p'  
+
 # Postgresql
 alias start_psql='sudo systemctl start postgresql'
 alias stop_psql='sudo systemctl stop postgresql'
