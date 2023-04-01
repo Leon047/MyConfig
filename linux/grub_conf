@@ -70,4 +70,3 @@ sudo blkid
 
 # Запустите команду: 
 sudo update-grub
-

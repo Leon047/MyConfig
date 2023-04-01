@@ -30,4 +30,3 @@ docker exec -ti conteiner_id /bin/sh
 
 # Запуск команды внутри контеинера
 docker exec -ti conteiner_id comand_name
-

@@ -1,9 +1,7 @@
 		              ---=== Configure UFW ===---
 
 
-# https://help.ubuntu.com/community/UFW
-
-# dir
+# Open dir
 sudo vim /etc/default/ufw
 
 # Check status
@@ -31,8 +29,8 @@ sudo ufw default deny incoming
 sudo ufw default allow outgoing
 
 # Allow connections
-sudo ufw allow ssh	# 22
-sudo ufw allow http	# 80
+sudo ufw allow ssh	    # 22
+sudo ufw allow http	    # 80
 sudo ufw allow https	# 443
 
 # Access by specific IP
