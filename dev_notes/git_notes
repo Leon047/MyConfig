@@ -27,4 +27,3 @@ git push -u origin branch_name
 
 # Removes from git repository, but not file
 git rm -r --cached file_name
-

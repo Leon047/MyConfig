@@ -36,6 +36,7 @@ netstat -h
 или
 man netstat
 
+
 # --- Архивация данных ---
 
 # архивация без сжатия
@@ -73,4 +74,3 @@ scp -P 22 root@11.22.33.44:/path/file.tar.gz /path
 scp file.tar.gz user@11.22.33.44:/path
 # ..
 scp -P 22 file.tar.gz user@11.22.33.44:/path
-

@@ -1,4 +1,4 @@
-                    ---=== My Linux configuration ===---
+                    ---=== My PC Linux configuration ===---
 
 
 # -- base --
@@ -8,10 +8,11 @@ sudo apt install python3-pip git ssh mosh htop libreoffice gnome-tweaks ubuntu-r
 # -- tmux --
 sudo apt install tmux
 
-# gpakosz
-https://github.com/gpakosz/.tmux
-
-# add tmux conf 
+# Install gpakosz:
+# https://github.com/gpakosz/.tmux
+cd
+git clone https://github.com/gpakosz/.tmux.git
+ln -s -f .tmux/.tmux.conf
 cp ~/Documents/MyConfig/conf_rc/.tmux.conf.local ~/
 
 
@@ -39,8 +40,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # change your default shell
 chsh -s $(which zsh)
 
-# add zsh_aliases
-cp ~/Documents/MyConfig/conf_rc/.zshrc ~/
+# add aliases
+sudo cat ~/Documents/MyConfig/conf_rc/aliases >> ~/.zshrc
 
 
 # -- env --
