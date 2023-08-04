@@ -89,4 +89,9 @@ Defaults pwfeedback
 «Ctr+X»
 «Y»
 
+# -- keyboard
+# Find - Russian mnemonic keyboard
+sudo add-apt-repository ppa:keymanapp/keyman
+sudo apt install keyman onboard-keyman
+
 # -----------------------------------------------------------------------------|
