@@ -1,4 +1,4 @@
-        		   ---=== grub ===---
+			---=== grub ===---
 
 
 -------------------------------------------------------------------------------|
@@ -70,3 +70,10 @@ sudo blkid
 
 # Запустите команду: 
 sudo update-grub
+
+-------------------------------------------------------------------------------
+# Fix Dual-Boot
+sudo add-apt-repository ppa:yannubuntu/boot-repair
+sudo apt-get update
+sudo apt-get install -y boot-repair && boot-repair
+
