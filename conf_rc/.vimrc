@@ -1,4 +1,4 @@
-"                           --- Vim ---
+"                           --- 𝕍 𝕚𝕞  ---
 
 
 " --- Vundle settings ----------------------------------------------------------
@@ -130,9 +130,9 @@ let g:snippets_dir = "~/.vim/bundle/vim-snippets/snippets"
 let g:snipMate = { 'snippet_version' : 1 }
 
 " Jedi-vim 
-let g:jedi#show_call_signatures = 1 " show call signatures
-let g:jedi#popup_on_dot = 1         " enable autocomplete on dot
-let g:jedi#popup_select_first = 0   " disable first select from auto-complete
+let g:jedi#show_call_signatures = 1  " show call signatures
+let g:jedi#popup_on_dot = 1          " enable autocomplete on dot
+let g:jedi#popup_select_first = 0    " disable first select from auto-complete
 
 " Better :sign interface symbols 
 let g:syntastic_error_symbol = 'X'
@@ -234,7 +234,7 @@ let g:SimpylFold_fold_import = 1      " Fold imports
 set guioptions-=m   " remove menu bar
 set guioptions-=T   " remove toolbar
 set guioptions-=r   " remove right-hand scroll bar
-set guioptions-=L   "remove left-hand scroll bar
+set guioptions-=L   " remove left-hand scroll bar
 
 augroup vimrc_autocmds
     autocmd!
@@ -283,7 +283,7 @@ let g:pymode_lint_write = 0
 
 " Support virtualenv
 let g:pymode_virtualenv = 1
-let g:virtualenv_directory = '/home/leon/.virtualenvs'
+let g:virtualenv_directory = '~/.virtualenvs'
 let g:virtualenv_stl_format = '[Py3]'
 
 " Enable breakpoints plugin
@@ -340,12 +340,6 @@ let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_c_include_dirs = ['include', '../include']
 let g:syntastic_c_compiler = 'clang'
 
-" Erlang 
-autocmd Filetype erlang setlocal omnifunc=erlang_complete#Complete
-
-" Elixir 
-autocmd Filetype erlang setlocal omnifunc=erlang_complete#Complete
-
 " JavaScript 
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd BufNewFile,BufRead *.json setlocal ft=javascript
@@ -383,6 +377,7 @@ autocmd FileType css setlocal commentstring=/*\ %s\ */
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
+" SASS
 autocmd FileType sass setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 " YAML 
@@ -469,6 +464,3 @@ autocmd FileType python map <buffer> <leader>8 :PymodeLint<CR>
 
 " Activate autocomplete at <Ctrl+Space>
 inoremap <C-space> <C-x><C-o>
-
-" ------------------------------------------------------------------------------
-"                           --- Mr.Leon ---
