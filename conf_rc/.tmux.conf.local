@@ -1,7 +1,6 @@
 #                             ---  Tmux  ---
 # ------------------------------------------------------------------------------
 
-
 # https://github.com/gpakosz/.tmux
 # (‑●‑●)> dual licensed under the WTFPL v2 license and the MIT license,
 #         without any warranty.
@@ -277,29 +276,26 @@ tmux_conf_copy_to_os_clipboard=false
 
 
 # -- user customizations -------------------------------------------------------
+
 # this is the place to override or undo settings
 
 # increase history size
-#set -g history-limit 10000
+# set -g history-limit 10000
 
 # start with mouse mode enabled
-#set -g mouse on
+# set -g mouse on
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
-#set -g status-keys vi
-#set -g mode-keys vi
+# set -g status-keys vi
+# set -g mode-keys vi
 
-# replace C-b by C-a instead of using both prefixes
+# replace (C-b) by (Alt-a) instead of using both prefixes
 # set -gu prefix2
-# unbind C-a
-# unbind C-b
-# set -g prefix C-a
-# bind C-a send-prefix
+# Set Alt-a as the prefix key
+set -g prefix M-a
 
 # move status line to top
-#set -g status-position top
+# set -g status-position top
 
 
-# ------------------------------------------------------------------------------
-#                               --- Mr.Leon ---
