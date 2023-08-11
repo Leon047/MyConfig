@@ -1,100 +1,43 @@
               			---=== MySQL ===---
 
 
-# Install 
-sudo apt-get install mysql-server -y
+# -- Install --
+# 1
+sudo apt install mysql-server -y
+# 2
+sudo apt install libmysqlclient-dev
+# 3
+sudo apt install -y python3-mysqldb
 
-sudo apt-get install libmysqlclient-dev
-sudo apt-get install -y python3-mysqldb
-
-# Once the installation completes, start and enable the server with the command:
+# 4 / start and enable the server with the command:
 sudo systemctl enable --now mysql 
 
-# Add password 
+# add password 
 sudo mysql_secure_installation
 
-# Install in env
+# install in env
 pip install pymysql
 
 
-# Create 
-1.
+# -- Create -- 
+# 1
 sudo mysql -u root -p
-
-2.
+# 2
 CREATE DATABASE dbname;
-
-3.
+# 3
 SHOW DATABASES;
-
-4.
+# 4
 USE dbname;
-
-5.
+# 5
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'dbpassword';
-
-
-# -- ERROR 1698 (28000): Access denied for user 'root'@'localhost' --
-# For the first 
-
-sudo mysql -u root -p
-
-SHOW VARIABLES LIKE 'validate_password%';
-
-# we will see something like this:
-+--------------------------------------+--------+
-| Variable_name                        | Value  |
-+--------------------------------------+--------+
-| validate_password.check_user_name    | ON     |
-| validate_password.dictionary_file    |        |
-| validate_password.length             | 8      |
-| validate_password.mixed_case_count   | 1      |
-| validate_password.number_count       | 1      |
-| validate_password.policy             | MEDIUM |
-| validate_password.special_char_count | 1      |
-+--------------------------------------+--------+
-
-# We need to change these rows:
-validate_password.length
-validate_password.number_count
-validate_password.policy
-validate_password.special_char_count
-
-SET GLOBAL validate_password.policy=LOW;
-SET GLOBAL validate_password.length=4;
-SET GLOBAL validate_password.number_count=0;
-SET GLOBAL validate_password.special_char_count=0;
-
-SHOW VARIABLES LIKE 'validate_password%';
-
-# We will see:
-+--------------------------------------+-------+
-| Variable_name                        | Value |
-+--------------------------------------+-------+
-| validate_password.check_user_name    | ON    |
-| validate_password.dictionary_file    |       |
-| validate_password.length             | 4     |
-| validate_password.mixed_case_count   | 1     |
-| validate_password.number_count       | 0     |
-| validate_password.policy             | LOW   |
-| validate_password.special_char_count | 0     |
-+--------------------------------------+-------+
-
-# Now exit from the MySQL client:
-exit;
-
-sudo mysql -u root -p
-
-# And now you can write your password, four or more only letters.
+# or
+# write password, four or more only letters.
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'new-password';
 
-
-exit;
-sudo mysql -u root -p
-
-
 # DB URI
-SQLALCHEMY_DATABASE_URI='mysql+pymysql://root:abc123@0.0.0.0/mychat'
+SQLALCHEMY_DATABASE_URI='mysql+pymysql://root:abc123@0.0.0.0/dbname'
 
 # Restart mysql
 service mysql restart
+
+

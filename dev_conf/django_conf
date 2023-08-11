@@ -64,3 +64,4 @@ STATICFILES_DIRS = [
 
 <link rel="stylesheet" href={% static '/css/home_page.css' %}>  
 
+

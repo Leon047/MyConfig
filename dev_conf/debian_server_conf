@@ -8,9 +8,6 @@ adduser user_name
 usermod -aG sudo user_name
 su - user_name
 
-# test
-sudo upt update
-
 
 sudo apt update 
 sudo apt install -y vim mosh zsh tmux ufw htop git curl wget unzip zip gcc build-essential make

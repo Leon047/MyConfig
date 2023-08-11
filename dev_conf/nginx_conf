@@ -1,4 +1,4 @@
-	     		  ---=== NginX ===---
+			---=== NginX ===---
 
 
 Nginx - это веб-сервер, HTTP-сервер и IMAP/POP3 прокси-сервер,
@@ -6,8 +6,8 @@ Nginx - это веб-сервер, HTTP-сервер и IMAP/POP3 прокси-
 Он оптимизирован для всех вещей, которые должен делать веб-сервер. 
 Для балансировки нагрузки, защита от DDoS-атак, работает как обратный прокси-сервер.
 
-# -- Install --
 
+# -- Install --
 # Установите пакеты, необходимые для подключения apt-репозитория:
 sudo apt install curl gnupg2 ca-certificates lsb-release
 
@@ -31,8 +31,8 @@ sudo apt-get install brotli nginx nginx-module-brotli
 
 sudo systemctl unmask nginx.service
 
-# -- Work --
 
+# -- Work --
 # Kонфигурационный файл называется nginx.conf и расположен в каталоге: 
 sudo vim /etc/nginx/nginx.conf
 
@@ -122,4 +122,5 @@ sudo systemctl status nginx
 sudo -H apt-get purge nginx-common nginx-full
 sudo -H apt-get install nginx-common nginx-full
 sudo systemctl restart nginx
+
 
