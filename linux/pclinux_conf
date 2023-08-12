@@ -2,7 +2,7 @@
 
 
 # -- base --
-sudo apt install python3-pip git ssh mosh htop libreoffice gnome-tweaks ubuntu-restricted-extras p7zip-rar rar unrar unace arj cabextract translate-shell flameshot obs-studio peek cmus neofetch
+sudo apt install python3-pip git ssh mosh htop libreoffice gnome-tweaks ubuntu-restricted-extras p7zip-rar rar unrar unace arj cabextract translate-shell flameshot obs-studio peek cmus neofetch fzf
 
 
 # -- tmux --
@@ -63,16 +63,17 @@ sudo apt install gnome-tweaks
 sudo apt install kazam
 sudo apt install steam
 
+# install skype 
+wget https://go.skype.com/skypeforlinux-64.deb
+sudo apt install ./skypeforlinux-64.deb
+
+
 # -- gnome shell extensions --
 # dash to dock
 # https://extensions.gnome.org/extension/307/dash-to-dock/
 
 # hide top bar
 sudo apt install gnome-shell-extension-autohidetopbar
-
-# -- skype --
-wget https://go.skype.com/skypeforlinux-64.deb
-sudo apt install ./skypeforlinux-64.deb
 
 
 # -----------------------------------------------------------------------------|
@@ -94,4 +95,4 @@ Defaults pwfeedback
 sudo add-apt-repository ppa:keymanapp/keyman
 sudo apt install keyman onboard-keyman
 
-# -----------------------------------------------------------------------------|
+

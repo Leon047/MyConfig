@@ -1,27 +1,27 @@
                         ---=== Flask ===---
 
 
-# Inslall Flack
-pip install Flask
-
-# Doc
+# -- Doc --
+# flask
 https://flask-russian-docs.readthedocs.io/ru/latest/quickstart.html
+# sqlalchemy
+https://docs.sqlalchemy.org/en/14/intro.html#installation
+# restful
+https://flask-restful.readthedocs.io/en/latest/installation.html
+# swagger
+https://pypi.org/project/flask-swagger/
+
+
+# -- Inslall -- 
+pip install Flask
 
 # Install SQLAlchemy
 pip install SQLAlchemy
 
-# Doc
-https://docs.sqlalchemy.org/en/14/intro.html#installation
-
 # Instll FlaskRestful API
 pip install flask-restful
-
-# Doc
-https://flask-restful.readthedocs.io/en/latest/installation.html
 
 # Install Swagger
 pip install flask-swagger
 
-# Doc
-https://pypi.org/project/flask-swagger/
 
