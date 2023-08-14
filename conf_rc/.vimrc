@@ -72,7 +72,7 @@ Plugin 'juliosueiras/vim-terraform-completion'  " Terraform auto-completion
 
 " Docker 
 Plugin 'ekalinin/Dockerfile.vim'                " Syntax for Dockerfile
-" Plugin 'kkvh/vim-docker-tools'                  " Docker-tools
+Plugin 'kkvh/vim-docker-tools'                  " Docker-tools
 
 call vundle#end() " required
 filetype on
@@ -426,17 +426,17 @@ noremap <C-y> <C-R>
 inoremap <C-y> <C-O><C-R>
 
 " CTRL-A is Select all
-" noremap <C-a> gggH<C-O>G
-" inoremap <C-a> <C-O>gg<C-O>gH<C-O>G
-" cnoremap <C-a> <C-C>gggH<C-O>G
-" onoremap <C-a> <C-C>gggH<C-O>G
-" snoremap <C-a> <C-C>gggH<C-O>G
-" xnoremap <C-a> <C-C>ggVG
+noremap <C-a> gggH<C-O>G
+inoremap <C-a> <C-O>gg<C-O>gH<C-O>G
+cnoremap <C-a> <C-C>gggH<C-O>G
+onoremap <C-a> <C-C>gggH<C-O>G
+snoremap <C-a> <C-C>gggH<C-O>G
+xnoremap <C-a> <C-C>ggVG
 
 " Use CTRL-S for saving, also in Insert mode
-" noremap <C-S> :update<CR>
-" vnoremap <C-S> <C-C>:update<CR>
-" inoremap <C-S> <C-O>:update<CR>
+noremap <C-S> :update<CR>
+vnoremap <C-S> <C-C>:update<CR>
+inoremap <C-S> <C-O>:update<CR>
 
 " Settings for buffers
 map <C-q> :bd!<CR>         " close current buffer, CTRL-q
@@ -464,3 +464,5 @@ autocmd FileType python map <buffer> <leader>8 :PymodeLint<CR>
 
 " Activate autocomplete at <Ctrl+Space>
 inoremap <C-space> <C-x><C-o>
+
+
