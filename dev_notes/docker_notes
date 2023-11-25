@@ -15,6 +15,9 @@ docker system prune -a
 
 # image list:
 docker images -a
+
+# conteiner list
+docker ps 
  
 # del images:
 docker rmi $(docker images -a -q)

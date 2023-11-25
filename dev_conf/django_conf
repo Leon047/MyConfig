@@ -5,7 +5,7 @@
 $ pip install django
 
 # Starting a project
-$ django-admin.py startproject project_name
+$ python -m django startproject project_name
 
 # cteate django modul_app
 python manage.py startapp app_name 
