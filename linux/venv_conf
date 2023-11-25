@@ -3,7 +3,7 @@
 
 # -- 1 --
 cd
-mkdir .virtualenv
+mkdir .virtualenvs
 
 # -- 2 --
 # Install pip3
@@ -54,3 +54,4 @@ deactiavate
 
 # Delete venv
 rmvirtualenv
+

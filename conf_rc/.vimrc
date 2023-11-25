@@ -1,4 +1,4 @@
-"                           --- 𝕍 𝕚𝕞  ---
+"                           --- 𝕍 𝕚 𝕞  ---
 
 
 " --- Vundle settings ----------------------------------------------------------
@@ -36,12 +36,6 @@ Plugin 'scrooloose/syntastic'                   " Syntax checking plugin for Vim
 Plugin 'tpope/vim-commentary'                   " Comment stuff out
 Plugin 'mitsuhiko/vim-sparkup'                  " Sparkup (XML/jinja/htlm-django/etc.) support
 
-" Erlang 
-Plugin 'jimenezrick/vimerl'                     " The Erlang plugin for Vim
-
-" Elixir 
-Plugin 'slashmili/alchemist.vim'                " Elixir support for vim
-
 " CSS 
 Plugin 'JulesWang/css.vim'                      " CSS syntax file
 Plugin 'groenewege/vim-less'                    " Vim syntax for LESS (dynamic CSS)
@@ -65,10 +59,6 @@ Plugin 'mitsuhiko/vim-python-combined'          " *Combined Python 2/3 for Vim
 Plugin 'hynek/vim-python-pep8-indent'           " *PEP8 indent
 Plugin 'jmcantrell/vim-virtualenv'              " Virtualenv support in VIM
 Plugin 'tshirtman/vim-cython'                   " Cython support   
-
-" Terraform 
-Plugin 'hashivim/vim-terraform'                 " Terraform syntax highlight
-Plugin 'juliosueiras/vim-terraform-completion'  " Terraform auto-completion
 
 " Docker 
 Plugin 'ekalinin/Dockerfile.vim'                " Syntax for Dockerfile
@@ -161,7 +151,9 @@ nmap <C-Up> <Plug>MoveLineUp
 set backspace=indent,eol,start
 
 " Auto save 
-autocmd CursorHold,CursorHoldI * update
+" Autosaving the file upon cursor inactivity (CursorHold) or in insert mode inactivity (CursorHoldI)
+" autocmd CursorHold,CursorHoldI * update
+set updatetime=10000  " Autosaving with a 10-second interval.
 
 " Increase story size
 set history=200
@@ -383,11 +375,6 @@ autocmd FileType sass setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 " YAML 
 autocmd BufNewFile,BufRead *.sls setlocal ft=yaml
 autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2
-
-" Terraform 
-let g:syntastic_terraform_tffilter_plan = 1
-let g:terraform_completion_keys = 0
-let g:terraform_registry_module_completion = 0
 
 " Cmake support 
 autocmd BufNewFile,BufRead CMakeLists.txt setlocal ft=cmake

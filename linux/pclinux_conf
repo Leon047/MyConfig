@@ -25,11 +25,11 @@ cp ~/Documents/MyConfig/conf_rc/.vimrc ~/
 # swaps and backups
 mkdir ~/.vim/sessions
 
-# add vumdle ":PluginInstall"
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
 # majutsushi/tagbar
 sudo apt install exuberant-ctags
+
+# add vumdle ":PluginInstall"
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 
 # -- oh-my-zsh --
