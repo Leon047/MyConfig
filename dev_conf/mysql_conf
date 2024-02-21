@@ -39,5 +39,3 @@ SQLALCHEMY_DATABASE_URI='mysql+pymysql://root:abc123@0.0.0.0/dbname'
 
 # Restart mysql
 service mysql restart
-
-

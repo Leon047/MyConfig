@@ -23,5 +23,3 @@ pip install flask-restful
 
 # Install Swagger
 pip install flask-swagger
-
-

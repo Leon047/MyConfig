@@ -31,7 +31,7 @@ sudo ufw default allow outgoing
 # Allow connections
 sudo ufw allow ssh	    # 22
 sudo ufw allow http	    # 80
-sudo ufw allow https	# 443
+sudo ufw allow https	  # 443
 
 # Access by specific IP
 sudo ufw allow from 203.0.113.4	/ + to any port 22

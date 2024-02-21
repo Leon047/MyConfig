@@ -44,7 +44,6 @@ sudo ufw allow 60001	# mosh
 # activation
 sudo ufw enable
 
-
 # Install oh-my-zsh:
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 Configure some needed aliases:
@@ -62,6 +61,7 @@ sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 ## Init — must-have packages 
 sudo apt-get install -y tree redis-server zlib1g-dev libbz2-dev libreadline-dev llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev liblzma-dev python3-dev python-imaging python3-lxml libxslt-dev python-libxml2 python-libxslt1 libffi-dev libssl-dev python-dev gnumeric libsqlite3-dev libpq-dev libxml2-dev libxslt1-dev libjpeg-dev libfreetype6-dev libcurl4-openssl-dev supervisor
 
+
 -- 2 --
 
 # Install Docker
@@ -71,10 +71,10 @@ sudo apt-get install -y tree redis-server zlib1g-dev libbz2-dev libreadline-dev 
 
 -- 3 --
 
-## Install python 3
-#
+# Install python 3
+
 # Check Python version!
-#
+
 ## Build from source python 3.9,0, install with prefix to ~/.python folder:
 wget https://www.python.org/ftp/python/3.9.0/Python-3.9.0.tgz 
 tar xvf Python-3.* 
@@ -97,30 +97,17 @@ Ok, now we can pull our project from Git repository (or create own), create and 
 python3.9 -m venv venv
 . ./env/bin/activate
 
+
 -- 4 --
 
-## Install and configure PostgreSQL
-# Install PostgreSQL 12 and configure locales.
+# Install and configure PostgreSQL 
 
+# Install PostgreSQL 12 and configure locales.
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - 
 RELEASE=$(lsb_release -cs) 
 echo "deb http://apt.postgresql.org/pub/repos/apt/ ${RELEASE}"-pgdg main | sudo tee  /etc/apt/sources.list.d/pgdg.list 
 sudo apt update 
 sudo apt -y install postgresql-12 
-
-# locale RU
-sudo localedef ru_RU.UTF-8 -i ru_RU -fUTF-8 ; \
-export LANGUAGE=ru_RU.UTF-8 ; \
-export LANG=ru_RU.UTF-8 ; \
-export LC_ALL=ru_RU.UTF-8 ; \
-sudo locale-gen ru_RU.UTF-8 ; \
-sudo dpkg-reconfigure locales
-
-# Add locales to /etc/profile:
-sudo vim /etc/profile ; \
-    export LANGUAGE=ru_RU.UTF-8 ; \
-    export LANG=ru_RU.UTF-8 ; \
-    export LC_ALL=ru_RU.UTF-8
 
 # Change postges password, create clear database named dbms_db:
 sudo passwd postgres
@@ -154,4 +141,3 @@ psql -h localhost -U dbms dbms_db
 
 # Run SQL dump, if you have:
 psql -h localhost dbms_db dbms  < dump.sql
-
