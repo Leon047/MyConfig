@@ -92,5 +92,3 @@ sudo vim /etc/nginx/sites-available/example.com.conf
 
 # restart
 sudo systemctl restart nginx
-
-

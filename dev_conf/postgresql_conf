@@ -39,4 +39,3 @@ pg_dump -h host -p port -U db_user db_name > file_name.sql
 
 # Loading damp data 
 psql -h hostname -d databasename -U username -f file.sql
-

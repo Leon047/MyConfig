@@ -63,5 +63,3 @@ STATICFILES_DIRS = [
 {% load static %}
 
 <link rel="stylesheet" href={% static '/css/home_page.css' %}>  
-
-

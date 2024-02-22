@@ -8,13 +8,13 @@ sudo add-apt-repository universe
 # ... sudo su
 vim sudo /etc/apt/sources.list
 
-# 1
+# -- 1 --
 # add in sources 
 deb http://archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse 
 deb http://archive.ubuntu.com/ubuntu/ trusty-security main restricted universe multiverse 
 deb http://archive.ubuntu.com/ubuntu/ trusty-updates main restricted universe multiverse 
 deb http://archive.ubuntu.com/ubuntu/ trusty-proposed main restricted universe multiverse 
 deb http://archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse 
-# 2
-sudo apt update
 
+# -- 2 --
+sudo apt update

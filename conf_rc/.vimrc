@@ -1,14 +1,16 @@
-"                           --- 𝕍 𝕚 𝕞  ---
+"                           --- SexyVim ---
 
 
-" --- Vundle settings ----------------------------------------------------------
+" --- Vundle settings ---
+
+set nocompatible   " Be iMproved, required
+filetype off       " Required
 
 " Set the runtime path to include Vundle and initialize
-" HINT: PluginInstall / PluginUpdate / PluginClean
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=/home/$USER/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'                      " let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'                      " Let Vundle manage Vundle, required
 
 " Code/project navigation 
 Plugin 'scrooloose/nerdtree'                    " A tree explorer plugin for vim
@@ -19,10 +21,8 @@ Plugin 'tmhedberg/SimpylFold'                   " Code Folding
 " Other 
 Plugin 'vim-airline/vim-airline'                " Lean & mean status/tabline for vim that's light as air
 Plugin 'vim-airline/vim-airline-themes'         " Themes for vim-airline
-Plugin 'rosenfeld/conque-term'                  " Consoles as buffers
 Plugin 'tpope/vim-surround'                     " Parentheses, brackets, quotes, XML tags, and more
-Plugin 'Yggdroot/indentLine'
-Plugin 'turbio/bracey.vim'                      " LivePreview for html, css, js (install - nodejs, npm)
+Plugin 'Yggdroot/indentLine'                    " Display vertical lines
 Plugin 'matze/vim-move'                         " Moving text
 
 " Snippets support 
@@ -35,6 +35,7 @@ Plugin 'honza/vim-snippets'                     " Snippets repo
 Plugin 'scrooloose/syntastic'                   " Syntax checking plugin for Vim
 Plugin 'tpope/vim-commentary'                   " Comment stuff out
 Plugin 'mitsuhiko/vim-sparkup'                  " Sparkup (XML/jinja/htlm-django/etc.) support
+Plugin 'elzr/vim-json'                          " Better JSON for VIM
 
 " CSS 
 Plugin 'JulesWang/css.vim'                      " CSS syntax file
@@ -55,8 +56,6 @@ Plugin 'idanarye/breeze.vim'                    " Html navigation like vim-easym
 Plugin 'davidhalter/jedi-vim'                   " Awesome Python autocompletion with VIM
 Plugin 'klen/python-mode'                       " Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
 Plugin 'mitsuhiko/vim-jinja'                    " Jinja support for vim
-Plugin 'mitsuhiko/vim-python-combined'          " *Combined Python 2/3 for Vim
-Plugin 'hynek/vim-python-pep8-indent'           " *PEP8 indent
 Plugin 'jmcantrell/vim-virtualenv'              " Virtualenv support in VIM
 Plugin 'tshirtman/vim-cython'                   " Cython support   
 
@@ -64,32 +63,32 @@ Plugin 'tshirtman/vim-cython'                   " Cython support
 Plugin 'ekalinin/Dockerfile.vim'                " Syntax for Dockerfile
 Plugin 'kkvh/vim-docker-tools'                  " Docker-tools
 
-call vundle#end() " required
+call vundle#end()   " Required
 filetype on
 filetype plugin on
 filetype plugin indent on
 
 
-" --- Plagin settings ----------------------------------------------------------
+" --- Plagin settings ---
 
 " NERDTree 
-nmap <F1> <nop>                 " unmap <F1> with help
-map <F1> :NERDTreeToggle<CR>    " browse the list of files in the current directory
+nmap <F1> <nop>                 " Unmap F1 with help
+map <F1> :NERDTreeToggle<CR>    " Browse the list of files in the current directory
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\. txt$','\.o$']
 let NERDTreeShowHidden=1
 
 " TagBar 
-nmap  <F2> : TagbarToggle <CR>
+nmap  <F2> :TagbarToggle<CR>
 let g:tagbar_autofocus = 0
 
 " Unite 
-nnoremap <F3> :Unite buffer<CR>  " browse a list of the currently opened buffers
+nnoremap <F3> :Unite buffer<CR>  " Browse a list of the currently opened buffers
 
 " Aligning indents 
 map <F4> gg=G <C-o><C-o>
 
 " Debug-mode 
-nnoremap <F5> :exe "ConqueTermSplit python3 " . expand("%") <CR>
+nnoremap <F5> :exe "ConqueTermSplit python3 " . expand("%")<CR>
 let g:ConqueTerm_StartMessages = 0
 let g:ConqueTerm_CloseOnEnd = 0
 
@@ -101,28 +100,17 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
 
-" ConqueTerm 
-" run python3 scripts 
-nnoremap <F7> :ConqueTermSplit python3 <CR>  
-
-" Turbio/Bracey 
-noremap <F8> :Bracey<CR>
-let g:bracey_browser_command = 1
-let g:bracey_server_path = 1
-let g:bracey_auto_start_browser =1 
-let g:bracey_refresh_on_save = 1 
-let g:bracey_eval_on_save = 1
-let g:bracey_auto_start_server = 0
-let g:bracey_server_allow_remote_connections = 0
+" Python code check on PEP8
+autocmd FileType python map <buffer> <leader> <F8> :PymodeLint<CR>
 
 " SnipMate 
 let g:snippets_dir = "~/.vim/bundle/vim-snippets/snippets"
 let g:snipMate = { 'snippet_version' : 1 }
 
 " Jedi-vim 
-let g:jedi#show_call_signatures = 1  " show call signatures
-let g:jedi#popup_on_dot = 1          " enable autocomplete on dot
-let g:jedi#popup_select_first = 0    " disable first select from auto-complete
+let g:jedi#show_call_signatures = 1  " Show call signatures
+let g:jedi#popup_on_dot = 1          " Enable autocomplete on dot
+let g:jedi#popup_select_first = 0    " Disable first select from auto-complete
 
 " Better :sign interface symbols 
 let g:syntastic_error_symbol = 'X'
@@ -134,7 +122,7 @@ let g:syntastic_style_warning_symbol = 'x'
 let g:airline_theme='powerlineish'
 
 " Yggdroot/indentLine
-let g:indentLine_char = '¦'   "['|', '¦', '┆', '┊'] 
+let g:indentLine_char = '¦'   " ['|', '¦', '┆', '┊'] 
 let g:indentLine_color_term = 239
 let g:indentLine_color_tty_dark = 1
 
@@ -146,14 +134,15 @@ nmap <C-Down> <Plug>MoveLineDown
 nmap <C-Up> <Plug>MoveLineUp
 
 
-" --- General settings ---------------------------------------------------------
+" --- General settings ---
 
 set backspace=indent,eol,start
 
 " Auto save 
-" Autosaving the file upon cursor inactivity (CursorHold) or in insert mode inactivity (CursorHoldI)
-" autocmd CursorHold,CursorHoldI * update
 set updatetime=10000  " Autosaving with a 10-second interval.
+
+" Autosaving the file upon cursor inactivity (CursorHold) or in insert mode inactivity (CursorHoldI)
+autocmd CursorHold,CursorHoldI * update
 
 " Increase story size
 set history=200
@@ -189,12 +178,6 @@ if has("gui_running")
 endif
 set ttyfast
 
-" Enable Syntax Colors
-" in GUI mode we go with fruity and Monaco 13
-" in CLI mode myterm looks better (fruity is GUI only)
-tab sball
-set switchbuf=useopen
-
 " Use system clipboard
 set clipboard=unnamedplus
 
@@ -204,29 +187,29 @@ set wildignore+=*.dll,*.o,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*$py.class,
 set wildmode=list:full
 
 " Don't bell and blink
-set visualbell t_vb=    " turn off error beep/flash
-set noerrorbells        " turn off sound bell
-set novisualbell        " turn off visual bell
-set enc=utf-8           " utf-8 default encoding
-set ls=2                " always show status bar
-set incsearch           " incremental search
-set hlsearch            " highlighted search results
-set nu                  " show line numbers
-set scrolloff=5         " keep some more lines for scope
-set showmatch           " show matching brackets/parenthesis
-set matchtime=0         " don't blink when matching
+set visualbell t_vb=    " Turn off error beep/flash
+set noerrorbells        " Turn off sound bell
+set novisualbell        " Turn off visual bell
+set enc=utf-8           " Utf-8 default encoding
+set ls=2                " Always show status bar
+set incsearch           " Incremental search
+set hlsearch            " Highlighted search results
+set nu                  " Show line numbers
+set scrolloff=5         " Keep some more lines for scope
+set showmatch           " Show matching brackets/parenthesis
+set matchtime=0         " Don't blink when matching
 
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
-let g:SimpylFold_docstring_preview=1  " Preview docstring in fold text  
-let g:SimpylFold_fold_import = 1      " Fold imports
+let g:SimpylFold_docstring_preview=1    " Preview docstring in fold text  
+let g:SimpylFold_fold_import = 1        " Fold imports
 
 " Hide some panels
-set guioptions-=m   " remove menu bar
-set guioptions-=T   " remove toolbar
-set guioptions-=r   " remove right-hand scroll bar
-set guioptions-=L   " remove left-hand scroll bar
+set guioptions-=m    " Remove menu bar
+set guioptions-=T    " Remove toolbar
+set guioptions-=r    " Remove right-hand scroll bar
+set guioptions-=L    " Remove left-hand scroll bar
 
 augroup vimrc_autocmds
     autocmd!
@@ -240,7 +223,7 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=238
 
 
-" --- Color Settings -----------------------------------------------------------
+" --- Color Settings ---
 
 " Comments
 hi Comment ctermfg=585 
@@ -258,7 +241,7 @@ hi CursorLine term=bold cterm=bold guibg=Grey40
 hi Visual  ctermbg=238 guibg=Grey40 gui=none
 
 
-" --- Python-mode settings -----------------------------------------------------
+" --- Python-mode settings ---
 
 let g:pymode_rope = 0
 
@@ -308,22 +291,23 @@ let python_highlight_builtins=0
 let python_slow_sync=1
 let g:syntastic_python_checkers = ['flake8', 'python']
 let g:syntastic_python_flake8_args='--ignore=E121,E128,E711,E301,E261,E241,E124,E126,E721
-\ --max-line-length=80'
+    \ --max-line-length=80'
+
 autocmd FileType python setlocal completeopt-=preview
-autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8
-\ formatoptions+=croq softtabstop=4 smartindent
-\ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 
-\ smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+    \ formatoptions+=croq smartindent
+    \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 
+    \ smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 
 
-" --- Languages support --------------------------------------------------------
+" --- Languages support ---
 
 " C/C++/C# 
-autocmd FileType c setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-autocmd FileType cpp setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-autocmd FileType objc setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-autocmd FileType cs setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType c setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType cpp setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType objc setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType cs setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType c setlocal commentstring=/*\ %s\ */
 autocmd FileType cpp,cs,objc setlocal commentstring=//\ %s
 let c_no_curly_error=1
@@ -354,7 +338,7 @@ autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 let html_no_rendering=1
 let g:syntastic_html_checkers = []
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType html setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2
+autocmd FileType html setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType html setlocal commentstring=<!--\ %s\ -->
 
 " Jinja 
@@ -374,28 +358,25 @@ autocmd FileType sass setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 " YAML 
 autocmd BufNewFile,BufRead *.sls setlocal ft=yaml
-autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2
-
-" Cmake support 
-autocmd BufNewFile,BufRead CMakeLists.txt setlocal ft=cmake
+autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 " TXT 
 autocmd BufRead,BufNewFile *.txt set filetype=txt
-autocmd FileType txt setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2
+autocmd FileType txt setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 " MD 
 autocmd BufRead,BufNewFile *.md set filetype=md
-autocmd FileType md setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2
+autocmd FileType md setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
-" unix.conf 
+" Unix.conf 
 autocmd BufRead,BufNewFile *.conf set filetype=conf
-autocmd FileType conf setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2
+autocmd FileType conf setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 " Vim
-autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2
+autocmd FileType vim setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 
 
-" --- User hotkeys -------------------------------------------------------------
+" --- User hotkeys ---
 
 " Easier moving of code blocks
 vnoremap < <gv " Shift+> keys
@@ -408,7 +389,7 @@ vnoremap <BS> d
 noremap <C-z> u
 inoremap <C-z> <C-O>u
 
-" CTRL-Y is Redo
+" CTRL-R is Redo
 noremap <C-y> <C-R> 
 inoremap <C-y> <C-O><C-R>
 
@@ -426,28 +407,25 @@ vnoremap <C-S> <C-C>:update<CR>
 inoremap <C-S> <C-O>:update<CR>
 
 " Settings for buffers
-map <C-q> :bd!<CR>         " close current buffer, CTRL-q
-noremap <C-Right> :bn<CR>  " move to next buffer, CTRL-Right
-noremap <C-Left> :bp<CR>   " move to previous buffer, CTRL-Left
+map <C-q> :bd!<CR>           " Close current buffer, CTRL-q
+noremap <C-Right> :bn<CR>    " Move to next buffer, CTRL-Right
+noremap <C-Left> :bp<CR>     " Move to previous buffer, CTRL-Left
 
 " Easier split navigations
-nnoremap <silent> <C-j> <c-w>h  " move to the right subwindows, CTRL-j
-nnoremap <silent> <C-l> <c-w>l  " move to the upper subwindow, CTRL-i
-nnoremap <silent> <C-i> <c-w>k  " move to the lower subwindow, CTRL-k
-nnoremap <silent> <C-k> <c-w>j  " move to the left subwindow, CTRL-l
+nnoremap <silent> <C-j> <c-w>h    " Move to the right subwindows, CTRL-j
+nnoremap <silent> <C-l> <c-w>l    " Move to the upper subwindow, CTRL-i
+nnoremap <silent> <C-i> <c-w>k    " Move to the lower subwindow, CTRL-k
+nnoremap <silent> <C-k> <c-w>j    " Move to the left subwindow, CTRL-l
 
 " Split managment
-map <silent> <A-s> :split<CR>   " Split horizontal, ALT-s
-map <silent> <A-v> :vsplit<CR>  " Split vertical, ALV-v
+map <silent> <A-s> :split<CR>     " Split horizontal, ALT-s
+map <silent> <A-v> :vsplit<CR>    " Split vertical, ALV-v
 
 " Easier change size for splitted window
-map <silent> <A-j> <C-w>>  " Increase size of the vertical split, ALT-j
-map <silent> <A-i> <C-W>+  " Increase size of the horizontal split, ALT-i
-map <silent> <A-k> <C-W>-  " Decrease size of the horizontal split, ALT-k
-map <silent> <A-l> <C-w><  " Decrease size of the vertical split, ALT-l
-
-" Python code check on PEP8
-autocmd FileType python map <buffer> <leader>8 :PymodeLint<CR>
+map <silent> <A-j> <C-w>>    " Increase size of the vertical split, ALT-j
+map <silent> <A-i> <C-W>+    " Increase size of the horizontal split, ALT-i
+map <silent> <A-k> <C-W>-    " Decrease size of the horizontal split, ALT-k
+map <silent> <A-l> <C-w><    " Decrease size of the vertical split, ALT-l
 
 " Activate autocomplete at <Ctrl+Space>
 inoremap <C-space> <C-x><C-o>

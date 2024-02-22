@@ -20,16 +20,7 @@ cp ~/Documents/MyConfig/conf_rc/.tmux.conf.local ~/
 sudo apt install vim
 
 # add vimrc
-cp ~/Documents/MyConfig/conf_rc/.vimrc ~/
-
-# swaps and backups
-mkdir ~/.vim/sessions
-
-# majutsushi/tagbar
-sudo apt install exuberant-ctags
-
-# add vumdle ":PluginInstall"
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+https://github.com/Leon047/SexyVim
 
 
 # -- oh-my-zsh --
@@ -63,10 +54,6 @@ sudo apt install gnome-tweaks
 sudo apt install kazam
 sudo apt install steam
 
-# install skype 
-wget https://go.skype.com/skypeforlinux-64.deb
-sudo apt install ./skypeforlinux-64.deb
-
 
 # -- gnome shell extensions --
 # dash to dock
@@ -76,8 +63,7 @@ sudo apt install ./skypeforlinux-64.deb
 sudo apt install gnome-shell-extension-autohidetopbar
 
 
-# -----------------------------------------------------------------------------|
-                        --- Else ---
+# --- Else ---
 
 # Password as: *******
 # in bash
@@ -94,5 +80,3 @@ Defaults pwfeedback
 # Find - Russian mnemonic keyboard
 sudo add-apt-repository ppa:keymanapp/keyman
 sudo apt install keyman onboard-keyman
-
-

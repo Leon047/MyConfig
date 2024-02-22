@@ -36,6 +36,7 @@ $ ssh-keygen -p
 # на работу с открытыми ключами). Для этого достаточно скопировать содержимое 
 # файла с расширением .pub и отправить его по электронной почте. 
 
+
 # --- 2 ---
 
 # Включить агент ssh 
@@ -49,6 +50,7 @@ $ ssh-add -l
 
 # Удалить все ключи.
 $ ssh-add -D 
+
 
 # --- server ---
 
@@ -69,6 +71,7 @@ $ sudo vim /etc/ssh/sshd_config
 # restart ssh
 $ sudo service ssh restart
 
+
 # --- SSH alias ---
 
 # login for ssh
@@ -84,9 +87,9 @@ Host alias
      User user_name
      Port 22  
 
-
 # root
 ssh -o "User=root" alias
+
 
 # --- GIT ---
 

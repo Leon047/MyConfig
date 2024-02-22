@@ -1,9 +1,9 @@
-                          ---=== Pip ===---
+                          ---=== Python pip ===---
 
 
 # Create requirements.txt file
 pip freeze
-pip freeze > requirements.txt
+pip freeze -> requirements.txt
 pip freeze --local
 
 # Upgrade txt file

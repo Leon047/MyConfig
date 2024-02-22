@@ -53,4 +53,3 @@ sudo service supervisor start
 sudo supervisorctl reread
 sudo supervisorctl update
 sudo supervisorctl restart all
-
