@@ -1,0 +1,47 @@
+				                  ---=== Flask-Alembic ===---
+
+
+# Install
+
+-- 1 --
+pip install Flask-Alembic
+
+-- 2 --
+# Создайте файл конфигурации Alembic (обычно называемый alembic.ini) в
+корневом каталоге вашего проекта. Вот пример содержимого файла alembic.ini:
+
+# alembic.ini
+[alembic]
+script_location = alembic
+
+# sqlalchemy.url = driver://user:pass@localhost/dbname
+sqlalchemy.url = sqlite:///your_database.db
+
+-- 3 --
+# Настройка Flask-Alembic:
+
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_alembic import Alembic
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///your_database.db'
+db = SQLAlchemy(app)
+alembic = Alembic()
+alembic.init_app(app)
+
+# Замените 'sqlite:///your_database.db' на ваш URL базы данных.
+
+-- 4 --
+# Для создания новой миграции выполните команду:
+
+flask db migrate -m "название миграции"
+
+# Для применения миграций выполните команду:
+
+flask db upgrade
+
+# Для отката последней миграции выполните команду:
+
+flask db downgrade
+
