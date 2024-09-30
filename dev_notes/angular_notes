@@ -1,21 +1,91 @@
 			            ---=== Angular ===---
 
 
-# Install the Angular CLI:
-npm install -g @angular/cli
+## Обновление Node.js и npm 
 
-# Create a workspace and initial application:
+### Если у вас установлен nvm:
+
+1. Проверьте, какие версии Node.js доступны:
+nvm ls-remote
+
+2. Установите последнюю версию Node.js:
+nvm install node
+
+or
+
+nvm install 20.17.0
+
+3. Установите последнюю версию Node.js:
+nvm use node
+
+or 
+
+nvm use 20.17.0
+
+4. Проверьте версию Node.js и npm, чтобы убедиться, что они обновлены:
+
+node -v
+npm -v
+
+
+5. Обновить npm до последней версии:
+npm install -g npm@latest
+
+
+### Если nvm не установлен: 
+
+Установите nvm (если ещё нет):
+
+1.
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+
+2.
+source ~/.bashrc
+
+
+## Обновление Angular CLI до последней версии
+
+1. Удалите старую версию Angular CLI (если требуется)
+
+npm uninstall -g @angular/cli
+
+Установите последнюю версию Angular CLI
+
+npm install -g @angular/cli@latest
+
+
+Обновите Angular в проекте:
+
+ng update @angular/cli @angular/core
+
+Обновление всех пакетов Angular:
+
+ng update
+ 
+Проверьте версии
+
+ng version
+
+
+# Create an Angular workspace and initial application:
+
 ng new my-app
 
+or
+
+# Fixed `app.module.ts` does not exist in Angular 
+ng new my-app --no-standalone
+
 # Create  component: 
+
 ng generate component component-name
 
 or 
 
 ng g c component-name
 
-
 # Create service
+
 ng generate service service-name
 
 or
