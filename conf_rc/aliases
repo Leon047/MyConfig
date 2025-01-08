@@ -1,6 +1,5 @@
-# 			---=== ALIAS ===---
+# 			      ---=== ALIAS ===---
 
-# --- PC ---
 
 # Leptop System Information
 alias leptop='sudo dmidecode | grep -A 9 "System Information"'
@@ -53,11 +52,6 @@ alias du='du -ch'
 # alias up_vps=''
 # alias down_vps=''
 
-# --- Hosts --- 
-# alias devserver='ssh mrleon@45.94.158.112'
-# alias S7='ssh @192.168.0.100'
-# alias raspberry='ssh leon@192.168.1.6'
-
 # --- db ---
 
 # mysql
@@ -75,7 +69,7 @@ alias iptlistfw='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
 alias firewall=iptlist
 
 # --- Python --- 
-alias py='python3'
+alias py='python3.11'
 
 # --- Else ---
 alias v='vim'
